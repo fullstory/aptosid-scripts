@@ -1,0 +1,14 @@
+#!/bin/sh
+if test $(id -u) != 0; then
+	echo Error: You must be root to run this script!
+	exit 1 
+fi
+
+if ! test -e /etc/network/interfaces.1st; then
+	cp /etc/network/interfaces /etc/network/interfaces.1st
+fi
+
+perl -pi -e 's/^[\s]*gateway.*[\n]//g' /etc/network/interfaces
+
+/etc/init.d/networking restart
+

@@ -1,0 +1,12 @@
+#!/bin/sh
+if test $(id -u) != 0; then
+	echo Error: You must be root to run this script!
+	exit 1 
+fi
+
+cat <<EOF >/etc/motd
+Welcome to $HOSTNAME (Kernel $(uname -r))
+
+EOF
+cat /etc/motd
+

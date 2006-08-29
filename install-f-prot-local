@@ -1,0 +1,46 @@
+#!/bin/sh
+
+PREFIX="$HOME/dist"
+mkdir -p "$PREFIX/src"
+
+pushd "$PREFIX/src"
+	GREP_RESULT=`grep "$PREFIX/bin" "$HOME/.bashrc"`
+
+	if test -z "$GREP_RESULT"; then
+		echo "export PATH=$PREFIX/bin:$PATH" >> $HOME/.bashrc
+	fi
+
+	GREP_RESULT=`grep "$PREFIX/lib" "$HOME/.bashrc"`
+	if test -z "$GREP_RESULT"; then
+		echo "export LD_LIBRARY_PATH=$PREFIX/lib" >> $HOME/.bashrc
+	fi
+	wget -nc ftp://ftp.f-prot.com/pub/linux/fp-linux-ws.tar.gz
+popd
+
+rm -rf f-prot/
+tar zxf src/fp-linux-ws.tar.gz  &>/dev/null || (
+	rm -f src/fp-linux-ws.tar.gz
+	echo fp-linux-ws.tar.gz could not be extracted
+	echo and has been deleted. Please restart this script.
+	exit 1 ) || exit "$?"
+
+	perl -pi -e "s|/usr/local|$PREFIX|" f-prot/f-prot.sh
+	perl -pi -e "s|/usr/local|$PREFIX|" f-prot/tools/check-updates.pl
+	mkdir -p bin
+	ln -sf ../f-prot/f-prot.sh bin/f-prot
+	rm -f f-prot/check-updates.sh
+	#ln -sf tools/check-updates.pl f-prot/check-updates.sh
+	ln -sf ../f-prot/check-updates.sh bin/check-updates.sh
+
+	cat <<EOF >f-prot/check-updates.sh
+#!/bin/sh
+cd $PREFIX/f-prot
+wget -Nc http://www.f-prot.com/cgi-bin/get_randomly?fp-def && unzip -o fp-def.zip
+wget -Nc http://www.f-prot.com/cgi-bin/get_randomly?macrdef2 && unzip -o macrdef2.zip
+EOF
+	chmod 755 f-prot/check-updates.sh
+	f-prot/check-updates.sh
+	# message
+
+echo "to start open a new console, then: f-prot -help"
+

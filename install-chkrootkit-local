@@ -1,0 +1,44 @@
+#!/bin/sh
+
+PREFIX="$HOME/dist"
+mkdir -p "$PREFIX/src"
+
+pushd "$PREFIX/src"
+	GREP_RESULT=`grep "$PREFIX/bin" "$HOME/.bashrc"`
+	if test -z "$GREP_RESULT"; then
+		echo "export PATH=$PREFIX/bin:$PATH" >> "$HOME/.bashrc"
+	fi
+
+	GREP_RESULT=`grep "$PREFIX/lib" "$HOME/.bashrc"`
+	if test -z "$GREP_RESULT"; then
+		echo "export LD_LIBRARY_PATH=$PREFIX/lib" >> $HOME/.bashrc
+	fi
+	
+	rm -f chkrootkit.tar.gz
+	URL=ftp://ftp.pangeia.com.br/pub/seg/pac
+	wget -N $URL/chkrootkit.tar.gz
+	NAME=$(ls -l chkrootkit.tar.gz|awk '{print $10}')
+	DIRNAME=$(echo $NAME|sed s/\.tar\.gz//)
+	wget -Nc $URL/$NAME
+popd
+
+rm -rf "$DIRNAME"
+tar zxf "src/$NAME" &>/dev/null || (
+	echo "$NAME could not be extracted"
+	echo "and has been deleted. Please restart this script."
+	exit 1 ) || exit $?
+pushd "$DIRNAME"
+	make sense
+popd
+
+mkdir -p bin
+cat <<EOF >bin/chkrootkit
+#!/bin/bash
+[ \$(id -u) != 0 ] && exec sudo "\$0" "\$@"
+"$PREFIX/$DIRNAME/chkrootkit" "\$@"
+EOF
+
+chmod 755 bin/chkrootkit
+# message
+echo "to start open a new console, then: chkrootkit"
+

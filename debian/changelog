@@ -1,0 +1,39 @@
+kanotix-scripts (0.1.5) unstable; urgency=low
+
+  * remove cdbs auto update feature.
+  * bump compat level to 5.
+  * bump standards version to 3.7.2.
+  * update fix-5b-mouse.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 29 Aug 2006 13:53:43 +0200
+
+kanotix-scripts (0.1.4) unstable; urgency=low
+
+  * fix/ adapt fix-5b-mouse for X.org 6.9.0.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 31 Dec 2005 13:36:42 +0100
+
+kanotix-scripts (0.1.3) unstable; urgency=low
+
+  * move fix-udev-lan to kanotix-udev-config.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 16 Oct 2005 23:54:07 +0200
+
+kanotix-scripts (0.1.2) unstable; urgency=low
+
+  * add fix-udev-lan.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 15 Oct 2005 23:41:44 +0200
+
+kanotix-scripts (0.1.1) unstable; urgency=low
+
+  * add dh_make to dependencies.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 15 Oct 2005 13:49:23 +0200
+
+kanotix-scripts (0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 23 Aug 2005 11:03:21 +0200
+

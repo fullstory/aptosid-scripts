@@ -1,0 +1,12 @@
+Source: kanotix-scripts
+Section: misc
+Priority: extra
+Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
+Build-Depends-Indep: cdbs (>= 0.4.23-1.1), debhelper (>= 5.0.0)
+Standards-Version: 3.7.2
+
+Package: kanotix-scripts
+Architecture: all
+Depends: perl, distro-defaults, dh-make
+Description: miscellaneous scripts for KANOTIX
+ Script collection for live and install uses on KANOTIX.

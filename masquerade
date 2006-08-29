@@ -1,0 +1,9 @@
+#!/bin/sh
+
+INTERNET=ppp0
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+iptables -P FORWARD ACCEPT
+iptables -t nat -A POSTROUTING -o $INTERNET -j MASQUERADE
+
