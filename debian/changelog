@@ -1,3 +1,10 @@
+kanotix-scripts (0.1.6) unstable; urgency=low
+
+  * XFree86 4.3 is obsolete.
+  * quote variables.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 29 Aug 2006 13:59:15 +0200
+
 kanotix-scripts (0.1.5) unstable; urgency=low
 
   * remove cdbs auto update feature.

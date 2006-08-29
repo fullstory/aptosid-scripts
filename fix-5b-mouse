@@ -1,18 +1,16 @@
 #!/bin/sh
+
 if test $(id -u) != 0; then
 	echo Error: You must be root to run this script!
 	exit 1
 fi
 
-X_CONF=XF86Config-4
-if which Xorg >/dev/null; then
-	[ -e /etc/X11/xorg.conf ] && X_CONF=xorg.conf
-fi
+X_CONF=xorg.conf
 
-perl -pi -e 's|(\s*Option\s+"Protocol"\s+)"IMPS/2"|\1"ExplorerPS/2"|' /etc/X11/$X_CONF
-perl -pi -e 's|(\s*Option\s+"Buttons"\s+)"\w+"|\1"7"|' /etc/X11/$X_CONF
-perl -pi -e 's|[\s]*InputDevice    "PS/2 Mouse" "CorePointer"|# PS/2 Mouse not detected|' /etc/X11/$X_CONF
-perl -pi -e 's|# USB Mouse not detected|\tInputDevice    "USB Mouse" "CorePointer"|' /etc/X11/$X_CONF
+perl -pi -e 's|(\s*Option\s+"Protocol"\s+)"IMPS/2"|\1"ExplorerPS/2"|' "/etc/X11/$X_CONF"
+perl -pi -e 's|(\s*Option\s+"Buttons"\s+)"\w+"|\1"7"|' "/etc/X11/$X_CONF"
+perl -pi -e 's|[\s]*InputDevice    "PS/2 Mouse" "CorePointer"|# PS/2 Mouse not detected|' "/etc/X11/$X_CONF"
+perl -pi -e 's|# USB Mouse not detected|\tInputDevice    "USB Mouse" "CorePointer"|' "/etc/X11/$X_CONF"
 
 apt-get update
 apt-get -y install imwheel
