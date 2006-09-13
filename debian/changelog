@@ -1,8 +1,8 @@
-kanotix-scripts (0.1.7) UNRELEASED; urgency=low
+kanotix-scripts (0.1.7) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * temporarily support XFree86 4.3 again.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 29 Aug 2006 15:11:43 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 13 Sep 2006 02:23:49 +0200
 
 kanotix-scripts (0.1.6) unstable; urgency=low
 

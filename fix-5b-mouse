@@ -5,7 +5,10 @@ if test $(id -u) != 0; then
 	exit 1
 fi
 
-X_CONF=xorg.conf
+X_CONF=XF86Config-4
+if which Xorg >/dev/null; then
+	[ -e /etc/X11/xorg.conf ] && X_CONF=xorg.conf
+fi
 
 perl -pi -e 's|(\s*Option\s+"Protocol"\s+)"IMPS/2"|\1"ExplorerPS/2"|' "/etc/X11/$X_CONF"
 perl -pi -e 's|(\s*Option\s+"Buttons"\s+)"\w+"|\1"7"|' "/etc/X11/$X_CONF"
