@@ -14,7 +14,7 @@ perl -pi -e 's|# USB Mouse not detected|\tInputDevice    "USB Mouse" "CorePointe
 
 apt-get update
 apt-get -y install imwheel
-if ! dpkg -l imwheel &>-; then
+if ! [ -x /usr/bin/imwheel ]; then
 	echo Error: Could not install imwheel correctly.
 	exit 2
 fi

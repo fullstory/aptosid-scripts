@@ -1,9 +1,12 @@
-kanotix-scripts (0.1.8) UNRELEASED; urgency=low
+kanotix-scripts (0.1.8) unstable; urgency=low
 
-  * NOT RELEASED YET
+  [ Stefan Lippers-Hollmann ]
   * XFree86 4.3 is obsolete.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 13 Sep 2006 02:26:40 +0200
+  [ Joerg Schirottke ]
+  * update fix-5b-mouse.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 24 Oct 2006 18:32:45 +0200
 
 kanotix-scripts (0.1.7) unstable; urgency=low
 
