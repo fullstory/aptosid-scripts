@@ -1,3 +1,9 @@
+kanotix-scripts (0.1.9) unstable; urgency=low
+
+  * switch to utf-8.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed,  1 Nov 2006 00:27:07 +0100
+
 kanotix-scripts (0.1.8) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
@@ -6,7 +12,7 @@ kanotix-scripts (0.1.8) unstable; urgency=low
   [ Joerg Schirottke ]
   * update fix-5b-mouse.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 24 Oct 2006 18:32:45 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed,  1 Nov 2006 00:27:01 +0100
 
 kanotix-scripts (0.1.7) unstable; urgency=low
 
