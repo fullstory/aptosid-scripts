@@ -1,8 +1,9 @@
 kanotix-scripts (0.1.10) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
+  * use pool.ntp.org for fix-time.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed,  1 Nov 2006 00:28:31 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu,  9 Nov 2006 03:16:39 +0100
 
 kanotix-scripts (0.1.9) unstable; urgency=low
 

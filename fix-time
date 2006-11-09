@@ -6,8 +6,7 @@ fi
 
 hwclock -s --localtime
 
-#NTPSERVERS=ntp2.fau.de
-NTPSERVERS=bonehed.lcs.mit.edu
+NTPSERVERS="pool.ntp.org"
 
 echo NTPSERVERS=$NTPSERVERS > /etc/default/ntp-servers
 
