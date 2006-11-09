@@ -1,15 +1,13 @@
 #!/bin/sh
-if test $(id -u) != 0; then
-	echo Error: You must be root to run this script!
-	exit 1
-fi
+
+[ "$UID" -ne 0 ] && exec kanotix-su "$0" "$@"
 
 # override tool behaviour through distro-defaults
 FLL_IMAGE_DIR="KNOPPIX"
 FLL_DISTRO_MODE="installed"
 [ -r /etc/default/distro ] && source /etc/default/distro
 
-if [ "$FLL_DISTRO_MODE" == "live" ]; then
+if [ "$FLL_DISTRO_MODE" = "live" ]; then
 	if grep -q unionfs /proc/mounts; then
 		echo Unionfs found.
 	else

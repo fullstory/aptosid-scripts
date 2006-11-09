@@ -7,6 +7,6 @@ Standards-Version: 3.7.2
 
 Package: kanotix-scripts
 Architecture: all
-Depends: perl, distro-defaults, dh-make
+Depends: perl, distro-defaults, dh-make, kanotix-su
 Description: miscellaneous scripts for KANOTIX
  Script collection for live and install uses on KANOTIX.

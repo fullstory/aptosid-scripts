@@ -1,8 +1,6 @@
 #!/bin/sh
-if [ $(id -u) != 0 ]; then
-	echo Error: You must be root to run this script!
-	exit 1
-fi
+
+[ "$UID" -ne 0 ] && exec kanotix-su "$0" "$@"
 
 for link in $(find /usr/share/applnk -name *.desktop -type f); do
 	#echo testing....... $link
@@ -12,7 +10,7 @@ for link in $(find /usr/share/applnk -name *.desktop -type f); do
 	nr=$(echo "$appl"|awk '{print NF}')
 	
 	if [ "$appl" ]; then
-		if [ "$first" == "kdesu" ]; then
+		if [ "$first" = "kdesu" ]; then
 			file=$(echo "$appl"|perl -pe '($_)=/--\s+(\S*)/')
 			[ "$file" ] || file=$(echo "$appl"|perl -pe '($_)=/kdesu\s+(\S*)/')
 			case $file in
@@ -27,8 +25,8 @@ for link in $(find /usr/share/applnk -name *.desktop -type f); do
 			file="$first"
 		fi
 		
-		[ "$file" == "-s" ] && file=sudo
-		if [ "$first" == "kdesu" ]; then
+		[ "$file" = "-s" ] && file=sudo
+		if [ "$first" = "kdesu" ]; then
 			if ! which $file >/dev/null; then
 				echo link.......... "$link"
 				echo application... "$appl"
