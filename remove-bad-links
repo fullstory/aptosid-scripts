@@ -33,12 +33,12 @@ for link in $(find /usr/share/applnk -name *.desktop -type f); do
 				echo first......... "$first"
 				echo last.......... "$last"
 				echo file.......... "$file"
-				echo erasing.......  "$link"
+				echo erasing....... "$link"
 				rm -i "$link"
 			fi
 		else  
 			if ! which "$file" >/dev/null; then
-				echo erasing.......  "$link"
+				echo erasing....... "$link"
 				rm -f "$link"
 			fi
 		fi

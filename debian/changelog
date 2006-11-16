@@ -1,8 +1,8 @@
-kanotix-scripts (0.1.11) UNRELEASED; urgency=low
+kanotix-scripts (0.1.11) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * white space clean up.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu,  9 Nov 2006 21:12:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 16 Nov 2006 21:28:30 +0100
 
 kanotix-scripts (0.1.10) unstable; urgency=low
 
