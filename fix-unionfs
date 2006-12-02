@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ "$UID" -ne 0 ] && exec kanotix-su "$0" "$@"
+[ "$UID" -ne 0 ] && exec su-me "$0" "$@"
 
 # override tool behaviour through distro-defaults
 FLL_IMAGE_DIR="KNOPPIX"

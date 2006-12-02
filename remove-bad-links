@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ "$UID" -ne 0 ] && exec kanotix-su "$0" "$@"
+[ "$UID" -ne 0 ] && exec su-me "$0" "$@"
 
 for link in $(find /usr/share/applnk -name *.desktop -type f); do
 	#echo testing....... $link

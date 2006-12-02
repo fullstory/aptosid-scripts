@@ -1,12 +1,13 @@
-Source: kanotix-scripts
+Source: sidux-scripts
 Section: misc
 Priority: extra
 Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: cdbs (>= 0.4.23-1.1), debhelper (>= 5.0.0)
 Standards-Version: 3.7.2
 
-Package: kanotix-scripts
+Package: sidux-scripts
 Architecture: all
-Depends: perl, distro-defaults, dh-make, kanotix-su
-Description: miscellaneous scripts for KANOTIX
- Script collection for live and install uses on KANOTIX.
+Depends: perl, distro-defaults, dh-make, su-me
+Conflicts: kanotix-scripts
+Description: miscellaneous scripts for sidux
+ Script collection for live and install uses on sidux.
