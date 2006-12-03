@@ -1,7 +1,6 @@
 fix-xv-local			usr/bin/
 install-chkrootkit-local	usr/bin/
 install-f-prot-local		usr/bin/
-devmap_mknod			usr/sbin/
 fix-5b-mouse			usr/sbin/
 fix-dpi-kdm			usr/sbin/
 fix-motd			usr/sbin/
@@ -9,7 +8,6 @@ fix-ssh				usr/sbin/
 fix-time			usr/sbin/
 fix-unionfs			usr/sbin/
 get-resume-partition		usr/sbin/
-make-qt-deb			usr/sbin/
 masquerade			usr/sbin/
 remove-bad-links		usr/sbin/
 remove-gateway			usr/sbin/
