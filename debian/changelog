@@ -1,10 +1,14 @@
-sidux-scripts (0.1.12) UNRELEASED; urgency=low
+sidux-scripts (0.1.12) unstable; urgency=low
 
-  * NOT RELEASED YET
-
+  [ Joaquim Boura ]
   * Initial version for sidux
 
- -- Joaquim Boura <x-un-i@sidux.com>  Sat,  2 Dec 2006 02:09:23 +0100
+  [ Stefan Lippers-Hollmann ]
+  * remove obsolete devmap_mknod.
+  * remove obsolete make-qt-deb.
+  * tweak debian/control.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun,  3 Dec 2006 02:53:37 +0100
 
 kanotix-scripts (0.1.11) unstable; urgency=low
 
