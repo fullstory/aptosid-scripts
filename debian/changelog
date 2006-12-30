@@ -1,3 +1,9 @@
+sidux-scripts (0.1.14) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 30 Dec 2006 14:51:27 +0100
+
 sidux-scripts (0.1.13) unstable; urgency=low
 
   * remove install-chkrootkit-local install-f-prot-local, unionfs can do a
