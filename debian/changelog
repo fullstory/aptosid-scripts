@@ -1,8 +1,14 @@
-sidux-scripts (0.1.13) UNRELEASED; urgency=low
+sidux-scripts (0.1.13) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * remove install-chkrootkit-local install-f-prot-local, unionfs can do a
+    much better job these days.
+  * fix-xv-local is obsolete.
+  * use su-me where possible, use a canonical stanza for it.
+  * fix ntpserver defintions for fix-time.
+  * recommend ntpdate.
+  * use #!/bin/sh for all scripts.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun,  3 Dec 2006 02:57:37 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 30 Dec 2006 14:25:53 +0100
 
 sidux-scripts (0.1.12) unstable; urgency=low
 

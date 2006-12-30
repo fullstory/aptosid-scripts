@@ -1,6 +1,3 @@
-fix-xv-local			usr/bin/
-install-chkrootkit-local	usr/bin/
-install-f-prot-local		usr/bin/
 fix-5b-mouse			usr/sbin/
 fix-dpi-kdm			usr/sbin/
 fix-motd			usr/sbin/

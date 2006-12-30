@@ -1,5 +1,8 @@
 #!/bin/sh
-if test $(id -u) != 0; then
+
+if [ "$(id -u)" -ne 0 ]; then
+	[ -x /usr/bin/su-me ] && DISPLAY="" exec su-me "$0" "$@"
+
 	echo Error: You must be root to run this script!
 	exit 1
 fi
@@ -8,7 +11,7 @@ hwclock -s --localtime
 
 NTPSERVERS="pool.ntp.org"
 
-echo NTPSERVERS=$NTPSERVERS > /etc/default/ntp-servers
+sed s/^NTPSERVERS\=.*/NTPSERVERS\=\"pool.ntp.org\"/ /etc/default/ntpdate
 
 update-rc.d -f ntpdate remove
 update-rc.d ntpdate defaults
