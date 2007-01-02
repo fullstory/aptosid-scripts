@@ -8,9 +8,9 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # override tool behaviour through distro-defaults
-FLL_IMAGE_DIR="KNOPPIX"
+FLL_IMAGE_DIR="SIDUX"
 FLL_DISTRO_MODE="installed"
-[ -r /etc/default/distro ] && source /etc/default/distro
+[ -r /etc/default/distro ] && . /etc/default/distro
 
 if [ "$FLL_DISTRO_MODE" = "live" ]; then
 	if grep -q unionfs /proc/mounts; then
