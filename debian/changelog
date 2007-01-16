@@ -1,9 +1,5 @@
-sidux-scripts (0.1.15) UNRELEASED; urgency=low
+sidux-scripts (0.1.15) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Andreas Weber ]
   * install-sidux-binary-gfx added. This will install the Sidux Package to
     install the Nvidia / ATI Kernel Module.   
 
