@@ -10,3 +10,4 @@ remove-bad-links		usr/sbin/
 remove-gateway			usr/sbin/
 remove-orphans			usr/sbin/
 wepkey				usr/sbin/
+install-sidux-binary-gfx	usr/sbin/
