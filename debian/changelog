@@ -8,8 +8,9 @@ sidux-scripts (0.1.16) unstable; urgency=low
 
   * install-sidux-binary-gfx renamed to get-sidux-binary-gfx
   * su-me fixed and autstart of the Script disabled
+  * Comments added and repo changed to sidux.com 
 
- -- Andreas Weber <andreas@it-weber.com>  Wed, 24 Jan 2007 09:49:03 +0100
+ -- Andreas Weber <andreas@it-weber.com>  Wed, 24 Jan 2007 18:51:58 +0100
 
 sidux-scripts (0.1.15) unstable; urgency=low
 
