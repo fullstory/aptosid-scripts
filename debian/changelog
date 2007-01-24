@@ -1,9 +1,5 @@
-sidux-scripts (0.1.16) UNRELEASED; urgency=low
+sidux-scripts (0.1.16) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Andreas Weber ]
   * install-sidux-binary-gfx renamed to get-sidux-binary-gfx
   * su-me fixed and autstart of the Script disabled
 
