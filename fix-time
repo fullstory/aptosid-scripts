@@ -7,16 +7,21 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
-hwclock -s --localtime
+# get time servers from /etc/default/ntpdate
+. /etc/default/ntpdate
+[ -z "$NTPSERVER" ] && NTPSERVER="pool.ntp.org"
 
-NTPSERVERS="pool.ntp.org"
+# assume the hw clock being in local time
+hwclock --hctosys --localtime
 
-sed s/^NTPSERVERS\=.*/NTPSERVERS\=\"pool.ntp.org\"/ /etc/default/ntpdate
+# let the user set their time zone
+tzconfig
 
-update-rc.d -f ntpdate remove
-update-rc.d ntpdate defaults
-
-/etc/init.d/ntpdate start
-
-ntpdate -u -b $NTPSERVERS && hwclock --systohc
+# sync with time servers
+for i in $NTPSERVER; do
+	if ntpdate -u -b "$i"; then
+		hwclock --systohc
+		break
+	fi
+done
 
