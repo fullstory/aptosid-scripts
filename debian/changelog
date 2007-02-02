@@ -1,3 +1,9 @@
+sidux-scripts (0.1.19) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri,  2 Feb 2007 01:45:14 +0100
+
 sidux-scripts (0.1.18) unstable; urgency=low
 
   * fix up fix-time to deal with the current ntpdate in sid and make it
