@@ -253,7 +253,21 @@ sub deactivate_nonfree() {
 
 # Parse arguments from cmdline
 if ($#ARGV < 0) {
-	print "Usage ";
+	print "\n";
+	print "Usage: sidux-apt-config [option] [Mirror]\n";
+	print "		-D		to create a default sources.list.\n";
+	print "		-ca		to activate Contrib.\n";
+	print "		-cd		to deactivate Contrib.\n";
+	print "		-na		to activate non-free.\n";
+	print "		-nd		to deactivate non-free.\n";
+	print "		--debian	use Debian Mirror.\n";
+	print "		--sidux		use Sidux Mirror.\n";
+	print "\n";
+	print "Examples:\n";
+	print "		sidux-apt-config -ca --debian\n";
+	print "		sidux-apt-config -na --sidux\n";
+	print "		sidux-apt-config -nd\n";
+	print "\n";
 }
 
 foreach (@ARGV) {
