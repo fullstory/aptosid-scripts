@@ -9,6 +9,5 @@ Package: sidux-scripts
 Architecture: all
 Depends: perl, distro-defaults, dh-make, su-me
 Recommends: ntpdate
-Conflicts: kanotix-scripts
 Description: miscellaneous scripts for sidux
  Script collection for live and install uses on sidux.
