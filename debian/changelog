@@ -1,8 +1,8 @@
-sidux-scripts (0.1.20) UNRELEASED; urgency=low
+sidux-scripts (0.1.20) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * tzselect finally replaces tzconfig, thanks to cheko for noticing.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu,  1 Mar 2007 19:14:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Apr 2007 18:39:09 +0200
 
 sidux-scripts (0.1.19) unstable; urgency=low
 

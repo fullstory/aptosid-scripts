@@ -15,7 +15,7 @@ fi
 hwclock --hctosys --localtime
 
 # let the user set their time zone
-tzconfig
+tzselect
 
 # sync with time servers
 for i in $NTPSERVER; do
