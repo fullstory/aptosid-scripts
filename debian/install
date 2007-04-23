@@ -3,7 +3,6 @@ fix-dpi-kdm			usr/sbin/
 fix-motd			usr/sbin/
 fix-ssh				usr/sbin/
 fix-time			usr/sbin/
-fix-unionfs			usr/sbin/
 get-resume-partition		usr/sbin/
 masquerade			usr/sbin/
 remove-bad-links		usr/sbin/
