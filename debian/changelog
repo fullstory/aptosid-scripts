@@ -2,8 +2,10 @@ sidux-scripts (0.1.22) UNRELEASED; urgency=low
 
   * Initial import of du-fixes-h2 stub installer.
   * Add su-me call to du-fixes-h2.
+  * fix-time should not call tzselect, because it is no-op. To really set the
+    timezone call dpkg-reconfigure tzdata.
 
- -- Kel Modderman <kel@otaku42.de>  Tue, 08 May 2007 11:52:05 +1000
+ -- Kel Modderman <kel@otaku42.de>  Tue, 08 May 2007 22:28:38 +1000
 
 sidux-scripts (0.1.21) unstable; urgency=low
 
