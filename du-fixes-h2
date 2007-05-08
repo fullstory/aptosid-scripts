@@ -4,6 +4,7 @@ ULB='/usr/local/bin/'
 DUF=$ULB'du-fixes-h2.sh'
 if [ "$(id -u)" -ne 0 ]
 then
+	[ -x /usr/bin/su-me ] && DISPLAY="" exec su-me $0 $@
 	echo "Error: You must be root to run this script!"
 	exit 1
 else
