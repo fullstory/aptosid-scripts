@@ -1,0 +1,19 @@
+#!/bin/sh
+TOOLKITBROWSER=$(readlink /etc/alternatives/x-www-browser)
+WM=$(readlink /etc/alternatives/x-window-manager)
+
+if [ "$WM" = "/usr/bin/kwin" ]; then 
+	if [ -x "/usr/bin/konqueror" ]; then
+		TOOLKITBROWSER="/usr/bin/konqueror"
+	fi
+fi
+
+if [ "$WM" = "/usr/bin/metacity" ]; then 
+	if [ -x "/usr/bin/epiphany-browser" ]; then
+		TOOLKITBROWSER="/usr/bin/epiphany-browser"
+	fi
+fi
+
+printf "TOOLKIT BROWSER set to $TOOLKITBROWSER\n"
+
+$TOOLKITBROWSER $1
