@@ -6,10 +6,6 @@ sidux-scripts (0.1.22) UNRELEASED; urgency=low
   * fix-time should not call tzselect, because it is no-op. To really set the
     timezone call dpkg-reconfigure tzdata.
 
-  [ Andreas Weber ]
-  * New Script toolkit-browser added
-  * revert last change and remove toolkit-browser
-
   [ Stefan Lippers-Hollmann ]
   * rework du-fixes-h2.sh download/ exec stub.
 
