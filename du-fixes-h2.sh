@@ -15,16 +15,18 @@ else
 		exec "${PREFIX}${DUF}"
 	else
 		[ -f "${PREFIX}${DUF}" ] ||	wget -Nc -O"${PREFIX}${DUF}" "${UPSTREAM}${DUF}"
+
+		if [ -f "${PREFIX}${DUF}" ]; then
+			echo "ERROR: Failed to download script!"
+			exit 1
+		fi
+
 		[ -x "${PREFIX}${DUF}" ] ||	chmod +x "${PREFIX}${DUF}"
 
-		if [ -x "${PREFIX}${DUF}" ]; then
-			exec "${PREFIX}${DUF}"
-			echo "ERROR: ${PREFIX}${DUF} not executable!"
-			exit 1
-		else
-			echo "ERROR: Failed to download script!"
-			exit 2
-		fi
+		[ -x "${PREFIX}${DUF}" ] &&	exec "${PREFIX}${DUF}"
+
+		echo "ERROR: ${PREFIX}${DUF} not executable!"
+		exit 2
 	fi
 fi
 
