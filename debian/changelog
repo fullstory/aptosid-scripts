@@ -8,9 +8,12 @@ sidux-scripts (0.1.22) UNRELEASED; urgency=low
 
   [ Andreas Weber ]
   * New Script toolkit-browser added
-  * revert last change and remove toolkit-browser 
+  * revert last change and remove toolkit-browser
 
- -- Andreas Weber <andreas@it-weber.com>  Fri, 18 May 2007 22:24:45 +0200
+  [ Stefan Lippers-Hollmann ]
+  * rework du-fixes-h2.sh download/ exec stub.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 20 May 2007 02:51:27 +0200
 
 sidux-scripts (0.1.21) unstable; urgency=low
 
