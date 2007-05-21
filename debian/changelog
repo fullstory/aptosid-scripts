@@ -1,8 +1,9 @@
-sidux-scripts (0.1.23) UNRELEASED; urgency=low
+sidux-scripts (0.1.23) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * import fixed du-fixes-h2.sh downloader stub.
+  * minor coding style changes.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 20 May 2007 12:06:12 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 21 May 2007 23:27:30 +0200
 
 sidux-scripts (0.1.22) unstable; urgency=low
 
