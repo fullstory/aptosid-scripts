@@ -1,8 +1,8 @@
-sidux-scripts (0.1.24) UNRELEASED; urgency=low
+sidux-scripts (0.1.24) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * fix chmodding in du-fixes-h2.sh stub.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 21 May 2007 23:28:59 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 May 2007 19:06:35 +0200
 
 sidux-scripts (0.1.23) unstable; urgency=low
 

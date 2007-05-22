@@ -46,7 +46,7 @@ else
 	fi
 	[ -f "${PREFIX}${DUF}" ]   || error_handler 2
 	
-	[ ! -x "${PREFIX}${DUF}" ] || chmod +x "${PREFIX}${DUF}"
+	[ -x "${PREFIX}${DUF}" ] || chmod +x "${PREFIX}${DUF}"
 	
 	if [ -x "${PREFIX}${DUF}" ]; then
 		exec "${PREFIX}${DUF}" "$@"
