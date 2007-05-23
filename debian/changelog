@@ -1,8 +1,13 @@
 sidux-scripts (0.1.26) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 23 May 2007 16:08:34 +0200
+  [ Joaquim Boura ]
+  * /var/run/kdm/kdmrc  must also be changed otherwise user must go over init
+    3/init 5 wigwam
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Wed, 23 May 2007 22:48:31 +0200
 
 sidux-scripts (0.1.25) unstable; urgency=low
 
