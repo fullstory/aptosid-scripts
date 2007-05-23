@@ -1,8 +1,12 @@
 This package was debianized by Stefan Lippers-Hollmann <s.l-h@gmx.de> on
 Tue, 23 Aug 2005 11:03:21 +0200.
 
-It was downloaded from http://www.kanotix.com
+The latest copy of source code for this package can always be found at:
+	http://sidux.com/debian/pool/main/s/sidux-scripts/
 
-Copyright Holder: Jörg Schirottke <master@kanotix.com>
+Copyright Holders:
+	Jörg Schirottke <master@kanotix.com>
+	(C) Kel Modderman 2007 <kel@otaku42.de>
+	(C) Harald Hope 2005-2007
 
 License: GPL, see /usr/share/common-licenses

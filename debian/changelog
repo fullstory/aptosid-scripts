@@ -1,8 +1,13 @@
-sidux-scripts (0.1.25) UNRELEASED; urgency=low
+sidux-scripts (0.1.25) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * Update h2's du-fixes stub. It now identifies sgfxi as a "caller" and
+    downloads/executes sgfxi immediately.
+  * Add symlink /usr/sbin/sgfxi -> /usr/sbin/du-fixes-h2.sh to actiavte above
+    change.
+  * Update debian/copyright to reflect Harold Hope's and I influence.
+  * Add myself to Uploaders.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 May 2007 19:10:05 +0200
+ -- Kel Modderman <kel@otaku42.de>  Wed, 23 May 2007 22:27:15 +1000
 
 sidux-scripts (0.1.24) unstable; urgency=low
 
