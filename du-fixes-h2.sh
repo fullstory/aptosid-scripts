@@ -36,7 +36,7 @@ error_handler()
 # set the SCRIPT value
 case $CALLER in
 	sgfxi|du-fixes-h2.sh)
-		SCRIPT=$CALLER
+		SCRIPT="$CALLER"
 		;;
 	*)
 		error_handler 5
@@ -66,3 +66,4 @@ else
 		error_handler 3
 	fi
 fi
+

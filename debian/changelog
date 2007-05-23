@@ -1,5 +1,6 @@
 sidux-scripts (0.1.25) unstable; urgency=low
 
+  [ Kel Modderman ]
   * Update h2's du-fixes stub. It now identifies sgfxi as a "caller" and
     downloads/executes sgfxi immediately.
   * Add symlink /usr/sbin/sgfxi -> /usr/sbin/du-fixes-h2.sh to actiavte above
@@ -7,7 +8,11 @@ sidux-scripts (0.1.25) unstable; urgency=low
   * Update debian/copyright to reflect Harold Hope's and I influence.
   * Add myself to Uploaders.
 
- -- Kel Modderman <kel@otaku42.de>  Wed, 23 May 2007 22:27:15 +1000
+  [ Stefan Lippers-Hollmann ]
+  * minor quotation fix.
+  * relative links rule.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 23 May 2007 15:30:55 +0200
 
 sidux-scripts (0.1.24) unstable; urgency=low
 
