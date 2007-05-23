@@ -1,9 +1,5 @@
-sidux-scripts (0.1.26) UNRELEASED; urgency=low
+sidux-scripts (0.1.26) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * /var/run/kdm/kdmrc  must also be changed otherwise user must go over init
     3/init 5 wigwam
 
