@@ -1,12 +1,10 @@
 du-fixes-h2.sh			usr/sbin/
 fix-5b-mouse			usr/sbin/
 fix-dpi-kdm			usr/sbin/
-fix-motd			usr/sbin/
 fix-ssh				usr/sbin/
 fix-time			usr/sbin/
 get-resume-partition		usr/sbin/
 masquerade			usr/sbin/
-remove-bad-links		usr/sbin/
 remove-gateway			usr/sbin/
 remove-orphans			usr/sbin/
 wepkey				usr/sbin/
