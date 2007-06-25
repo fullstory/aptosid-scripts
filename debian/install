@@ -1,4 +1,4 @@
-du-fixes-h2.sh			usr/sbin/
+sm			usr/sbin/
 fix-5b-mouse			usr/sbin/
 fix-dpi-kdm			usr/sbin/
 fix-ssh				usr/sbin/
