@@ -35,7 +35,7 @@ error_handler()
 
 # set the SCRIPT value
 case $CALLER in
-	sgfxi|du-fixes-h2.sh)
+	sgfxi|sm|du-fixes-h2.sh)
 		SCRIPT="$CALLER"
 		;;
 	*)
@@ -52,11 +52,12 @@ else
 	# if not root, anything else is counterintuitive I think for users.
 	[ "$(id -u)" -ne 0 ] && error_handler 1
 
-	if [ ! -f "${PREFIX}${SCRIPT}" ]; then
-		wget -Nc -O"${PREFIX}${SCRIPT}" "${UPSTREAM}${SCRIPT}" || error_handler 4
+	if [ ! -s "${PREFIX}${SCRIPT}" ]; then
+		wget -Ncq -O"${PREFIX}${SCRIPT}" "${UPSTREAM}${SCRIPT}" || error_handler 4
 	fi
 	
-	[ -f "${PREFIX}${SCRIPT}" ] || error_handler 2
+	# I forget, but -s is prefered over -f because sometimes downloads fail and leave null size file
+	[ -s "${PREFIX}${SCRIPT}" ] || error_handler 2
    
 	[ -x "${PREFIX}${SCRIPT}" ] || chmod +x "${PREFIX}${SCRIPT}"
 
