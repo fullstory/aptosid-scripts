@@ -1,9 +1,5 @@
-sidux-scripts (0.1.28) UNRELEASED; urgency=low
+sidux-scripts (0.1.28) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * new stub from h2 to reflect name change
   * stub renamed to sm created links to sgfxi and du-fixes-h2.sh
   * also needed to fix name change in the install file
