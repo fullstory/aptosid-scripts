@@ -1,9 +1,5 @@
-sidux-scripts (0.1.29) UNRELEASED; urgency=low
+sidux-scripts (0.1.29) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * remove bad options from wget. Thks Snubbelfot
 
  -- Joaquim Boura <x-un-i@sidux.com>  Wed, 27 Jun 2007 22:05:02 +0200
