@@ -7,26 +7,28 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
-RAM=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
-SWAPMIN=$(($RAM*3/2))
-SWAP=$(LANG=C fdisk -l|sed s/+//|awk '/Linux swap/{print $4" "$1}'|sort -rn|head -1)
-SWAPSIZE=$(echo $SWAP|cut -f1 -d' ')
-SWAPPART=$(echo $SWAP|cut -f2 -d' ')
+RAM="$(awk '/MemTotal/ {print $2}' /proc/meminfo)"
+SWAPMIN="$(($RAM * 3 / 2))"
+SWAP="$(LANG=C fdisk -l | sed s/+//|awk '/Linux swap/{print $4" "$1}'|sort -rn|head -1)"
+SWAPSIZE="$(echo $SWAP | cut -f1 -d' ')"
+SWAPPART="$(echo $SWAP | cut -f2 -d' ')"
+SWAPPART="UUID=$(/lib/udev/vol_id -u $SWAPPART)"
 
-if [ $(($SWAPSIZE-$SWAPMIN)) -gt 0 ]; then
+if [ "$(($SWAPSIZE - $SWAPMIN))" -gt 0 ]; then
 	echo Using $SWAPPART for resume.
 
-	if [ -e /boot/grub/menu.lst ]; then
-		perl -pi -e 's/resume=\S*//' /boot/grub/menu.lst 
-		perl -pi -e 's/resume2=\S*//' /boot/grub/menu.lst
-		perl -pi -e "s|^(# kopt=.*)|\1 resume=$SWAPPART resume2=swap:$SWAPPART|" /boot/grub/menu.lst
+	if [ -w /boot/grub/menu.lst ]; then
+		sed -i	-e 's/\ resume=\S*//' \
+			-e 's/\ resume2=\S*//' \
+			-e "s|^\(# kopt=.*\)|\1 resume=$SWAPPART resume2=swap\:$SWAPPART|" \
+				/boot/grub/menu.lst
 
 		update-grub
 	fi
 	
-	echo Please reboot.
+	echo "Please reboot."
 else
-	echo Error: No swap partition with at least $(($SWAPMIN/1024)) MB found.
+	echo "Error: No swap partition with at least $(($SWAPMIN/1024)) MB found."
 	exit 2
 fi
 

@@ -8,7 +8,7 @@ Standards-Version: 3.7.2
 
 Package: sidux-scripts
 Architecture: all
-Depends: perl, distro-defaults, dh-make, su-me
+Depends: perl, distro-defaults, su-me, udev
 Recommends: ntpdate
 Description: miscellaneous scripts for sidux
  Script collection for live and install uses on sidux.

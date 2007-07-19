@@ -1,4 +1,4 @@
-sm			usr/sbin/
+smxi				usr/sbin/
 fix-5b-mouse			usr/sbin/
 fix-dpi-kdm			usr/sbin/
 fix-ssh				usr/sbin/
