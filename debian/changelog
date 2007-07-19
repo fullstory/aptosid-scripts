@@ -1,3 +1,9 @@
+sidux-scripts (0.1.31) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 19 Jul 2007 13:21:11 +0200
+
 sidux-scripts (0.1.30) unstable; urgency=low
 
   * rename /usr/sbin/sm to /usr/sbin/smxi and do asssorted clean up.
