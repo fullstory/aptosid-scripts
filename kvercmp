@@ -13,7 +13,7 @@
 #   GNU General Public License for more details.
 
 function usage() {
-printf(	"%s%s%s%s%s%s%s%s%s", 
+printf(	" %s %s %s %s %s %s %s %s %s %s", 
 	"Kernel version compare - Copyright (C) 2007  Michiel de Boer a.k.a. locsmif\n",
 	"Licensed under GPL version 2 or (at your option) any later version.\n\n",
 	"kvercmp [-hi|-lo]\n",
@@ -22,12 +22,18 @@ printf(	"%s%s%s%s%s%s%s%s%s",
 	"then the highest.\n\n",
 	"kvercmp <version> <-lt|-gt|-eq> <version>\n",
 	"Compares if the version to the left is lesser or greater than, or equal to,\n",
-	"the version to the right. Exit code is 0 if true, 1 if false\n\n")
+	"the version to the right. Exit code is 0 if true, 1 if false.\n",
+	"You can pass paths to kvercmp, but do not end them in a forward slash (/)\n\n")
 	exit 1
 }
 
 function getvnum(line, matched, numparts, vnrs, vnum) {
+	# Try to keep as pure a version string as possible
+	# Cut off all cruft up to it
+	# First the path, up to the last /
+	sub(/^.*\//, "", line)
 	line = substr(line, match(line, /[0-9]\.[0-9].*/))
+	#print "line='" line "'"
 	if(match(line, /^([0-9\.]+)-?(.*)/, matched)) {
 		numparts = split(matched[1], vnrs, ".")
 		vnum = 0
