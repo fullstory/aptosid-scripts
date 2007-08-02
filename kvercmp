@@ -1,4 +1,4 @@
-#!/usr/bin/gawk -f 
+#!/usr/bin/awk -f 
 #   Kernel version compare
 #   Copyright (C) 2007  Michiel de Boer a.k.a. locsmif
 
@@ -27,19 +27,23 @@ printf(	" %s %s %s %s %s %s %s %s %s %s",
 	exit 1
 }
 
-function getvnum(line, matched, numparts, vnrs, vnum) {
+function getvnum(line, digits, extra, numparts, vnrs, vnum) {
 	# Try to keep as pure a version string as possible
 	# Cut off all cruft up to it
 	# First the path, up to the last /
 	sub(/^.*\//, "", line)
 	line = substr(line, match(line, /[0-9]\.[0-9].*/))
-	#print "line='" line "'"
-	if(match(line, /^([0-9\.]+)-?(.*)/, matched)) {
-		numparts = split(matched[1], vnrs, ".")
+	# Get only the digits and the dots
+	digits = substr(line, match(line, /^[0-9][0-9\.]*/), RLENGTH)
+	#extra = line
+	#sub(digits, "", extra)
+	#print "extra='" extra "'"
+	if (digits ~ /^[0-9][0-9\.]*$/) {
+		numparts = split(digits, vnrs, ".")
 		vnum = 0
 		for (i=1;i<=numparts;i++) { 
 			vnum += vnrs[i] * 100 ^ (4-i)
-			#debug "vnrs[i]=" vnrs[i] " vnum=" vnum
+			#print "vnrs[i]=" vnrs[i] " vnum=" vnum
 		} 
 		return vnum
 	}
