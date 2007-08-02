@@ -27,7 +27,7 @@ printf(	"%s%s%s%s%s%s%s%s%s",
 }
 
 function getvnum(line, matched, numparts, vnrs, vnum) {
-	if(match(line, /([0-9\.]+)-?(.*)/, matched)) {
+	if(match(line, /^([0-9\.]+)-?(.*)/, matched)) {
 		numparts = split(matched[1], vnrs, ".")
 		vnum = 0
 		for (i=1;i<=numparts;i++) { 
@@ -37,7 +37,7 @@ function getvnum(line, matched, numparts, vnrs, vnum) {
 		return vnum
 	}
 	else {
-		printf "Failed to parse version string!"
+		print "Failed to parse version string!"
 		exit 2
 	}
 }
