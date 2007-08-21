@@ -39,7 +39,7 @@ install_me() {
 	# Install the Package
 	apt-get install sidux-binary-gfx
 	sources_restore
-	echo "You can run install-binary-gfx now to build/install the Driver"
+	echo "You can run \"install-binary-gfx -a\" now to build/install the Driver"
 	exit 0
 }
 

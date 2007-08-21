@@ -1,8 +1,12 @@
 sidux-scripts (0.1.31) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 19 Jul 2007 13:21:11 +0200
+  [ Andreas Weber ]
+  * get-sidux-binary-gfx user info fixed
+
+ -- webera <andreas@it-weber.com>  Tue, 21 Aug 2007 22:06:31 +0200
 
 sidux-scripts (0.1.30) unstable; urgency=low
 
