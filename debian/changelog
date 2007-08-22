@@ -1,9 +1,5 @@
-sidux-scripts (0.1.31) UNRELEASED; urgency=low
+sidux-scripts (0.1.31) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Andreas Weber ]
   * get-sidux-binary-gfx user info fixed
 
  -- webera <andreas@it-weber.com>  Tue, 21 Aug 2007 22:06:31 +0200
