@@ -1,3 +1,9 @@
+sidux-scripts (0.1.32) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 22 Aug 2007 17:00:47 +0200
+
 sidux-scripts (0.1.31) unstable; urgency=low
 
   * get-sidux-binary-gfx user info fixed
