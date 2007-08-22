@@ -1,8 +1,12 @@
 sidux-scripts (0.1.32) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 22 Aug 2007 17:00:47 +0200
+  [ Andreas Weber ]
+  * get-sidux-binary-gfx enhanced. Autorun Option added.
+
+ -- Andreas Weber <andreas@it-weber.com>  Wed, 22 Aug 2007 21:58:36 +0200
 
 sidux-scripts (0.1.31) unstable; urgency=low
 
