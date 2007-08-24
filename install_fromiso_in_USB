@@ -30,6 +30,7 @@
 # create the menu.lst file on it
 # 
 #--------------------------
+
 function usage()
 {
         echo ""
@@ -41,14 +42,21 @@ function usage()
         echo "-I|--iso <iso_file>       iso file name to be installed"
         echo "-L|--label <label_name>   label name to be used for the created partition"
         echo "-p|--persist              use device as persistent storage device"
+        echo "-t|--test                 copy everything but do not copy the iso"
         echo ""
         echo " Use it at your own risk, it comes without any warranty."
         echo ""
 }
-#--------------------------
-function create_partition()
+#------------------------
+function prepare_partition()
 {
-	fdisk ${device} <<EOF 2>&1 >> /dev/null
+	nr_of_partitions=$(fdisk -l ${device} | \
+		awk 'BEGIN{i=0;}{if(/^\/dev/){i++}}END{print i}')
+
+	if [ ${nr_of_partitions} -eq 0 -o ${nr_of_partitions} -ne 1 ]; then
+
+		# create partition
+		fdisk ${device} << EOF 2>&1 >> /dev/null
 n
 p
 1
@@ -61,61 +69,64 @@ a
 p
 w
 EOF                           
-}
-#-----------------------
-function make_bootable()
-{
-	fdisk ${device} <<EOF 2>&1 >> /dev/null
+
+	fi
+
+	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+
+	if [ ${is_bootable} -ne 1 ]; then
+		# set boot flag
+		fdisk ${device} <<EOF 2>&1 >> /dev/null
 a
 1
 p
 w
 EOF
-}
-#--------------------
-function set_fstype()
-{
-	fdisk ${device} <<EOF 2>&1 >> /dev/null
+
+		is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+
+		if [ ${is_bootable} -ne 1 ]; then
+			echo Could not make USB device bootable. STOP.
+			exit 1
+		fi
+	fi	
+
+	fs_type=$(fdisk -l ${device}  | \
+		awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+	if [ "${fs_type}" -ne 83 ]; then
+		# set partition type
+		fdisk ${device} <<EOF 2>&1 >> /dev/null
 t
 83
 p
 w
 EOF
-}
-#------------------------
-function prepare_partition()
-{
-	nr_of_partitions=$(fdisk -l ${device} | \
-		awk 'BEGIN{i=0;}{if(/^\/dev/){i++}}END{print i}')
-	if [ ${nr_of_partitions} -eq 0 ]; then
-		create_partition
-	fi
+		fs_type=$(fdisk -l ${device}  | \
+			awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
 
-	if [ ${nr_of_partitions} -ne 1 ]; then
-		create_partition
-	fi
-
-	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++}}END{print i}')
-	if [ ${is_bootable} -ne 1 ]; then
-		make_bootable
-	fi	
-
-	fs_type=$(fdisk -l ${device}  | \
-		awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
-	if [ ${fs_type} -ne 83 ]; then
-		set_fstype
+		if [ ${fs_type} -ne 83 ]; then
+			echo Could not make create the right filesystem on the USB device. STOP.
+			exit 1
+		fi	
 	fi	
 
 	# now create the filesystem in it.
 	label=${label:-"sidux-from-USB"}
+
 	mkfs.ext3 -q -m 1 -L ${label} ${partition}
+	if [ $? -ne 0 ]; then
+		echo Error formating the USB device. STOP.
+		exit 1
+	fi
 }
 #----------------------
 function install_grub()
 {
 	local device_map
 
-	grub-install --recheck --no-floppy --root-directory=$TEMPDIR  ${device}
+	echo "Installing grub"
+
+	(grub-install --recheck --no-floppy --root-directory=$TEMPDIR  ${device} 2>&1 >/dev/null) >/dev/null
 
 	device_map=${TEMPDIR}/boot/grub/device.map
 	disk=$(echo ${device}|cut -d '/' -f 3)
@@ -132,6 +143,7 @@ function copy_files_from_dev()
 {
 	local booted_device fll_booted_dir
 	
+	echo "Copying files"
 	booted_device=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $1}')
 	fll_booted_dir=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $3}')
 
@@ -141,14 +153,18 @@ function copy_files_from_dev()
 	cp $fll_booted_dir/boot/initrd* \
 		$fll_booted_dir/boot/vmlinuz* $TEMPDIR/${FLL_DISTRO_NAME}
 
- 	dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
+ 		dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+	fi
 }
 #-----------------------------------
 function copy_files_from_local_iso()
 {
 	local mounted_iso 
 	
-	mounted_iso=$(/tmp/XXXXXXX)
+	echo "Copying files"
+
+	mounted_iso="$(mktemp -dp /tmp/ iso-XXXXXXXXXX)"
 
 	mount -t iso9660 -o loop,ro ${iso} $mounted_iso
 
@@ -158,16 +174,19 @@ function copy_files_from_local_iso()
 	cp $mounted_iso/boot/initrd* \
 		$mounted_iso/boot/vmlinuz* ${TEMPDIR}/${FLL_DISTRO_NAME}
 
-	umount $mounted_iso
-	rmdir $mounted_iso
+	umount ${mounted_iso}
+	rmdir ${mounted_iso}
 
- 	cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
+ 		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+	fi
 }
 #------------------------
 function create_menu_list()
 {
 	local initrd vmlinuz
 
+	echo "Creating menu.lst"
 	initrd=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/initrd.img-* | sed -e "s|^.*/||")
 	vmlinuz=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/vmlinuz-* | sed -e "s|^.*/||")
 
@@ -193,8 +212,8 @@ EOF
 # preparation
 #--------------------------------------------------------------
 
-TEMP=`getopt -o dD:I:hL:p \
-        --long debug,drive:,iso:,help,label,persist, \
+TEMP=`getopt -o dD:I:hL:pt \
+        --long debug,drive:,iso:,help,label,persist,test, \
         -n  "$(basename $0)" -- "$@"`
 
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
@@ -228,6 +247,10 @@ while true ; do
 			persist="persist"
                         shift
                         ;;
+                -t|--test)
+			nocopy="yes"
+                        shift
+                        ;;
                 --)
                         shift
                         break ;;
@@ -242,8 +265,7 @@ done
 #--------------------------------------------------------------
 source /etc/default/distro
 
-TEMPDIR=$(mktemp -d /tmp/XXXXXXXX)
-
+TEMPDIR="$(mktemp -dp /tmp/ XXXXXXXXXX)"
 
 if ! stat ${device} 2>&1>/dev/null ; then 
 	echo device "${device}" not found; 
@@ -254,8 +276,8 @@ partition=${device}1
 
 
 if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
-	if [ ! -r "${iso}" ]; then
-		echo can not read the ${iso} file
+	if [ -z "${iso}" -o ! -r "${iso}" ]; then
+		echo can not read the iso ${iso} file
 		exit 2
 	fi
 fi
