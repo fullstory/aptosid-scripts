@@ -1,8 +1,12 @@
 sidux-scripts (0.1.33) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 22 Aug 2007 23:41:37 +0200
+  [ Joaquim Boura ]
+  * install_fromiso_in_USB moved into new package install-usb-gui
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Wed, 29 Aug 2007 23:21:46 +0200
 
 sidux-scripts (0.1.32) unstable; urgency=low
 
