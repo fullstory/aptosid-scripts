@@ -6,7 +6,10 @@ sidux-scripts (0.1.33) UNRELEASED; urgency=low
   [ Joaquim Boura ]
   * install_fromiso_in_USB moved into new package install-usb-gui
 
- -- Joaquim Boura <x-un-i@sidux.com>  Wed, 29 Aug 2007 23:21:46 +0200
+  [ Stefan Lippers-Hollmann ]
+  * add VCS control headers.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Sep 2007 20:24:57 +0200
 
 sidux-scripts (0.1.32) unstable; urgency=low
 
