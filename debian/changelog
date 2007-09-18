@@ -1,15 +1,10 @@
-sidux-scripts (0.1.33) UNRELEASED; urgency=low
+sidux-scripts (0.1.33) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
-  * install_fromiso_in_USB moved into new package install-usb-gui
-
-  [ Stefan Lippers-Hollmann ]
   * add VCS control headers.
+  * remove old cruft:
+    - wep-key.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 11 Sep 2007 20:24:57 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 18 Sep 2007 09:58:37 +0200
 
 sidux-scripts (0.1.32) unstable; urgency=low
 
