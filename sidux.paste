@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# just makes a sidux-wrapper
+#
+# uses wgetpaste from http://wgetpaste.zlin.dk/
+# free to use found in gentoo
+#
+export INFO_COMMAND="infobash "
+export INFO_ARGS="-v 2 0"
+export DEFAULT_NICK="sidux user"
+
+wgetpaste-2,4 "$@"
+
+
+
