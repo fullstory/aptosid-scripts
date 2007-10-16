@@ -9,7 +9,7 @@ export INFO_COMMAND="infobash "
 export INFO_ARGS="-v 2 0"
 export DEFAULT_NICK="sidux user"
 
-wgetpaste-2,4 "$@"
+/usr/bin/wgetpaste-2.4 "$@"
 
 
 

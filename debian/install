@@ -8,5 +8,5 @@ masquerade			usr/sbin/
 remove-gateway			usr/sbin/
 remove-orphans			usr/sbin/
 smxi				usr/sbin/
-sidux-paste			usr/bin
-wgetpaste-2.4			usr/bin
+sidux-paste			usr/bin/
+wgetpaste-2.4			usr/bin/
