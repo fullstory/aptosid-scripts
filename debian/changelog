@@ -1,7 +1,6 @@
-sidux-scripts (0.1.34) UNRELEASED; urgency=low
+sidux-scripts (0.1.34) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
   * update syntax for Vcs headers in debian/control
 
   [ Joaquim Boura ]
