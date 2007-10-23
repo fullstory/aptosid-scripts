@@ -8,7 +8,11 @@ sidux-scripts (0.1.34) UNRELEASED; urgency=low
   * new script sidux-paste using wgetpaste ( found in gentoo)
   * fixed name + place
 
- -- Joaquim Boura <x-un-i@sidux.com>  Tue, 16 Oct 2007 20:48:09 +0200
+  [ Kel Modderman ]
+  * Update get-resume-partition to something that works, see discussion:
+    http://sidux.com/PNphpBB2-viewtopic-t-5332.html
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 23 Oct 2007 23:30:59 +1000
 
 sidux-scripts (0.1.33) unstable; urgency=low
 
