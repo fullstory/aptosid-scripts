@@ -1,10 +1,11 @@
-#!/bin/bash
-PREFIX="/usr/local/bin/"
-UPSTREAM="http://techpatterns.com/downloads/distro/"
-FILE_TEMP_NAME="zrkwyuaaiuu89089" # will handle failed downloads
+#!/bin/sh
 
 # this will handle stub for any other script also
-CALLER=$(basename $0)
+CALLER="$(basename $0)"
+
+PREFIX="/usr/local/bin/"
+UPSTREAM="http://techpatterns.com/downloads/distro/"
+FILE_TEMP_NAME="$(mktemp -p $PREFIX $CALLER.XXXXXXXXXX)" # will handle failed downloads
 
 # Please do not change the logic here, it makes it too hard to read linearly:
 # [ ! -f somefile ] && do something is far easier to read than [ -f somefile ] || do something
@@ -36,7 +37,7 @@ error_handler()
 		7)
 			message="${PREFIX}${SCRIPT} exec command failed with errors! Deleting problem file. Please try again."
 			# this will handle, I think, partial, incomplete, downloads, that are not null
-			[ -f "${PREFIX}${SCRIPT}" ] && rm -f ${PREFIX}${SCRIPT}
+			[ -f "${PREFIX}${SCRIPT}" ] && rm -f "${PREFIX}${SCRIPT}"
 			;;
 		*)
 			message='Unknown error, exiting now.'
@@ -60,7 +61,9 @@ esac
 # this handles that annoying null file thing. Because -s is ambiguous, I added a -f check
 # as well. Delete all existing null files. This test must be first. This won't handle incomplete
 # downloads, but it will help a bit. This also avoids a file does not exist error
-[ -f "${PREFIX}${SCRIPT}" -a ! -s "${PREFIX}${SCRIPT}" ] && rm -f ${PREFIX}${SCRIPT}
+if [ -f "${PREFIX}${SCRIPT}" ] && [ ! -s "${PREFIX}${SCRIPT}" ]; then
+	rm -f "${PREFIX}${SCRIPT}"
+fi
 
 # now that null files are removed, we can safely use the -x test. Note: be very careful
 # relying on -x as a test, null files can have the exec bit set... that's bash for you...
@@ -79,7 +82,7 @@ else
 	# downloading to overwrite existing file, but to temp file, which we then test for null
 	# -O is risky here too because failed downloads create a null file automatically.
 	if [ ! -f "${PREFIX}${SCRIPT}" ]; then
-		wget -q -O "${PREFIX}${FILE_TEMP_NAME}" "${UPSTREAM}${SCRIPT}" || error_handler 4
+		wget -q -O "${FILE_TEMP_NAME}" "${UPSTREAM}${SCRIPT}" || error_handler 4
 	fi
 	
 	#  -s is prefered over -f because sometimes downloads fail and leave null size file
@@ -88,21 +91,21 @@ else
 	# is required because if wget exits with error then script exits. And if no error,
 	# file will be null or existent and not null. I am adding another -f test here because
 	# wget is so buggy I simply cannot predict its failure behaviors at all.
-	if [ ! -e "${PREFIX}${FILE_TEMP_NAME}" ]; then
+	if [ ! -e "${FILE_TEMP_NAME}" ]; then
 		error_handler 6
-	elif [ ! -s "${PREFIX}${FILE_TEMP_NAME}" ]; then
+	elif [ ! -s "${FILE_TEMP_NAME}" ]; then
 		# dump the null file if it exists
-		[ -f "${PREFIX}${FILE_TEMP_NAME}" ] && rm -f ${PREFIX}${FILE_TEMP_NAME}
+		[ -f "${FILE_TEMP_NAME}" ] && rm -f "${FILE_TEMP_NAME}"
 		error_handler 2
 	# I'm being extra careful here, there have been too many problems with this simple
 	# stuff... wget needs to be fixed to handle failed downloads better... what is  missing
 	# is a null file test, as opposed to exists AND null.
-	elif [ -s "${PREFIX}${FILE_TEMP_NAME}" ]; then
+	elif [ -s "${FILE_TEMP_NAME}" ]; then
 		# now that the file exists and is not null
-		mv -f ${PREFIX}${FILE_TEMP_NAME} ${PREFIX}${SCRIPT}
+		mv -f "${FILE_TEMP_NAME}" "${PREFIX}${SCRIPT}"
 		
 		# make executable if not
-		[ ! -x "${PREFIX}${SCRIPT}" ] && chmod +x ${PREFIX}${SCRIPT}
+		[ ! -x "${PREFIX}${SCRIPT}" ] && chmod +x "${PREFIX}${SCRIPT}"
 		
 		# then run it with an error handler for unknown weirdness which I'm sure will appear.
 		if [ -x "${PREFIX}${SCRIPT}" ]; then
@@ -114,3 +117,4 @@ else
 		fi
 	fi
 fi
+
