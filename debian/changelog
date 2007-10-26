@@ -1,8 +1,9 @@
 sidux-scripts (0.1.35) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
+  * import h2's new download stub.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 24 Oct 2007 00:36:53 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 26 Oct 2007 21:25:35 +0200
 
 sidux-scripts (0.1.34) unstable; urgency=low
 
