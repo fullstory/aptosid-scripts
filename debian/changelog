@@ -1,13 +1,12 @@
-sidux-scripts (0.1.35) UNRELEASED; urgency=low
+sidux-scripts (0.1.35) unstable; urgency=low
 
-  * NOT RELEASED YET
   * import h2's new download stub.
   * quote basename's output.
   * fix dangerous tempfile handling.
   * further quoting fixes.
   * POSIX compatibility is a low hanging fruit, do it.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 26 Oct 2007 21:28:36 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 26 Oct 2007 21:56:11 +0200
 
 sidux-scripts (0.1.34) unstable; urgency=low
 
