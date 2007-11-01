@@ -15,6 +15,9 @@ UPSTREAM="http://techpatterns.com/downloads/distro/"
 # Do  not create temp file here. It will create masses of temp files over time.
 FILE_TEMP_NAME="" # will handle failed downloads
 
+# catch unknown process terminations and clean up temporary files
+trap 'error_handler 8' EXIT
+
 error_handler()
 {
 	local message=''
@@ -42,11 +45,16 @@ error_handler()
 			# this will handle, I think, partial, incomplete, downloads, that are not null
 			[ -f "${PREFIX}${SCRIPT}" ] && rm -f "${PREFIX}${SCRIPT}"
 			;;
+		8)
+			message="Manual user abort, clean up temporary files."
+			;;
 		*)
 			message='Unknown error, exiting now.'
 			;;
 	esac
+
 	echo "ERROR: $message - Error No: $1"
+
 	# cleanup the temp file if error
 	[ -f "$FILE_TEMP_NAME" ] && rm -f "$FILE_TEMP_NAME"
 	exit $1

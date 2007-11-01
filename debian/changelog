@@ -1,9 +1,9 @@
-sidux-scripts (0.1.36) UNRELEASED; urgency=low
+sidux-scripts (0.1.36) unstable; urgency=low
 
-  * NOT RELEASED YET
   * import new smxi downloader stub from h2.
+  * add trap handling on user abort.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 01 Nov 2007 22:45:01 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 01 Nov 2007 22:55:50 +0100
 
 sidux-scripts (0.1.35) unstable; urgency=low
 
