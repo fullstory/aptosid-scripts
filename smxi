@@ -1,16 +1,19 @@
 #!/bin/sh
 
-# this will handle stub for any other script also
-CALLER="$(basename $0)"
-
-PREFIX="/usr/local/bin/"
-UPSTREAM="http://techpatterns.com/downloads/distro/"
-FILE_TEMP_NAME="$(mktemp -p $PREFIX $CALLER.XXXXXXXXXX)" # will handle failed downloads
+# Version: 2.2
+# Date: 01 November 2007
 
 # Please do not change the logic here, it makes it too hard to read linearly:
 # [ ! -f somefile ] && do something is far easier to read than [ -f somefile ] || do something
-# if not file exists then do something, that is. This script has had far too many bugs for 
-# the few lines, so it needs to have crystal clear logic, well... ok, that's pushing it... heh
+# tempfile primary cleanup is now handled by called scripts, so no need to complicate this
+# simple stub with the cleanup stuff. Now it just cleans up after itself each time.
+
+# this will handle stub for any other script also
+CALLER="$(basename $0)"
+PREFIX="/usr/local/bin/"
+UPSTREAM="http://techpatterns.com/downloads/distro/"
+# Do  not create temp file here. It will create masses of temp files over time.
+FILE_TEMP_NAME="" # will handle failed downloads
 
 error_handler()
 {
@@ -44,13 +47,14 @@ error_handler()
 			;;
 	esac
 	echo "ERROR: $message - Error No: $1"
-
+	# cleanup the temp file if error
+	[ -f "$FILE_TEMP_NAME" ] && rm -f "$FILE_TEMP_NAME"
 	exit $1
 }
 
 # set the SCRIPT value
 case $CALLER in
-	sgfxi|sm|smxi|du-fixes-h2.sh)
+	sgfxi|sm|smxi|du-fixes-h2.sh|svmi)
 		SCRIPT="$CALLER"
 		;;
 	*)
@@ -78,6 +82,8 @@ else
 	# if not root, anything else is counterintuitive I think for users.
 	[ "$(id -u)" -ne 0 ] && error_handler 1
 	
+	# if and only if file does not exist and user is root do we make the temp file
+	FILE_TEMP_NAME="$(mktemp -p $PREFIX $CALLER.XXXXXXXXXX)"
 	# now we'll use a simple -f test since the null case is already handled. We are not
 	# downloading to overwrite existing file, but to temp file, which we then test for null
 	# -O is risky here too because failed downloads create a null file automatically.
@@ -93,9 +99,8 @@ else
 	# wget is so buggy I simply cannot predict its failure behaviors at all.
 	if [ ! -e "${FILE_TEMP_NAME}" ]; then
 		error_handler 6
+	# if exists and not null
 	elif [ ! -s "${FILE_TEMP_NAME}" ]; then
-		# dump the null file if it exists
-		[ -f "${FILE_TEMP_NAME}" ] && rm -f "${FILE_TEMP_NAME}"
 		error_handler 2
 	# I'm being extra careful here, there have been too many problems with this simple
 	# stuff... wget needs to be fixed to handle failed downloads better... what is  missing
