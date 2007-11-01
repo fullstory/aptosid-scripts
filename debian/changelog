@@ -1,3 +1,9 @@
+sidux-scripts (0.1.37) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 01 Nov 2007 23:12:42 +0100
+
 sidux-scripts (0.1.36) unstable; urgency=low
 
   * import new smxi downloader stub from h2.
