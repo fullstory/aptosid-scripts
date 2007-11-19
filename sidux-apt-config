@@ -26,13 +26,11 @@ my $IN = "INFILE";
 my $OUT = "OUTFILE";
 my $TARGETFILE = "/etc/apt/sources.list";
 my $DEBIAN_URI = "http://ftp.debian.org/debian";
-my $DEBMM_URI = "http://www.debian-multimedia.org";
 my $SIDUX_URI = "http://sidux.com/debian/";
 my $time = localtime;
 my $numArgs = $#ARGV + 1;
 my $CMD_DEBIAN = 0;
 my $CMD_SIDUX = 0;
-my $CMD_DEBMM = 0;
 my $WRITE_DEFAULT = 0;
 my $ACONTRIB = 0;
 my $DCONTRIB = 0;
@@ -98,16 +96,6 @@ sub activate_contrib() {
 				}
 			}
 		}
-		if ($CMD_DEBMM == 1) {
-			if (/$DEBMM_URI/) {
-				if (! /contrib/) {
-					chomp;
-					print "--- $_\n";
-					$_ = "$_ contrib\n";
-					print "+++ $_\n";
-				}
-			}
-		}
 	}
 
 	unlink($TARGETFILE);
@@ -136,15 +124,6 @@ sub deactivate_contrib() {
 		}
 		if ($CMD_SIDUX == 1) {
 			if (/$SIDUX_URI/) {
-				if (/contrib/) {
-					print "--- $_";
-					s/\s+contrib//;
-					print "+++ $_"; 
-				}
-			}
-		}
-		if ($CMD_DEBMM == 1) {
-			if (/$DEBMM_URI/) {
 				if (/contrib/) {
 					print "--- $_";
 					s/\s+contrib//;
@@ -189,16 +168,6 @@ sub activate_nonfree() {
 				}
 			}
 		}
-		if ($CMD_DEBMM == 1) {
-			if (/$DEBMM_URI/) {
-				if (! /non\-free/) {
-					chomp;
-					print "--- $_\n";
-					$_ = "$_ non\-free\n";
-					print "+++ $_\n";
-				}
-			}
-		}
 	}
 
 	unlink($TARGETFILE);
@@ -231,15 +200,6 @@ sub deactivate_nonfree() {
 					print "--- $_";
 					s/\s+non\-free//;
 					print "+++ $_"; 
-				}
-			}
-		}
-		if ($CMD_DEBMM == 1) {
-			if (/$DEBMM_URI/) {
-				if (/non\-free/) {
-					print "--- $_";
-					s/\s+non\-free//;
-					print "+++ $_";
 				}
 			}
 		}
@@ -276,9 +236,6 @@ foreach (@ARGV) {
 	}
 	if (/sidux/) {
 		$CMD_SIDUX = 1;
-	}
-	if (/debmm/) {
-		$CMD_DEBMM = 1;
 	}
 	if (/-d|--debug/) {
 		$debug = 1;
