@@ -4,7 +4,6 @@ fix-ssh				usr/sbin/
 fix-time			usr/sbin/
 get-resume-partition		usr/sbin/
 get-sidux-binary-gfx		usr/sbin/
-masquerade			usr/sbin/
 remove-gateway			usr/sbin/
 remove-orphans			usr/sbin/
 smxi				usr/sbin/

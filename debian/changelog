@@ -1,8 +1,11 @@
-sidux-scripts (0.1.38) UNRELEASED; urgency=low
+sidux-scripts (0.1.38) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * set all shipped scripts executable.
+  * remove exec flags from dead scripts.
+  * don't ship masquerade any longer, hardcoded interface names and no
+    security just don't make any sense.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 20 Nov 2007 01:24:50 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 29 Nov 2007 16:05:57 +0100
 
 sidux-scripts (0.1.37) unstable; urgency=low
 
