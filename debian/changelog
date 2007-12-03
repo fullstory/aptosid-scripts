@@ -1,8 +1,9 @@
 sidux-scripts (0.1.39) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
+  * update to Standards-Version 3.7.3, no changes necessary.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 29 Nov 2007 16:26:40 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 03 Dec 2007 14:59:19 +0100
 
 sidux-scripts (0.1.38) unstable; urgency=low
 
