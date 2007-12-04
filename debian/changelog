@@ -1,8 +1,9 @@
-sidux-scripts (0.1.40) UNRELEASED; urgency=low
+sidux-scripts (0.1.40) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * remove fix-5b-mouse for the time being, as is it doesn't play well with
+    current X.org versions.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 04 Dec 2007 12:53:43 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 04 Dec 2007 14:36:41 +0100
 
 sidux-scripts (0.1.39) unstable; urgency=low
 
