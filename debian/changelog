@@ -1,7 +1,6 @@
-sidux-scripts (0.1.39) UNRELEASED; urgency=low
+sidux-scripts (0.1.39) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
   * update to Standards-Version 3.7.3, no changes necessary.
 
   [ Kel Modderman ]
