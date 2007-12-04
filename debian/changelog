@@ -1,8 +1,12 @@
 sidux-scripts (0.1.42) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 04 Dec 2007 14:50:57 +0100
+  [ Kel Modderman ]
+  * Add svmi link to smxi.
+
+ -- Kel Modderman <kel@otaku42.de>  Wed, 05 Dec 2007 09:28:29 +1000
 
 sidux-scripts (0.1.41) unstable; urgency=low
 
