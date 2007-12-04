@@ -7,35 +7,75 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
-SWAPUUID=$(blkid -t TYPE=swap -o value -s UUID | head -n1)
+unset RESUME SWAPUUID
+
+if [ -s /etc/initramfs-tools/conf.d/resume ]; then
+	. /etc/initramfs-tools/conf.d/resume
+fi
+
+if [ -n "${RESUME}" ]; then
+	echo -n "Validating resume partition..."
+
+	case "${RESUME}" in
+		UUID=*|LABEL=*)
+			if findfs "${RESUME}"; then
+				echo "Valid resume device: ${RESUME}"
+				exit 0
+			else
+				echo "invalid."
+			fi
+			;;
+		/dev/disk/by-*)
+			RESUMELINK=$(readlink -f ${RESUME})
+			if [ -b "${RESUMELINK}" ]; then
+				echo "${RESUMELINK}"
+				echo "Valid resume device: ${RESUME}"
+				exit 0
+			else
+				echo "invalid."
+			fi
+			;;
+		/dev/*)
+			echo "invalid."
+			if [ -b "${RESUME}" ]; then
+				SWAPUUID=$(blkid -t TYPE=swap -o value -s UUID ${RESUME})
+			fi
+			;;
+	esac
+fi
+
+if [ -z "${SWAPUUID}" ]; then
+	SWAPUUID=$(blkid -l -t TYPE=swap -o value -s UUID)
+fi
 
 if echo "${SWAPUUID}" | egrep -q '^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$'; then
 	echo "Using UUID=${SWAPUUID} for resume."
-	if [ -d /etc/initramfs-tools/conf.d/ ] && \
-		! grep -s -q ${SWAPUUID} /etc/initramfs-tools/conf.d/resume; then
+	if [ -d /etc/initramfs-tools/conf.d/ ]; then
 		# (over)write configuration
-		echo "Overwriting /etc/initramfs-tools/conf.d/resume..."
+		echo "Writing new configuration to /etc/initramfs-tools/conf.d/resume..."
 		echo "RESUME=UUID=${SWAPUUID}" > /etc/initramfs-tools/conf.d/resume
-		
-		if [ -x /usr/sbin/update-initramfs ] && \
-			[ -e /etc/initramfs-tools/initramfs.conf ]; then
-			# rebuild the initramfs
-			echo "Updating initial ramdisk for new configuration..."
-			update-initramfs -u -k "$(uname -r)"
-		fi
-
-		if [ -w /boot/grub/menu.lst ] && \
-			egrep -q '# (defopt|kopt).*resume=[^[:space:]]+' /boot/grub/menu.lst; then
-			# update grub menu.lst
-			echo "Updating grub configuration /boot/grub/menu.lst..."
-			# remove all resume= lines from grub menu.lst
-			sed -i '/^# \(defopt\|kopt\)/s/[[:space:]]*resume=[^[:space:]]\+//' /boot/grub/menu.lst
-			update-grub
-		fi
 	else
-		echo "No need to update /etc/initramfs-tools/conf.d/resume..."
+		echo "Cannot write /etc/initramfs-tools/conf.d/resume..."
+		exit 2
 	fi
 else
-	echo "Error: No swap partition UUID found by blkid(8)."
-	exit 2
+	echo "Error: No swap partition UUID could be detected by blkid(8)."
+	exit 3
+fi
+
+if [ -x /usr/sbin/update-initramfs ]; then
+	# rebuild the initramfs
+	echo "Updating initial ramdisk for new resume configuration..."
+	
+	update-initramfs -u -k "$(uname -r)"
+fi
+
+if [ -w /boot/grub/menu.lst ] && egrep -q '# (defopt|kopt).*resume=[^[:space:]]+' /boot/grub/menu.lst; then
+	# update grub menu.lst
+	echo "Updating grub configuration /boot/grub/menu.lst..."
+
+	# remove all resume= lines from grub menu.lst
+	sed -i '/^# \(defopt\|kopt\)/s/[[:space:]]*resume=[^[:space:]]\+//' /boot/grub/menu.lst
+
+	update-grub
 fi
