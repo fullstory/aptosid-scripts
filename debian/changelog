@@ -1,9 +1,5 @@
-sidux-scripts (0.1.42) UNRELEASED; urgency=low
+sidux-scripts (0.1.42) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Add svmi link to smxi.
 
  -- Kel Modderman <kel@otaku42.de>  Wed, 05 Dec 2007 09:28:29 +1000
