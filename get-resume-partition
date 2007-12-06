@@ -62,7 +62,8 @@ if echo "${SWAPUUID}" | egrep -q '^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$'; then
 		exit 2
 	fi
 else
-	echo "Error: No swap partition UUID could be detected by blkid(8)."
+	echo "No swap partition UUID could be detected by blkid(8)."
+	echo "Not configuring resume partition."
 	exit 3
 fi
 

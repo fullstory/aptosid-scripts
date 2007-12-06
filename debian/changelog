@@ -5,8 +5,9 @@ sidux-scripts (0.1.43) UNRELEASED; urgency=low
 
   [ Kel Modderman ]
   * get-resume-partition: announce change at the end of script.
+  * Make message when no swap is on system less scary.
 
- -- Kel Modderman <kel@otaku42.de>  Thu, 06 Dec 2007 14:45:13 +1000
+ -- Kel Modderman <kel@otaku42.de>  Fri, 07 Dec 2007 08:38:17 +1000
 
 sidux-scripts (0.1.42) unstable; urgency=low
 
