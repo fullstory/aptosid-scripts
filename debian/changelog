@@ -1,8 +1,12 @@
 sidux-scripts (0.1.43) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 05 Dec 2007 14:46:36 +0100
+  [ Kel Modderman ]
+  * get-resume-partition: announce change at the end of script.
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 06 Dec 2007 14:45:13 +1000
 
 sidux-scripts (0.1.42) unstable; urgency=low
 

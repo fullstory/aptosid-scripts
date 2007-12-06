@@ -82,3 +82,11 @@ if [ -w /boot/grub/menu.lst ] && egrep -q '# (defopt|kopt).*resume=[^[:space:]]+
 
 	update-grub
 fi
+
+echo
+echo "A new resume configuration has been written to:"
+echo "  /etc/initramfs-tools/conf.d/resume"
+echo
+echo "If you do not trust me to make the correct choice, then please"
+echo "check the file and change according to your needs."
+echo
