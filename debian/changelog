@@ -1,9 +1,5 @@
-sidux-scripts (0.1.43) UNRELEASED; urgency=low
+sidux-scripts (0.1.43) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * get-resume-partition: announce change at the end of script.
   * Make message when no swap is on system less scary.
 
