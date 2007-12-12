@@ -1,8 +1,9 @@
 sidux-scripts (0.1.44) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
+  * tell the user about du-fixes-h2.sh and sm being replaced by smxi.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 07 Dec 2007 01:43:00 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 Dec 2007 00:19:39 +0100
 
 sidux-scripts (0.1.43) unstable; urgency=low
 

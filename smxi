@@ -62,7 +62,12 @@ error_handler()
 
 # set the SCRIPT value
 case $CALLER in
-	sgfxi|sm|smxi|du-fixes-h2.sh|svmi)
+	sgfxi|smxi|svmi)
+		SCRIPT="$CALLER"
+		;;
+	du-fixes-h2.sh|sm)
+		printf "WARNING: \"$CALLER\" has been renamed to \"smxi\", this compatibility\nsmylink will disappear shortly\!\n\n"
+		sleep 5
 		SCRIPT="$CALLER"
 		;;
 	*)
