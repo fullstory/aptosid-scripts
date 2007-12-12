@@ -68,7 +68,7 @@ case $CALLER in
 	du-fixes-h2.sh|sm)
 		printf "WARNING: \"$CALLER\" has been renamed to \"smxi\", this compatibility\nsmylink will disappear shortly\!\n\n"
 		sleep 5
-		SCRIPT="$CALLER"
+		SCRIPT="smxi"
 		;;
 	*)
 		error_handler 5
