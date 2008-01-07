@@ -1,3 +1,9 @@
+sidux-scripts (0.1.46) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Jan 2008 00:45:08 +0100
+
 sidux-scripts (0.1.45) unstable; urgency=low
 
   * get-resume-partition: also hack /etc/uswsusp.conf if present, when
