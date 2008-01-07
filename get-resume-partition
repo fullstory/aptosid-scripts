@@ -57,9 +57,11 @@ if echo "${SWAPUUID}" | egrep -q '^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$'; then
 		# (over)write configuration
 		echo "Writing new configuration to /etc/initramfs-tools/conf.d/resume..."
 		echo "RESUME=UUID=${SWAPUUID}" > /etc/initramfs-tools/conf.d/resume
-	else
-		echo "Cannot write /etc/initramfs-tools/conf.d/resume..."
-		exit 2
+	fi
+
+	if grep -q -s '^resume device\ =' /etc/uswsusp.conf; then
+		echo "Writing new configuration to /etc/uswsusp.conf..."
+		sed -i 's|^\(resume\ device\ =\).*|\1 '"UUID=${SWAPUUID}"'|' /etc/uswsusp.conf
 	fi
 else
 	echo "No swap partition UUID could be detected by blkid(8)."
