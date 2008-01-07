@@ -1,4 +1,4 @@
-sidux-scripts (0.1.45) UNRELEASED; urgency=low
+sidux-scripts (0.1.45) unstable; urgency=low
 
   * get-resume-partition: also hack /etc/uswsusp.conf if present, when
     updating resume partition to use a UUID.
