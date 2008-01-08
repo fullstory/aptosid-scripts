@@ -1,8 +1,15 @@
-sidux-scripts (0.1.46) UNRELEASED; urgency=low
+sidux-scripts (0.2.0) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * ship fw-detect as part of sidux-scripts.
+  * add fw-detect to debian/copyright.
+  * clean up/ re- indent debian/copyright.
+  * remove bogus dependency on udev.
+  * remove dead masquerade script.
+  * switch from custom su-me to generic su-to-root, adapt dependencies and
+    menu files accordingly.
+  * general clean up.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Jan 2008 00:45:08 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Jan 2008 13:53:34 +0100
 
 sidux-scripts (0.1.45) unstable; urgency=low
 

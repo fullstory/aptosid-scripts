@@ -1,12 +1,8 @@
 #!/bin/sh
 
 if [ "$(id -u)" -ne 0 ]; then
-	if [ -x /usr/bin/su-me ]; then
-		echo "Please enter root password:"
-		DISPLAY="" exec su-me "$0" "$@"
-	fi
-
-	echo Error: You must be root to run this script!
+	[ -x "$(which su-to-root)" ] && exec su-to-root -X -c "$0" "$@"
+	printf "ERROR: $0 needs root capabilities, please start it as root.\n\n" >&2
 	exit 1
 fi
 

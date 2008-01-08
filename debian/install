@@ -1,6 +1,7 @@
 fix-dpi-kdm			usr/sbin/
 fix-ssh				usr/sbin/
 fix-time			usr/sbin/
+fw-detect			usr/bin/
 get-resume-partition		usr/sbin/
 get-sidux-binary-gfx		usr/sbin/
 remove-gateway			usr/sbin/
