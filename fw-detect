@@ -6,8 +6,128 @@
 # Script to check if firmware or other non-free drivers are required.
 #
 
-while getopts vx opt; do
+function show_all_cards() {
+	echo "Atheros PCI wireless card"
+	echo "acx"
+	echo "atmel"
+	echo "at76_usb"
+	echo "b43"
+	echo "b43legacy"
+	echo "bcm43xx"
+	echo "ipw2100"
+	echo "ipw2200"
+	echo "iwl3945"
+	echo "iwl4965"
+	echo "p54pci"
+	echo "p54usb"
+	echo "prism54"
+	echo "rt61"
+	echo "rt73"
+	echo "zd1201"
+	echo "zd1211"
+	exit
+}
+
+function install_driver() {
+
+	# root check
+	if (($UID)); then
+		echo "Error: You must be root to run this script!"
+		exit 1
+	fi
+
+	# driver
+	driver=$@
+
+	echo $driver
+
+	if [ "$driver" = "Atheros PCI wireless card" ]; then
+		apt-get update
+		module-assistant --text-mode --non-inter auto-install madwifi
+		modprobe ath_pci
+	else
+		case "${driver}" in
+			acx*)
+				fw="http://acx100.sourceforge.net/wiki/Firmware"
+				fw_url="http://www.kazer.org/acx-firmware-20060207.tar.bz2"
+				;;
+			atmel*|at76_usb)
+				fw="apt-get install atmel-firmware";;
+			b43)
+				fw="apt-get install b43-fwcutter";;
+			b43legacy)
+				fw="apt-get install b43-fwcutter";;
+			bcm43xx*)
+				fw="apt-get install bcm43xx-fwcutter b43-fwcutter";;
+			ipw2100|ipw2200)
+				fw="apt-get install ${driver}-firmware";;
+			iwl3945|iwl4965)
+				fw="apt-get install firmware-iwlwifi";;
+			p54pci)
+				fw="http://prism54.org/firmware/";;
+			p54usb)
+				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/";;
+			prism54)
+				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/";;
+			rt61*)
+				fw="apt-get install firmware-ralink";;
+			rt73*)
+				fw="apt-get install firmware-ralink";;
+			zd1201)
+				fw="http://linux-lc100020.sourceforge.net/"
+				fw_url="http://prdownloads.sourceforge.net/linux-lc100020/zd1201-0.14-fw.tar.gz?download"
+				;;
+			zd1211*)
+				fw="apt-get install zd1211-firmware";;
+		esac
+
+		case "${fw}" in
+			apt-get*)
+				apt-get update
+				${fw}
+				modprobe -r ${driver}
+				modprobe ${driver}
+				;;
+			http*)
+				echo "#"
+				echo "# Detected driver that requires firmware to operate."
+				echo "# There is no readily available firmware package for ${driver}"
+				echo "# Visit the following page for information on how to obtain and"
+				echo "# install the required firmware:"
+				echo "#   ${fw}"
+				if [[ ${fw_url} ]]; then
+					echo "#"
+					echo "# You can obtain the firmware for ${driver} directly from:"
+					echo "#   ${fw_url}"
+					echo "#"
+					echo "# Download the archive and uncompress it. Copy the contents to:"
+					echo "#   /lib/firmware/"
+				fi
+				echo "#"
+				echo "# Once the firmware files have been installed, the ${driver} must be"
+				echo "# reloaded to activate the hardware. Use the following commands:"
+				echo "#"
+				echo "modprobe -r ${driver}"
+				echo "modprobe ${driver}"
+				echo ""
+				;;
+		esac
+	fi
+
+	exit
+}
+
+while getopts aisvx opt; do
 	case "${opt}" in
+		a)
+			show_all_cards
+			;;
+		i)
+			install_driver $2
+			;;
+		s)
+			short="TRUE"
+			;;
 		v)
 			((verbosity++))
 			;;
@@ -141,46 +261,53 @@ for d in /sys/bus/*/drivers/*; do
 			;;
 	esac
 
-	case "${fw}" in
-		apt-get*)
-			echo "#"
-			echo "# Detected driver that requires firmware to operate."
-			echo "# Follow these instructions to obtain the correct firmware"
-			echo "# and activate the ${driver} driver:"
-			echo "#"
-			echo "apt-get update"
-			echo "${fw}"
-			echo "modprobe -r ${driver}"
-			echo "modprobe ${driver}"
-			echo ""
-			echo "You must first configure apt to install this non-free software,"
-			echo "refer to the offline manual that came with this distribution."
-			echo ""
-			;;
-		http*)
-			echo "#"
-			echo "# Detected driver that requires firmware to operate."
-			echo "# There is no readily available firmware package for ${driver}"
-			echo "# Visit the following page for information on how to obtain and"
-			echo "# install the required firmware:"
-			echo "#   ${fw}"
-			if [[ ${fw_url} ]]; then
+
+	if [ "$short" = "TRUE" ]; then
+		if [ -n "$fw" ]; then
+			echo $driver
+		fi
+	else
+		case "${fw}" in
+			apt-get*)
 				echo "#"
-				echo "# You can obtain the firmware for ${driver} directly from:"
-				echo "#   ${fw_url}"
+				echo "# Detected driver that requires firmware to operate."
+				echo "# Follow these instructions to obtain the correct firmware"
+				echo "# and activate the ${driver} driver:"
 				echo "#"
-				echo "# Download the archive and uncompress it. Copy the contents to:"
-				echo "#   /lib/firmware/"
-			fi
-			echo "#"
-			echo "# Once the firmware files have been installed, the ${driver} must be"
-			echo "# reloaded to activate the hardware. Use the following commands:"
-			echo "#"
-			echo "modprobe -r ${driver}"
-			echo "modprobe ${driver}"
-			echo ""
-			;;
-	esac
+				echo "apt-get update"
+				echo "${fw}"
+				echo "modprobe -r ${driver}"
+				echo "modprobe ${driver}"
+				echo ""
+				echo "You must first configure apt to install this non-free software,"
+				echo "refer to the offline manual that came with this distribution."
+				echo ""
+				;;
+			http*)
+				echo "#"
+				echo "# Detected driver that requires firmware to operate."
+				echo "# There is no readily available firmware package for ${driver}"
+				echo "# Visit the following page for information on how to obtain and"
+				echo "# install the required firmware:"
+				echo "#   ${fw}"
+				if [[ ${fw_url} ]]; then
+					echo "#"
+					echo "# You can obtain the firmware for ${driver} directly from:"
+					echo "#   ${fw_url}"
+					echo "#"
+					echo "# Download the archive and uncompress it. Copy the contents to:"
+					echo "#   /lib/firmware/"
+				fi
+				echo "#"
+				echo "# Once the firmware files have been installed, the ${driver} must be"
+				echo "# reloaded to activate the hardware. Use the following commands:"
+				echo "#"
+				echo "modprobe -r ${driver}"
+				echo "modprobe ${driver}"
+				echo ""
+				;;
+		esac
+	fi
 done
 
 #
@@ -191,17 +318,21 @@ if find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c
 	if kmodule_ok ath_pci; then
 		say "Madwifi installed."
 	else
-		echo "#"
-		echo "# Detected Atheros PCI wireless card."
-		echo "# It requires the MadWifi driver to operate."
-		echo "# Follow these instructions to install MadWifi:"
-		echo "#"
-		echo "apt-get update"
-		echo "module-assistant --text-mode --non-inter auto-install madwifi"
-		echo "modprobe ath_pci"
-		echo ""
-		echo "You must first configure apt to install this non-free software,"
-		echo "refer to the offline manual that came with this distribution."
-		echo ""
+		if [ "$short" = "TRUE" ]; then
+			echo "Atheros PCI wireless card"
+		else
+			echo "#"
+			echo "# Detected Atheros PCI wireless card."
+			echo "# It requires the MadWifi driver to operate."
+			echo "# Follow these instructions to install MadWifi:"
+			echo "#"
+			echo "apt-get update"
+			echo "module-assistant --text-mode --non-inter auto-install madwifi"
+			echo "modprobe ath_pci"
+			echo ""
+			echo "You must first configure apt to install this non-free software,"
+			echo "refer to the offline manual that came with this distribution."
+			echo ""
+		fi
 	fi
 fi
