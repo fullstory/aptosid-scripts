@@ -1,4 +1,4 @@
-sidux-scripts (0.2.3) UNRELEASED; urgency=low
+sidux-scripts (0.2.3) unstable; urgency=low
 
   * Use full path to modinfo, it may not be in user $PATH.
 
