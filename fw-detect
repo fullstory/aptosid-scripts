@@ -142,7 +142,7 @@ function say() {
 }
 
 function kmodule_ok() {
-	local kmod="$(modinfo -n ${1} 2>/dev/null)"
+	local kmod="$(/sbin/modinfo -n ${1} 2>/dev/null)"
 
 	if [[ -f ${kmod} ]]; then
 		say "Kernel module: ${kmod}"
