@@ -28,6 +28,102 @@ function show_all_cards() {
 	exit
 }
 
+function display_message() {
+	# we need gettext (is loaded in ssft.sh or cloned...)
+	if [ -f /usr/bin/gettext.sh ]; then
+		. /usr/bin/gettext.sh || exit 1
+	else
+		exit 1
+	fi
+
+	export TEXTDOMAIN="fw-detect"
+	export TEXTDOMAINDIR=/usr/share/locale
+
+	# determine system status
+	SSFTSH="$(which ssft.sh)"       || SSFTSH="/usr/bin/ssft.sh"
+	
+	# initialize ssft
+	. "$SSFTSH"
+
+	# --- If you want another frontend, do "export SSFT_FRONTEND=$(ssft_choose_frontend)" before starting fw-detect
+	[ -z "$SSFT_FRONTEND" ]      && \
+		SSFT_FRONTEND="text" && \
+		F="# "
+
+	case "$1" in
+
+# ------------------------------------------------------------------
+		apt-get)
+			ssft_display_message \
+"$(gettext "Detected driver that requires firmware to operate")" \
+"$(gettext "\
+${F}
+${F}Follow these instructions to obtain the correct firmware
+${F}and activate the ${driver} driver:
+
+apt-get update
+${fw}
+modprobe -r ${driver}
+modprobe ${driver}
+
+You must first configure apt to install this non-free software,
+refer to the offline manual that came with this distribution.
+")"
+			;;
+
+# ------------------------------------------------------------------
+		http)
+			if [[ ${fw_url} ]]; then
+				FW_URL=$(gettext "\
+${F}
+${F}You can obtain the firmware for ${driver} directly from:
+${F}    ${fw_url}
+${F}
+${F}Download the archive and uncompress it.
+${F}Copy the contents to:
+${F}    /lib/firmware/")
+			fi
+
+			ssft_display_message \
+"$(gettext "Detected driver that requires firmware to operate")" \
+"$(gettext "\
+${F}
+${F}There is no readily available firmware package for ${driver}
+${F}Visit the following page for information on how to obtain and
+${F}install the required firmware:
+${F}    ${fw}
+${FW_URL}
+${F}
+${F}Once the firmware files have been installed, the ${driver}
+${F}must be reloaded to activate the hardware.
+${F}Use the following commands:
+${F}
+modprobe -r ${driver}
+modprobe ${driver}")"
+			;;
+
+# ------------------------------------------------------------------
+		atheros)
+			ssft_display_message \
+"$(gettext "Detected Atheros PCI wireless card.")" \
+"$(gettext "\
+${F}
+${F}It requires the MadWifi driver to operate.
+${F}Follow these instructions to install MadWifi:
+${F}
+apt-get update
+module-assistant --text-mode --non-inter auto-install madwifi
+modprobe ath_pci
+
+You must first configure apt to install this non-free software,
+refer to the offline manual that came with this distribution.
+")"
+			;;
+
+	esac
+
+}
+
 function install_driver() {
 
 	# root check
@@ -89,27 +185,7 @@ function install_driver() {
 				modprobe ${driver}
 				;;
 			http*)
-				echo "#"
-				echo "# Detected driver that requires firmware to operate."
-				echo "# There is no readily available firmware package for ${driver}"
-				echo "# Visit the following page for information on how to obtain and"
-				echo "# install the required firmware:"
-				echo "#   ${fw}"
-				if [[ ${fw_url} ]]; then
-					echo "#"
-					echo "# You can obtain the firmware for ${driver} directly from:"
-					echo "#   ${fw_url}"
-					echo "#"
-					echo "# Download the archive and uncompress it. Copy the contents to:"
-					echo "#   /lib/firmware/"
-				fi
-				echo "#"
-				echo "# Once the firmware files have been installed, the ${driver} must be"
-				echo "# reloaded to activate the hardware. Use the following commands:"
-				echo "#"
-				echo "modprobe -r ${driver}"
-				echo "modprobe ${driver}"
-				echo ""
+				display_message http
 				;;
 		esac
 	fi
@@ -269,42 +345,10 @@ for d in /sys/bus/*/drivers/*; do
 	else
 		case "${fw}" in
 			apt-get*)
-				echo "#"
-				echo "# Detected driver that requires firmware to operate."
-				echo "# Follow these instructions to obtain the correct firmware"
-				echo "# and activate the ${driver} driver:"
-				echo "#"
-				echo "apt-get update"
-				echo "${fw}"
-				echo "modprobe -r ${driver}"
-				echo "modprobe ${driver}"
-				echo ""
-				echo "You must first configure apt to install this non-free software,"
-				echo "refer to the offline manual that came with this distribution."
-				echo ""
+				display_message apt-get
 				;;
 			http*)
-				echo "#"
-				echo "# Detected driver that requires firmware to operate."
-				echo "# There is no readily available firmware package for ${driver}"
-				echo "# Visit the following page for information on how to obtain and"
-				echo "# install the required firmware:"
-				echo "#   ${fw}"
-				if [[ ${fw_url} ]]; then
-					echo "#"
-					echo "# You can obtain the firmware for ${driver} directly from:"
-					echo "#   ${fw_url}"
-					echo "#"
-					echo "# Download the archive and uncompress it. Copy the contents to:"
-					echo "#   /lib/firmware/"
-				fi
-				echo "#"
-				echo "# Once the firmware files have been installed, the ${driver} must be"
-				echo "# reloaded to activate the hardware. Use the following commands:"
-				echo "#"
-				echo "modprobe -r ${driver}"
-				echo "modprobe ${driver}"
-				echo ""
+				display_message http
 				;;
 		esac
 	fi
@@ -321,18 +365,7 @@ if find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c
 		if [ "$short" = "TRUE" ]; then
 			echo "Atheros PCI wireless card"
 		else
-			echo "#"
-			echo "# Detected Atheros PCI wireless card."
-			echo "# It requires the MadWifi driver to operate."
-			echo "# Follow these instructions to install MadWifi:"
-			echo "#"
-			echo "apt-get update"
-			echo "module-assistant --text-mode --non-inter auto-install madwifi"
-			echo "modprobe ath_pci"
-			echo ""
-			echo "You must first configure apt to install this non-free software,"
-			echo "refer to the offline manual that came with this distribution."
-			echo ""
+			display_message atheros
 		fi
 	fi
 fi
