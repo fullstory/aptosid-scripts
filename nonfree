@@ -1,6 +1,0 @@
-#!/bin/bash
-
-/bin/sed -i	-e 's|\(.*deb.*debian\.org.* main\).*|\1 contrib non-free|' \
-   			-e 's|\(.*deb.*sidux.* main\).*|\1 contrib non-free firmware fix.main fix.contrib fix.non-free|' \
-				/etc/apt/sources.list \
-				/etc/apt/sources.list.d/*.list

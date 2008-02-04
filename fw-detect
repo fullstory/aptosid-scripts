@@ -190,7 +190,7 @@ function install_driver() {
 	exit
 }
 
-while getopts aisvx opt; do
+while getopts aisvxy opt; do
 	case "${opt}" in
 		a)
 			show_all_cards
@@ -206,6 +206,11 @@ while getopts aisvx opt; do
 			;;
 		x)
 			set -x
+			;;
+		y)
+			#installable driver
+			short="TRUE"
+			install_possible="TRUE"
 			;;
 	esac
 done
@@ -337,7 +342,15 @@ for d in /sys/bus/*/drivers/*; do
 
 	if [ "$short" = "TRUE" ]; then
 		if [ -n "$fw" ]; then
-			echo $driver
+			if [ "$install_possible"  = "TRUE" ]; then
+				case "${fw}" in
+					apt-get*)
+						echo $driver
+						;;
+				esac
+			else
+				echo $driver
+			fi
 		fi
 	else
 		case "${fw}" in
@@ -360,7 +373,11 @@ if find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c
 		say "Madwifi installed."
 	else
 		if [ "$short" = "TRUE" ]; then
-			echo "Atheros PCI wireless card"
+			#if [ "$install_possible"  = "TRUE" ]; then
+			#	echo "Atheros PCI wireless card"
+			#else
+				echo "Atheros PCI wireless card"
+			#fi
 		else
 			display_message atheros
 		fi
