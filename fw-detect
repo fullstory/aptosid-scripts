@@ -45,11 +45,8 @@ function display_message() {
 	# initialize ssft
 	. "$SSFTSH"
 
-	# --- If you want another frontend, do "export SSFT_FRONTEND=$(ssft_choose_frontend)" before starting fw-detect
-	[ -z "$SSFT_FRONTEND" ]      && \
-		SSFT_FRONTEND="text" && \
-		F="# "
-
+	# --- If you want another frontend, do "export SSFT_FRONTEND=$(ssft_choose_frontend)"
+	#     before starting fw-detect
 	case "$1" in
 
 # ------------------------------------------------------------------
@@ -57,9 +54,9 @@ function display_message() {
 			ssft_display_message \
 "$(gettext "Detected driver that requires firmware to operate")" \
 "$(gettext "\
-${F}
-${F}Follow these instructions to obtain the correct firmware
-${F}and activate the ${driver} driver:
+# 
+# Follow these instructions to obtain the correct firmware
+# and activate the ${driver} driver:
 
 apt-get update
 ${fw}
@@ -75,29 +72,29 @@ refer to the offline manual that came with this distribution.
 		http)
 			if [[ ${fw_url} ]]; then
 				FW_URL=$(gettext "\
-${F}
-${F}You can obtain the firmware for ${driver} directly from:
-${F}    ${fw_url}
-${F}
-${F}Download the archive and uncompress it.
-${F}Copy the contents to:
-${F}    /lib/firmware/")
+# 
+# You can obtain the firmware for ${driver} directly from:
+#     ${fw_url}
+# 
+# Download the archive and uncompress it.
+# Copy the contents to:
+#     /lib/firmware/")
 			fi
 
 			ssft_display_message \
 "$(gettext "Detected driver that requires firmware to operate")" \
 "$(gettext "\
-${F}
-${F}There is no readily available firmware package for ${driver}
-${F}Visit the following page for information on how to obtain and
-${F}install the required firmware:
-${F}    ${fw}
+# 
+# There is no readily available firmware package for ${driver}
+# Visit the following page for information on how to obtain and
+# install the required firmware:
+#     ${fw}
 ${FW_URL}
-${F}
-${F}Once the firmware files have been installed, the ${driver}
-${F}must be reloaded to activate the hardware.
-${F}Use the following commands:
-${F}
+# 
+# Once the firmware files have been installed, the ${driver}
+# must be reloaded to activate the hardware.
+# Use the following commands:
+# 
 modprobe -r ${driver}
 modprobe ${driver}")"
 			;;
@@ -107,10 +104,10 @@ modprobe ${driver}")"
 			ssft_display_message \
 "$(gettext "Detected Atheros PCI wireless card.")" \
 "$(gettext "\
-${F}
-${F}It requires the MadWifi driver to operate.
-${F}Follow these instructions to install MadWifi:
-${F}
+# 
+# It requires the MadWifi driver to operate.
+# Follow these instructions to install MadWifi:
+# 
 apt-get update
 module-assistant --text-mode --non-inter auto-install madwifi
 modprobe ath_pci
