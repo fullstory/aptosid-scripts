@@ -1,12 +1,6 @@
-sidux-scripts (0.2.6) UNRELEASED; urgency=low
+sidux-scripts (0.2.6) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Horst Tritremmel ]
-  * nonfree script added
   * SSFT_FRONTEND check in fw-detect disabled
-  * nonfree script removed
   * option y=installable drivers added
   * debian/install fixed 
 
