@@ -57,7 +57,7 @@ exec 4>&-  # close
 
 if [ "$connection" -eq 0 ]
 	then
-		echo "No connection to the internet seems to be available."
+		ssft_display_message "No connection found" "No connection to the internet seems to be available."
 	else
 		echo "Internet connection is present and working."
 fi
