@@ -1,3 +1,9 @@
+sidux-scripts (0.2.9) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 21 Feb 2008 01:18:00 +0100
+
 sidux-scripts (0.2.8) unstable; urgency=low
 
   * appease lintian and write (C) as © in debian/copyright.
