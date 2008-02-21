@@ -5,16 +5,16 @@ The latest copy of source code for this package can always be found at:
 	http://sidux.com/debian/pool/main/s/sidux-scripts/
 
 Copyright Holders:
-	(C) 2003-2006 Jörg Schirottke <master@kanotix.com>
-	(C) 2004-2008 Stefan Lippers-Hollmann <s.l-h@gmx.de>
-	(C) 2005-2008 Kel Modderman <kel@otaku42.de>
-	(C) 2005-2007 Harald Hope
+	Copyright © 2003-2006 Jörg Schirottke <master@kanotix.com>
+	Copyright © 2004-2008 Stefan Lippers-Hollmann <s.l-h@gmx.de>
+	Copyright © 2005-2008 Kel Modderman <kel@otaku42.de>
+	Copyright © 2005-2007 Harald Hope
 
 	wgetpaste-2.4 is
-		Copyright (c) 2007 Bo Ørsted Andresen <bo.andresen@zlin.dk>
+		Copyright © 2007 Bo Ørsted Andresen <bo.andresen@zlin.dk>
 		Distributed as-is. With no warranties.
 
 	fw-detect:
-		(C) 2006-2008 Kel Modderman <kel@otaku42.de>
+		© 2006-2008 Kel Modderman <kel@otaku42.de>
 
 License: GPL, see /usr/share/common-licenses/GPL-2
