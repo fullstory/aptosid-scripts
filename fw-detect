@@ -108,9 +108,7 @@ modprobe ${driver}")"
 # It requires the MadWifi driver to operate.
 # Follow these instructions to install MadWifi:
 # 
-apt-get update
-module-assistant --text-mode --non-inter auto-install madwifi
-modprobe ath_pci
+m-a a-i madwifi
 
 You must first configure apt to install this non-free software,
 refer to the offline manual that came with this distribution.
@@ -135,9 +133,7 @@ function install_driver() {
 	echo $driver
 
 	if [ "$driver" = "Atheros PCI wireless card" ]; then
-		apt-get update
-		module-assistant --text-mode --non-inter auto-install madwifi
-		modprobe ath_pci
+		m-a a-i madwifi
 	else
 		case "${driver}" in
 			acx*)
