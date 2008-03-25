@@ -1,9 +1,5 @@
-sidux-scripts (0.2.10) UNRELEASED; urgency=low
+sidux-scripts (0.2.10) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Fabian Wuertz ]
   * fw-detect: atheros install updated
 
  -- Fabian Wuertz <xadras@sidux.com>  Sun, 23 Mar 2008 22:37:56 +0100
