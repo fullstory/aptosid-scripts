@@ -1,3 +1,9 @@
+sidux-scripts (0.2.11+nmu1) UNRELEASED; urgency=low
+
+  * wgetpaste uptaded to version 2.10
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Wed, 09 Apr 2008 13:53:01 +0200
+
 sidux-scripts (0.2.11) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
