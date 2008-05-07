@@ -1,8 +1,8 @@
-sidux-scripts (0.2.12) UNRELEASED; urgency=low
+sidux-scripts (0.2.12) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * switch to the new dh implementation of debhelper 7.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 09 Apr 2008 16:08:53 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 07 May 2008 02:26:04 +0200
 
 sidux-scripts (0.2.11) unstable; urgency=low
 
