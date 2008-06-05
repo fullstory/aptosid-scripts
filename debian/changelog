@@ -1,7 +1,4 @@
-sidux-scripts (0.2.13) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+sidux-scripts (0.2.13) unstable; urgency=low
 
   [ Kel Modderman ]
   * fw-detect:
@@ -9,7 +6,10 @@ sidux-scripts (0.2.13) UNRELEASED; urgency=low
     - use /sys/modules/* and not the deeper /sys/bus/*/drivers/*
     - fix ugly coding style of case constructs
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 06 Jun 2008 00:51:20 +1000
+  [ Stefan Lippers-Hollmann ]
+  * bump standards version to 3.8.0, no changes necessary.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 06 Jun 2008 00:23:35 +0200
 
 sidux-scripts (0.2.12) unstable; urgency=low
 
