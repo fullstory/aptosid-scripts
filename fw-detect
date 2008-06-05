@@ -11,18 +11,30 @@ function show_all_cards() {
 	echo "acx"
 	echo "atmel"
 	echo "at76_usb"
+	echo "av7110"
 	echo "b43"
 	echo "b43legacy"
 	echo "bcm43xx"
+	echo "bluebird"
+	echo "dec2000t"
+	echo "dec2500t"
+	echo "dec3000t"
+	echo "dibusb"
 	echo "ipw2100"
 	echo "ipw2200"
 	echo "iwl3945"
 	echo "iwl4965"
+	echo "or51211"
+	echo "or51132_qam"
+	echo "or51132_vsb"
 	echo "p54pci"
 	echo "p54usb"
 	echo "prism54"
 	echo "rt61"
 	echo "rt73"
+	echo "sp8870"
+	echo "sp887x"
+	echo "tda1004x"
 	echo "zd1201"
 	echo "zd1211"
 	exit
@@ -100,6 +112,20 @@ modprobe ${driver}")"
 			;;
 
 # ------------------------------------------------------------------
+		dvb)
+			ssft_display_message \
+"$(gettext "Detected driver that requires firmware to operate")" \
+"$(gettext "\
+# 
+# Follow these instructions to obtain the correct firmware
+# and activate the ${driver} driver:
+
+cd /lib/firmware/
+${fw}
+")"
+			;;
+
+# ------------------------------------------------------------------
 		atheros)
 			ssft_display_message \
 "$(gettext "Detected Atheros PCI wireless card.")" \
@@ -141,33 +167,70 @@ function install_driver() {
 				fw_url="http://www.kazer.org/acx-firmware-20060207.tar.bz2"
 				;;
 			atmel*|at76_usb)
-				fw="apt-get install atmel-firmware";;
+				fw="apt-get install atmel-firmware"
+				;;
+			av7110)
+				fw="get_dvb_firmware av7110"
+				fw_file="dvb-ttpci-01.fw"
+				;;
 			b43)
-				fw="apt-get install b43-fwcutter";;
+				fw="apt-get install b43-fwcutter"
+				;;
 			b43legacy)
-				fw="apt-get install b43-fwcutter";;
+				fw="apt-get install b43-fwcutter"
+				;;
 			bcm43xx*)
-				fw="apt-get install bcm43xx-fwcutter b43-fwcutter";;
+				fw="apt-get install bcm43xx-fwcutter b43-fwcutter"
+				;;
+			bluebird)
+				fw="get_dvb_firmware bluebird"
+				fw_file="dvb-usb-bluebird-01.fw"
+				;;
+			dec*)
+				fw="get_dvb_firmware ${driver}"
+				fw_file="dvb-ttusb-dec-${driver}.fw"
+				;;
+			dibusb)
+				fw="get_dvb_firmware dibusb"
+				fw_file="dvb-dibusb-5.0.0.11.fw"
+				;;
 			ipw2100|ipw2200)
-				fw="apt-get install ${driver}-firmware";;
+				fw="apt-get install ${driver}-firmware"
+				;;
 			iwl3945|iwl4965)
-				fw="apt-get install firmware-iwlwifi";;
+				fw="apt-get install firmware-iwlwifi"
+				;;
+			or51*)
+				fw="get_dvb_firmware ${driver}"
+				fw_file="dvb-fe-${driver}.fw"
+				;;
 			p54pci)
-				fw="http://prism54.org/firmware/";;
+				fw="http://prism54.org/firmware/"
+				;;
 			p54usb)
-				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/";;
+				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/"
+				;;
 			prism54)
-				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/";;
-			rt61*)
-				fw="apt-get install firmware-ralink";;
-			rt73*)
-				fw="apt-get install firmware-ralink";;
+				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/"
+				;;
+			rt61*|rt73*)
+				fw="apt-get install firmware-ralink"
+				;;
+			sp887*)
+				fw="get_dvb_firmware ${driver}"
+				fw_file="dvb-fe-${driver}.fw"
+				;;
+			tda1004x)
+				fw="get_dvb_firmware tda10046"
+				fw_file="dvb-fe-tda10046.fw"
+				;;
 			zd1201)
 				fw="http://linux-lc100020.sourceforge.net/"
 				fw_url="http://prdownloads.sourceforge.net/linux-lc100020/zd1201-0.14-fw.tar.gz?download"
 				;;
 			zd1211*)
-				fw="apt-get install zd1211-firmware";;
+				fw="apt-get install zd1211-firmware"
+				;;
 		esac
 
 		case "${fw}" in
@@ -179,6 +242,9 @@ function install_driver() {
 				;;
 			http*)
 				display_message http
+				;;
+			get_dvb_firmware*)
+				display_message dvb
 				;;
 		esac
 	fi
@@ -246,10 +312,11 @@ function firmware_ok() {
 # check modules have required firmware
 #
 say "Looking for common drivers that need firmware..." 
-for d in /sys/bus/*/drivers/*; do
-	[[ -d ${d} ]] && driver=${d##*/} || driver=
+for driver in /sys/module/*; do
+	[ -d "${driver}" ] || continue
+	driver=${driver#/sys/module/}
 	
-	fw= fw_url=
+	unset fw fw_url
 
 	case "${driver}" in
 		acx*)
@@ -262,6 +329,12 @@ for d in /sys/bus/*/drivers/*; do
 			say "Driver:  ${driver}"
 			firmware_ok atmel_at76c5 && continue
 			fw="apt-get install atmel-firmware"
+			;;
+		av7110)
+			say "Driver:  ${driver}"
+			firmware_ok dvb-ttpci-01.fw && continue
+			fw="get_dvb_firmware av7110"
+			fw_file="dvb-ttpci-01.fw"
 			;;
 		b43)
 			say "Driver:  ${driver}"
@@ -278,6 +351,24 @@ for d in /sys/bus/*/drivers/*; do
 			firmware_ok bcm43xx && continue
 			fw="apt-get install bcm43xx-fwcutter b43-fwcutter"
 			;;
+		bluebird)
+			say "Driver:  ${driver}"
+			firmware_ok dvb-usb-bluebird-01.fw && continue
+			fw="get_dvb_firmware bluebird"
+			fw_file="dvb-usb-bluebird-01.fw"
+			;;
+		dec*)
+			say "Driver:  ${driver}"
+			firmware_ok dvb-ttusb-dec-${driver}.fw && continue
+			fw="get_dvb_firmware ${driver}"
+			fw_file="dvb-ttusb-dec-${driver}.fw"
+			;;
+		diusb)
+			say "Driver:  ${driver}"
+			firmware_ok get_dvb_firmware && continue
+			fw="get_dvb_firmware diusb"
+			fw_file="dvb-diusb-5.0.0.11.fw"
+			;;
 		ipw2100|ipw2200)
 			say "Driver:  ${driver}"
 			firmware_ok "${driver}" && continue
@@ -287,6 +378,12 @@ for d in /sys/bus/*/drivers/*; do
 			say "Driver:  ${driver}"
 			firmware_ok "iwlwifi-${driver#iwl}" && continue
 			fw="apt-get install firmware-iwlwifi"
+			;;
+		or51*)
+			say "Driver:  ${driver}"
+			firmware_ok dvb-fe-${driver}.fw && continue
+			fw="get_dvb_firmware ${driver}"
+			fw_file="dvb-fe-${driver}.fw"
 			;;
 		p54pci)
 			say "Driver:  ${driver}"
@@ -316,6 +413,18 @@ for d in /sys/bus/*/drivers/*; do
 			say "Driver:  ${driver}"
 			firmware_ok rt73 && continue
 			fw="apt-get install firmware-ralink"
+			;;
+		sp887*)
+			say "Driver:  ${driver}"
+			firmware_ok dvb-fe-${driver} && continue
+			fw="get_dvb_firmware ${driver}"
+			fw_file="dvb-fe-${driver}"
+			;;
+		tda1004x)
+			say "Driver: ${driver}"
+			firmware_ok dvb-fe-tda10046.fw && continue
+			fw="get_dvb_firmware tda10046"
+			fw_file="dvb-fe-tda10046.fw"
 			;;
 		zd1201)
 			say "Driver:  ${driver}"
@@ -355,6 +464,9 @@ for d in /sys/bus/*/drivers/*; do
 				;;
 			http*)
 				display_message http
+				;;
+			get_dvb_firmware*)
+				display_message dvb
 				;;
 		esac
 	fi
