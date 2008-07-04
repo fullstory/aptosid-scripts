@@ -113,10 +113,10 @@ modprobe ${driver}")"
 
 # ------------------------------------------------------------------
 		dvb)
-			if (($DVB == 0)); then
+			if ! ((DVB)); then
 			    dvb_message="$(gettext "\
 # The get_dvb_firmware script is required to install DVB related firmware.
-# <wget http://www.kernel.org/doc/Documentation/dvb/get_dvb_firmware>
+# <http://www.kernel.org/doc/Documentation/dvb/get_dvb_firmware>
 # Download it, copy it to /usr/local/bin and make it executable.
 #")"
 			fi
@@ -155,7 +155,7 @@ refer to the offline manual that came with this distribution.
 function install_driver() {
 
 	# root check
-	if (($UID)); then
+	if ((UID)); then
 		echo "Error: You must be root to run this script!"
 		exit 1
 	fi
@@ -251,7 +251,7 @@ function install_driver() {
 				display_message http
 				;;
 			get_dvb_firmware*)
-				if ((${DVB})); then
+				if ((DVB)); then
 				    TDIR="$(mktemp -d)"
 				    pushd "$TDIR"
 				    ${fw}
@@ -474,7 +474,7 @@ for driver in /sys/module/*; do
 						echo $driver
 						;;
 					get_dvb_firmware*)
-						((${DVB})) && echo $driver
+						((DVB)) && echo $driver
 						;;
 				esac
 			else
