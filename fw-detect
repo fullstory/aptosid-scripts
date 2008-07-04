@@ -113,16 +113,23 @@ modprobe ${driver}")"
 
 # ------------------------------------------------------------------
 		dvb)
+			if (($DVB == 0)); then
+			    dvb_message="$(gettext "\
+# The get_dvb_firmware script is required to install DVB related firmware.
+# <wget http://www.kernel.org/doc/Documentation/dvb/get_dvb_firmware>
+# Download it, copy it to /usr/local/bin and make it executable.
+#")"
+			fi
 			ssft_display_message \
 "$(gettext "Detected driver that requires firmware to operate")" \
 "$(gettext "\
-# 
+$dvb_message
 # Follow these instructions to obtain the correct firmware
 # and activate the ${driver} driver:
-
-cd /lib/firmware/
+#") 
+cd /tmp
 ${fw}
-")"
+mv ${fw_file} /lib/firmware"
 			;;
 
 # ------------------------------------------------------------------
@@ -244,13 +251,27 @@ function install_driver() {
 				display_message http
 				;;
 			get_dvb_firmware*)
-				display_message dvb
+				if ((${DVB})); then
+				    TDIR="$(mktemp -d)"
+				    pushd "$TDIR"
+				    ${fw}
+				    mv "${fw_file}" /lib/firmware
+				    popd
+				    rm -fr "$TDIR"
+				else
+				    display_message dvb
+				fi
 				;;
 		esac
 	fi
 
 	exit
 }
+
+#
+# check for get_dvb_firmware script
+#
+[[ -x $(which get_dvb_firmware) ]] && DVB=1 || DVB=0
 
 while getopts aisvxy opt; do
 	case "${opt}" in
@@ -452,6 +473,9 @@ for driver in /sys/module/*; do
 					apt-get*)
 						echo $driver
 						;;
+					get_dvb_firmware*)
+						((${DVB})) && echo $driver
+						;;
 				esac
 			else
 				echo $driver
@@ -481,11 +505,7 @@ if find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c
 		say "Madwifi installed."
 	else
 		if [ "$short" = "TRUE" ]; then
-			#if [ "$install_possible"  = "TRUE" ]; then
-			#	echo "Atheros PCI wireless card"
-			#else
-				echo "Atheros PCI wireless card"
-			#fi
+			echo "Atheros PCI wireless card"
 		else
 			display_message atheros
 		fi
