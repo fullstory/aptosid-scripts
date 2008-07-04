@@ -3,7 +3,6 @@ fix-ssh				usr/sbin/
 fix-time			usr/sbin/
 fw-detect			usr/bin/
 get-resume-partition		usr/sbin/
-get-sidux-binary-gfx		usr/sbin/
 inetconn			usr/bin/
 remove-gateway			usr/sbin/
 remove-orphans			usr/sbin/
