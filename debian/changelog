@@ -1,4 +1,4 @@
-sidux-scripts (0.2.15) UNRELEASED; urgency=low
+sidux-scripts (0.2.15) unstable; urgency=low
 
   * fw-detect:
     - apply patch from ModestUser improving DVB related output
