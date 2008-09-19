@@ -500,7 +500,8 @@ done
 # look for atheros hardware
 #
 say "Looking for Atheros hardware..."
-if find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c'; then
+if ( ! kmodule_ok ath5k && ! kmodule_ok ath9k ) && \
+   find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c'; then
 	if kmodule_ok ath_pci; then
 		say "Madwifi installed."
 	else
