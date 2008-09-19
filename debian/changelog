@@ -1,9 +1,5 @@
-sidux-scripts (0.2.16) UNRELEASED; urgency=low
+sidux-scripts (0.2.16) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * fw-detect: do not bother detecting atheros hardware if ath5k|ath9k
     is present, they will have claimed the device already.
 
