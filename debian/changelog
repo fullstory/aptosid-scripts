@@ -1,3 +1,9 @@
+sidux-scripts (0.2.19) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 16 Nov 2008 00:28:29 +0100
+
 sidux-scripts (0.2.18) unstable; urgency=low
 
   * neither bcm43xx nor bcm43xx-fwcutter exist anymore.
