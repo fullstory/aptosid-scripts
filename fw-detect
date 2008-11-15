@@ -14,7 +14,6 @@ function show_all_cards() {
 	echo "av7110"
 	echo "b43"
 	echo "b43legacy"
-	echo "bcm43xx"
 	echo "bluebird"
 	echo "dec2000t"
 	echo "dec2500t"
@@ -186,9 +185,6 @@ function install_driver() {
 				;;
 			b43legacy)
 				fw="apt-get install b43-fwcutter"
-				;;
-			bcm43xx*)
-				fw="apt-get install bcm43xx-fwcutter b43-fwcutter"
 				;;
 			bluebird)
 				fw="get_dvb_firmware bluebird"
@@ -367,11 +363,6 @@ for driver in /sys/module/*; do
 			say "Driver:  ${driver}"
 			firmware_ok *.fw /lib/firmware/b43legacy && continue
 			fw="apt-get install b43-fwcutter"
-			;;
-		bcm43xx*)
-			say "Driver:  ${driver}"
-			firmware_ok bcm43xx && continue
-			fw="apt-get install bcm43xx-fwcutter b43-fwcutter"
 			;;
 		bluebird)
 			say "Driver:  ${driver}"
