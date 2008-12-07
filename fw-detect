@@ -31,6 +31,7 @@ function show_all_cards() {
 	echo "prism54"
 	echo "rt61"
 	echo "rt73"
+	echo "smctr"
 	echo "snd-korg1212"
 	echo "snd-maestro3"
 	echo "snd-ymfpci"
@@ -202,6 +203,9 @@ function install_driver() {
 			;;
 		rt61*|rt73*)
 			fw="apt-get install firmware-ralink"
+			;;
+		smctr)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=blob;f=tr_smctr.bin;hb=HEAD - use /lib/firmware/"
 			;;
 		snd-korg1212)
 			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=korg;hb=HEAD - use /lib/firmware/korg/"

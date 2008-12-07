@@ -7,8 +7,9 @@ sidux-scripts (0.2.19) unstable; urgency=low
     - Korg 1212 IO audio device
     - ESS Allegro Maestro3 audio device
     - Yamaha YMF724/740/744/754 audio devices
+    - SMC ISA/MCA Token Ring adapter
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 16:34:49 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 16:37:59 +0100
 
 sidux-scripts (0.2.18) unstable; urgency=low
 
