@@ -3,8 +3,10 @@ sidux-scripts (0.2.19) unstable; urgency=low
   * s/ipw2?00-firmware/firmware-ipw2x00/g for fwdetect.
   * drop special handling for Atheros hardware, ath5k and ath9k handle all 
     devices previously covered by madwifi.
+  * add hints for:
+    - Korg 1212 IO audio device
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 15:49:14 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 15:59:40 +0100
 
 sidux-scripts (0.2.18) unstable; urgency=low
 

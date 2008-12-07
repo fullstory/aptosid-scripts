@@ -31,6 +31,7 @@ function show_all_cards() {
 	echo "prism54"
 	echo "rt61"
 	echo "rt73"
+	echo "snd-korg1212"
 	echo "sp8870"
 	echo "sp887x"
 	echo "tda1004x"
@@ -199,6 +200,9 @@ function install_driver() {
 			;;
 		rt61*|rt73*)
 			fw="apt-get install firmware-ralink"
+			;;
+		snd-korg1212)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git - use /lib/firmware/korg/"
 			;;
 		sp887*)
 			fw="get_dvb_firmware ${driver}"
