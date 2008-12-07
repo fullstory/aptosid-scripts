@@ -32,6 +32,7 @@ function show_all_cards() {
 	echo "rt61"
 	echo "rt73"
 	echo "snd-korg1212"
+	echo "snd-maestro3"
 	echo "sp8870"
 	echo "sp887x"
 	echo "tda1004x"
@@ -202,7 +203,10 @@ function install_driver() {
 			fw="apt-get install firmware-ralink"
 			;;
 		snd-korg1212)
-			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git - use /lib/firmware/korg/"
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=korg;hb=HEAD - use /lib/firmware/korg/"
+			;;
+		snd-maestro3)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=ess;hb=HEAD - use /lib/firmware/ess/"
 			;;
 		sp887*)
 			fw="get_dvb_firmware ${driver}"

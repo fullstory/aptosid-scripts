@@ -5,8 +5,9 @@ sidux-scripts (0.2.19) unstable; urgency=low
     devices previously covered by madwifi.
   * add hints for:
     - Korg 1212 IO audio device
+    - ESS Allegro Maestro3 audio device
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 15:59:40 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 16:02:28 +0100
 
 sidux-scripts (0.2.18) unstable; urgency=low
 
