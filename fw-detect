@@ -148,98 +148,99 @@ function install_driver() {
 
 	echo $driver
 
-		case "${driver}" in
-			acx*)
-				fw="http://acx100.sourceforge.net/wiki/Firmware"
-				fw_url="http://www.kazer.org/acx-firmware-20060207.tar.bz2"
-				;;
-			atmel*|at76_usb)
-				fw="apt-get install atmel-firmware"
-				;;
-			av7110)
-				fw="get_dvb_firmware av7110"
-				fw_file="dvb-ttpci-01.fw"
-				;;
-			b43)
-				fw="apt-get install b43-fwcutter"
-				;;
-			b43legacy)
-				fw="apt-get install b43-fwcutter"
-				;;
-			bluebird)
-				fw="get_dvb_firmware bluebird"
-				fw_file="dvb-usb-bluebird-01.fw"
-				;;
-			dec*)
-				fw="get_dvb_firmware ${driver}"
-				fw_file="dvb-ttusb-dec-${driver}.fw"
-				;;
-			dibusb)
-				fw="get_dvb_firmware dibusb"
-				fw_file="dvb-dibusb-5.0.0.11.fw"
-				;;
-			ipw2100|ipw2200)
-				fw="apt-get install firmware-ipw2x00"
-				;;
-			iwl3945|iwl4965|iwlagn)
-				fw="apt-get install firmware-iwlwifi"
-				;;
-			or51*)
-				fw="get_dvb_firmware ${driver}"
-				fw_file="dvb-fe-${driver}.fw"
-				;;
-			p54pci)
-				fw="http://prism54.org/firmware/"
-				;;
-			p54usb)
-				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/"
-				;;
-			prism54)
-				fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/"
-				;;
-			rt61*|rt73*)
-				fw="apt-get install firmware-ralink"
-				;;
-			sp887*)
-				fw="get_dvb_firmware ${driver}"
-				fw_file="dvb-fe-${driver}.fw"
-				;;
-			tda1004x)
-				fw="get_dvb_firmware tda10046"
-				fw_file="dvb-fe-tda10046.fw"
-				;;
-			zd1201)
-				fw="http://linux-lc100020.sourceforge.net/"
-				fw_url="http://prdownloads.sourceforge.net/linux-lc100020/zd1201-0.14-fw.tar.gz?download"
-				;;
+	case "${driver}" in
+		acx*)
+			fw="http://acx100.sourceforge.net/wiki/Firmware"
+			fw_url="http://www.kazer.org/acx-firmware-20060207.tar.bz2"
+			;;
+		atmel*|at76_usb)
+			fw="apt-get install atmel-firmware"
+			;;
+		av7110)
+			fw="get_dvb_firmware av7110"
+			fw_file="dvb-ttpci-01.fw"
+			;;
+		b43)
+			fw="apt-get install b43-fwcutter"
+			;;
+		b43legacy)
+			fw="apt-get install b43-fwcutter"
+			;;
+		bluebird)
+			fw="get_dvb_firmware bluebird"
+			fw_file="dvb-usb-bluebird-01.fw"
+			;;
+		dec*)
+			fw="get_dvb_firmware ${driver}"
+			fw_file="dvb-ttusb-dec-${driver}.fw"
+			;;
+		dibusb)
+			fw="get_dvb_firmware dibusb"
+			fw_file="dvb-dibusb-5.0.0.11.fw"
+			;;
+		ipw2100|ipw2200)
+			fw="apt-get install firmware-ipw2x00"
+			;;
+		iwl3945|iwl4965|iwlagn)
+			fw="apt-get install firmware-iwlwifi"
+			;;
+		or51*)
+			fw="get_dvb_firmware ${driver}"
+			fw_file="dvb-fe-${driver}.fw"
+			;;
+		p54pci)
+			fw="http://prism54.org/firmware/"
+			;;
+		p54usb)
+			fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/"
+			;;
+		prism54)
+			fw="http://jbnote.free.fr/prism54usb/ - use /lib/firmware/"
+			;;
+		rt61*|rt73*)
+			fw="apt-get install firmware-ralink"
+			;;
+		sp887*)
+			fw="get_dvb_firmware ${driver}"
+			fw_file="dvb-fe-${driver}.fw"
+			;;
+		tda1004x)
+			fw="get_dvb_firmware tda10046"
+			fw_file="dvb-fe-tda10046.fw"
+			;;
+		zd1201)
+			fw="http://linux-lc100020.sourceforge.net/"
+			fw_url="http://prdownloads.sourceforge.net/linux-lc100020/zd1201-0.14-fw.tar.gz?download"
+			;;
 			zd1211*)
-				fw="apt-get install zd1211-firmware"
-				;;
-		esac
+			fw="apt-get install zd1211-firmware"
+			;;
+	esac
 
-		case "${fw}" in
-			apt-get*)
-				apt-get update
-				${fw}
-				modprobe -r ${driver}
-				modprobe ${driver}
-				;;
-			http*)
-				display_message http
-				;;
-			get_dvb_firmware*)
-				if ((DVB)); then
-				    TDIR="$(mktemp -d)"
-				    pushd "$TDIR"
-				    ${fw}
-				    mv "${fw_file}" /lib/firmware
-				    popd
-				    rm -fr "$TDIR"
-				else
-				    display_message dvb
-				fi
-				;;
-		esac
+	case "${fw}" in
+		apt-get*)
+			apt-get update
+			${fw}
+			modprobe -r ${driver}
+			modprobe ${driver}
+			;;
+		http*)
+			display_message http
+			;;
+		get_dvb_firmware*)
+			if ((DVB)); then
+			    TDIR="$(mktemp -d)"
+			    pushd "$TDIR"
+			    ${fw}
+			    mv "${fw_file}" /lib/firmware
+			    popd
+			    rm -fr "$TDIR"
+			else
+			    display_message dvb
+			fi
+			;;
+	esac
+
 	exit
 }
 
