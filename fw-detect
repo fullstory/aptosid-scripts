@@ -33,6 +33,7 @@ function show_all_cards() {
 	echo "rt73"
 	echo "snd-korg1212"
 	echo "snd-maestro3"
+	echo "snd-ymfpci"
 	echo "sp8870"
 	echo "sp887x"
 	echo "tda1004x"
@@ -207,6 +208,9 @@ function install_driver() {
 			;;
 		snd-maestro3)
 			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=ess;hb=HEAD - use /lib/firmware/ess/"
+			;;
+		snd-ymfpci)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=yamaha;hb=HEAD - use /lib/firmware/yamaha/"
 			;;
 		sp887*)
 			fw="get_dvb_firmware ${driver}"
