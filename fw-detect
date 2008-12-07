@@ -14,16 +14,24 @@ function show_all_cards() {
 	echo "b43"
 	echo "b43legacy"
 	echo "bluebird"
+	echo "cpia2"
 	echo "dec2000t"
 	echo "dec2500t"
 	echo "dec3000t"
+	echo "dabusb"
 	echo "dibusb"
+	echo "dvb-ttusb-budget"
+	echo "emi26"
+	echo "emi62"
+	echo "ip2"
 	echo "ipw2100"
 	echo "ipw2200"
 	echo "iwl3945"
 	echo "iwl4965"
 	echo "iwlagn"
 	echo "kaweth"
+	echo "keyspan"
+	echo "keyspan_pda"
 	echo "or51211"
 	echo "or51132_qam"
 	echo "or51132_vsb"
@@ -39,6 +47,9 @@ function show_all_cards() {
 	echo "sp8870"
 	echo "sp887x"
 	echo "tda1004x"
+	echo "ti_usb_3410_5052"
+	echo "vicam"
+	echo "whiteheat"
 	echo "zd1201"
 	echo "zd1211"
 	exit
@@ -175,13 +186,31 @@ function install_driver() {
 			fw="get_dvb_firmware bluebird"
 			fw_file="dvb-usb-bluebird-01.fw"
 			;;
+		cpia2)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=cpia2;hb=HEAD - use /lib/firmware/cpia2/"
+			;;
 		dec*)
 			fw="get_dvb_firmware ${driver}"
 			fw_file="dvb-ttusb-dec-${driver}.fw"
 			;;
+		dabusb)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=dabusb;hb=HEAD - use /lib/firmware/dabusb/"
+			;;
 		dibusb)
 			fw="get_dvb_firmware dibusb"
 			fw_file="dvb-dibusb-5.0.0.11.fw"
+			;;
+		dvb-ttusb-budget)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=ttusb-budget;hb=HEAD - use /lib/firmware/ttusb-budget/"
+			;;
+		emi26)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=emi26;hb=HEAD - use /lib/firmware/emi26/"
+			;;
+		emi62)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=emi62;hb=HEAD - use /lib/firmware/emi62/"
+			;;
+		ip2)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;hb=HEAD - use /lib/firmware/ip2/"
 			;;
 		ipw2100|ipw2200)
 			fw="apt-get install firmware-ipw2x00"
@@ -192,6 +221,9 @@ function install_driver() {
 		kaweth)
 			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=kaweth;hb=HEAD - use /lib/firmware/kaweth/"
 			;;
+		keyspan)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=keyspan;hb=HEAD - use /lib/firmware/keyspan/"
+			
 		or51*)
 			fw="get_dvb_firmware ${driver}"
 			fw_file="dvb-fe-${driver}.fw"
@@ -227,6 +259,15 @@ function install_driver() {
 		tda1004x)
 			fw="get_dvb_firmware tda10046"
 			fw_file="dvb-fe-tda10046.fw"
+			;;
+		ti_usb_3410_5052)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;hb=HEAD - use /lib/firmware/ti_usb_3410_5052/"
+			;;
+		vicam)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=vicam;hb=HEAD - use /lib/firmware/vicam/"
+			;;
+		whiteheat)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;hb=HEAD - use /lib/firmware/whiteheat/"
 			;;
 		zd1201)
 			fw="http://linux-lc100020.sourceforge.net/"

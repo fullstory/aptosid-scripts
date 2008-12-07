@@ -1,5 +1,6 @@
 sidux-scripts (0.2.19) unstable; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * s/ipw2?00-firmware/firmware-ipw2x00/g for fwdetect.
   * drop special handling for Atheros hardware, ath5k and ath9k handle all 
     devices previously covered by madwifi.
@@ -10,7 +11,21 @@ sidux-scripts (0.2.19) unstable; urgency=low
     - SMC ISA/MCA Token Ring adapter
     - USB KLSI KL5USB101-based Ethernet device
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 16:40:43 +0100
+  [ Joaquim Boura ]
+  * Added hints for:
+    - CPiA2 -- cameras based on Vision's CPiA2
+    - DABUSB -- Digital Audio Broadcasting (DAB) Receiver for USB and Linux
+    - USB TI 3410/5052 serial device
+    - EMI 2|6 USB Audio interface
+    - EMI 6|2m USB Audio interface
+    - USB Keyspan USA-xxx serial device
+    - USB Keyspan PDA single-port serial device
+    - Computone IntelliPort Plus serial device
+    - USB 3com HomeConnect (aka vicam)
+    - USB ConnectTech WhiteHEAT serial device
+
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Sun, 07 Dec 2008 19:03:09 +0100
 
 sidux-scripts (0.2.18) unstable; urgency=low
 
