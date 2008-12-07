@@ -199,7 +199,7 @@ function install_driver() {
 				fw_file="dvb-dibusb-5.0.0.11.fw"
 				;;
 			ipw2100|ipw2200)
-				fw="apt-get install ${driver}-firmware"
+				fw="apt-get install firmware-ipw2x00"
 				;;
 			iwl3945|iwl4965|iwlagn)
 				fw="apt-get install firmware-iwlwifi"
@@ -385,7 +385,7 @@ for driver in /sys/module/*; do
 		ipw2100|ipw2200)
 			say "Driver:  ${driver}"
 			firmware_ok "${driver}" && continue
-			fw="apt-get install ${driver}-firmware"
+			fw="apt-get install firmware-ipw2x00"
 			;;
 		iwl3945|iwl4965|iwlagn)
 			say "Driver:  ${driver}"

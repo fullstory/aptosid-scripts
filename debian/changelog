@@ -1,8 +1,8 @@
-sidux-scripts (0.2.19) UNRELEASED; urgency=low
+sidux-scripts (0.2.19) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * s/ipw2?00-firmware/firmware-ipw2x00/g for fwdetect.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 16 Nov 2008 00:28:29 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 14:27:46 +0100
 
 sidux-scripts (0.2.18) unstable; urgency=low
 
