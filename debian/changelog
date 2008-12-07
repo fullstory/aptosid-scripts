@@ -8,8 +8,9 @@ sidux-scripts (0.2.19) unstable; urgency=low
     - ESS Allegro Maestro3 audio device
     - Yamaha YMF724/740/744/754 audio devices
     - SMC ISA/MCA Token Ring adapter
+    - USB KLSI KL5USB101-based Ethernet device
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 16:37:59 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Dec 2008 16:40:43 +0100
 
 sidux-scripts (0.2.18) unstable; urgency=low
 

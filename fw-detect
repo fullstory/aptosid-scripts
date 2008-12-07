@@ -23,6 +23,7 @@ function show_all_cards() {
 	echo "iwl3945"
 	echo "iwl4965"
 	echo "iwlagn"
+	echo "kaweth"
 	echo "or51211"
 	echo "or51132_qam"
 	echo "or51132_vsb"
@@ -187,6 +188,9 @@ function install_driver() {
 			;;
 		iwl3945|iwl4965|iwlagn)
 			fw="apt-get install firmware-iwlwifi"
+			;;
+		kaweth)
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=kaweth;hb=HEAD - use /lib/firmware/kaweth/"
 			;;
 		or51*)
 			fw="get_dvb_firmware ${driver}"
