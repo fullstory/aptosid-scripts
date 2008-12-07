@@ -7,7 +7,6 @@
 #
 
 function show_all_cards() {
-	echo "Atheros PCI wireless card"
 	echo "acx"
 	echo "atmel"
 	echo "at76_usb"
@@ -132,22 +131,6 @@ ${fw}
 mv ${fw_file} /lib/firmware"
 			;;
 
-# ------------------------------------------------------------------
-		atheros)
-			ssft_display_message \
-"$(gettext "Detected Atheros PCI wireless card.")" \
-"$(gettext "\
-# 
-# It requires the MadWifi driver to operate.
-# Follow these instructions to install MadWifi:
-# 
-m-a a-i madwifi
-
-You must first configure apt to install this non-free software,
-refer to the offline manual that came with this distribution.
-")"
-			;;
-
 	esac
 
 }
@@ -165,9 +148,6 @@ function install_driver() {
 
 	echo $driver
 
-	if [ "$driver" = "Atheros PCI wireless card" ]; then
-		m-a a-i madwifi
-	else
 		case "${driver}" in
 			acx*)
 				fw="http://acx100.sourceforge.net/wiki/Firmware"
@@ -260,8 +240,6 @@ function install_driver() {
 				fi
 				;;
 		esac
-	fi
-
 	exit
 }
 
@@ -487,20 +465,3 @@ for driver in /sys/module/*; do
 		esac
 	fi
 done
-
-#
-# look for atheros hardware
-#
-say "Looking for Atheros hardware..."
-if ( ! kmodule_ok ath5k && ! kmodule_ok ath9k ) && \
-   find /sys/devices/ -type f -name vendor -print0 | xargs -0 grep -s -q '0x168c'; then
-	if kmodule_ok ath_pci; then
-		say "Madwifi installed."
-	else
-		if [ "$short" = "TRUE" ]; then
-			echo "Atheros PCI wireless card"
-		else
-			display_message atheros
-		fi
-	fi
-fi
