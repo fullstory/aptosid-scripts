@@ -1,3 +1,9 @@
+sidux-scripts (0.2.21) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 08 Dec 2008 01:54:13 +0100
+
 sidux-scripts (0.2.20) unstable; urgency=low
 
   * fix syntax of fw-detect.
