@@ -1,3 +1,11 @@
+sidux-scripts (0.2.20) unstable; urgency=low
+
+  * fix syntax of fw-detect.
+  * make lintian happy and depend on ${misc:Depends}.
+  * drop useless Conflicts with ancient configure-networkcard.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 08 Dec 2008 01:52:35 +0100
+
 sidux-scripts (0.2.19) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]

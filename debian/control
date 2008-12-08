@@ -10,8 +10,7 @@ Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/sidux-scripts/trunk/
 
 Package: sidux-scripts
 Architecture: all
-Depends: perl, distro-defaults
-Conflicts: configure-networkcard (< 0.7.22)
+Depends: ${misc:Depends}, perl, distro-defaults
 Recommends: menu, ntpdate
 Description: miscellaneous scripts for sidux
  Script collection for live and install uses on sidux.

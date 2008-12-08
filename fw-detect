@@ -223,7 +223,7 @@ function install_driver() {
 			;;
 		keyspan)
 			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=keyspan;hb=HEAD - use /lib/firmware/keyspan/"
-			
+			;;	
 		or51*)
 			fw="get_dvb_firmware ${driver}"
 			fw_file="dvb-fe-${driver}.fw"
