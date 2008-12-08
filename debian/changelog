@@ -12,7 +12,7 @@ sidux-scripts (0.2.19) unstable; urgency=low
     - USB KLSI KL5USB101-based Ethernet device
 
   [ Joaquim Boura ]
-  * Added hints for:
+  * add hints for:
     - CPiA2 -- cameras based on Vision's CPiA2
     - DABUSB -- Digital Audio Broadcasting (DAB) Receiver for USB and Linux
     - USB TI 3410/5052 serial device
@@ -23,7 +23,6 @@ sidux-scripts (0.2.19) unstable; urgency=low
     - Computone IntelliPort Plus serial device
     - USB 3com HomeConnect (aka vicam)
     - USB ConnectTech WhiteHEAT serial device
-
 
  -- Joaquim Boura <x-un-i@sidux.com>  Sun, 07 Dec 2008 19:03:09 +0100
 
