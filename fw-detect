@@ -410,6 +410,17 @@ for driver in /sys/module/*; do
 			fw="get_dvb_firmware bluebird"
 			fw_file="dvb-usb-bluebird-01.fw"
 			;;
+		cpia2)
+			say "Driver:  ${driver}"
+			firmware_ok stv0672_vp4.bin /lib/firmware/cpia2 && continue
+			fw_url="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=cpia2;hb=HEAD"
+			;;
+		dabusb)
+			say "Driver:  ${driver}"
+			firmware_ok bitstream.bin /lib/firmware/dabusb && \
+			firmware_ok firmware.fw   /lib/firmware/dabusb && continue
+			fw_url="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=dabusb;hb=HEAD"
+			;;
 		dec*)
 			say "Driver:  ${driver}"
 			firmware_ok dvb-ttusb-dec-${driver}.fw && continue
@@ -422,6 +433,21 @@ for driver in /sys/module/*; do
 			fw="get_dvb_firmware diusb"
 			fw_file="dvb-diusb-5.0.0.11.fw"
 			;;
+		emi26)
+			say "Driver:  ${driver}"
+			firmware_ok bitstream.bin /lib/firmware/emi26 && \
+			firmware_ok firmware.fw   /lib/firmware/emi26 && \
+			firmware_ok loader.fw     /lib/firmware/emi26 && continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=emi26;hb=HEAD"
+			;;
+		emi62)
+			say "Driver:  ${driver}"
+			firmware_ok bitstream.bin /lib/firmware/emi62 && \
+			firmware_ok loader.fw     /lib/firmware/emi62 && \
+			firmware_ok midi.fw       /lib/firmware/emi62 && \
+			firmware_ok spdif.fw      /lib/firmware/emi62 && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=emi62;hb=HEAD"
+			;;
 		ipw2100|ipw2200)
 			say "Driver:  ${driver}"
 			firmware_ok "${driver}" && continue
@@ -431,6 +457,31 @@ for driver in /sys/module/*; do
 			say "Driver:  ${driver}"
 			firmware_ok iwlwifi-* && continue
 			fw="apt-get install firmware-iwlwifi"
+			;;
+		kaweth)
+			say "Driver:  ${driver}"
+			firmware_ok new_code.bin        /lib/firmware/kaweth && \
+			firmware_ok new_code_fix.bin    /lib/firmware/kaweth && \
+			firmware_ok trigger_code.bin    /lib/firmware/kaweth && \
+			firmware_ok trigger_code_fx.bin /lib/firmware/kaweth && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=kaweth;hb=HEAD"
+			;;
+		keyspan)
+			say "Driver:  ${driver}"
+			firmware_ok mpr.fw      /lib/firmware/keyspan && \
+			firmware_ok usa18x.fw   /lib/firmware/keyspan && \
+			firmware_ok usa19.fw    /lib/firmware/keyspan && \
+			firmware_ok usq19qi.fw  /lib/firmware/keyspan && \
+			firmware_ok usa19qw.fw  /lib/firmware/keyspan && \
+			firmware_ok usa19w.fw   /lib/firmware/keyspan && \
+			firmware_ok usa28.fw    /lib/firmware/keyspan && \
+			firmware_ok usa28x.fw   /lib/firmware/keyspan && \
+			firmware_ok usa28xa.fw  /lib/firmware/keyspan && \
+			firmware_ok usa28xb.fw  /lib/firmware/keyspan && \
+			firmware_ok usa49w.fw   /lib/firmware/keyspan && \
+			firmware_ok usa19qw.fw  /lib/firmware/keyspan && \
+			firmware_ok usa49wlc.fw /lib/firmware/keyspan && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=keyspan;hb=HEAD"
 			;;
 		or51*)
 			say "Driver:  ${driver}"
@@ -467,6 +518,29 @@ for driver in /sys/module/*; do
 			firmware_ok rt73 && continue
 			fw="apt-get install firmware-ralink"
 			;;
+		smctr)
+			say "Driver:  ${driver}"
+			firmware_ok tr_smctr.bin /lib/firmware/smctr && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=blob;f=tr_smctr.bin;hb=HEAD"
+			;;
+		snd-korg1212)
+			say "Driver:  ${driver}"
+			firmware_ok k1212.dsp /lib/firmware/smctr && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=korg;hb=HEAD"
+			;;
+		snd-maestro3)
+			say "Driver:  ${driver}"
+			firmware_ok maestro3_assp_kernel.fw  /lib/firmware/ess && \ 
+			firmware_ok maestro3_assp_minisrc.fw /lib/firmware/ess && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=ess;hb=HEAD"
+			;;
+		snd-ymfpci)
+			say "Driver:  ${driver}"
+			firmware_ok ds1_ctrl.fw  /lib/firmware/yamaha && \ 
+			firmware_ok ds1_dsp.fw   /lib/firmware/yamaha && \ 
+			firmware_ok ds1e_ctrl.fw /lib/firmware/yamaha && \ continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=yamaha;hb=HEAD"
+			;;
 		sp887*)
 			say "Driver:  ${driver}"
 			firmware_ok dvb-fe-${driver} && continue
@@ -478,6 +552,20 @@ for driver in /sys/module/*; do
 			firmware_ok dvb-fe-tda10046.fw && continue
 			fw="get_dvb_firmware tda10046"
 			fw_file="dvb-fe-tda10046.fw"
+			;;
+		ti_usb_3410_5052)
+			firmware_ok ti_3410.fw  /lib/firmware/ti_usb_3410_5052 && \ 
+			firmware_ok ti_5052.fw  /lib/firmware/ti_usb_3410_5052 continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;hb=HEAD"
+			;;
+		vicam)
+			firmware_ok firmware.fw  /lib/firmware/vicam && continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;f=vicam;hb=HEAD"
+			;;
+		whiteheat)
+			firmware_ok whiteheat.fw  /lib/firmware/whiteheat       && \ 
+			firmware_ok whiteheat_loader.fw /lib/firmware/whiteheat && continue
+			fw="http://git.kernel.org/?p=linux/kernel/git/dwmw2/linux-firmware-from-kernel.git;a=tree;hb=HEAD"
 			;;
 		zd1201)
 			say "Driver:  ${driver}"
