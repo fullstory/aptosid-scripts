@@ -1,9 +1,5 @@
-sidux-scripts (0.2.21) UNRELEASED; urgency=low
+sidux-scripts (0.2.21) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * added missing hints for firmware found in the kernel git tree
 
  -- Joaquim Boura <x-un-i@sidux.com>  Thu, 18 Dec 2008 21:01:36 +0100
