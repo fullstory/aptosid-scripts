@@ -1,3 +1,9 @@
+sidux-scripts (0.2.22) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 20 Dec 2008 01:24:27 +0100
+
 sidux-scripts (0.2.21) unstable; urgency=low
 
   * added missing hints for firmware found in the kernel git tree
