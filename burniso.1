@@ -1,0 +1,28 @@
+.TH "BURNISO" "1" "2009-02-16" "Linux"
+.SH "NAME"
+burniso \- Burn ISO images on the command line
+.SH "SYNOPSIS"
+.BR burniso
+.SH "DESCRIPTION"
+.LP 
+.BR burniso
+burns ISO images on media, using Disk-At-Once mode and a hardcoded speed
+of 8x.
+It is a trivial command\-line frontend to wodim.
+A selection of ISO images in the current directory is presented.
+It starts burning right after selection of the ISO.
+So go sure you have your media inserted.
+.SH BUGS
+Report all suggestions and bugs to:
+.LP
+Michael Deelwater <michael.deelwater@googlemail.com>
+.SH "EXAMPLE"
+.LP 
+To run this program the standard way type:
+.LP 
+    cd
+.I "/dir/containing/your/ISO"
+    burniso
+.SH "SEE ALSO"
+.LP 
+.BR wodim (1)

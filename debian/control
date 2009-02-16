@@ -10,7 +10,7 @@ Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/sidux-scripts/trunk/
 
 Package: sidux-scripts
 Architecture: all
-Depends: ${misc:Depends}, perl, distro-defaults
+Depends: ${misc:Depends}, perl, distro-defaults, wodim
 Recommends: menu, ntpdate
 Description: miscellaneous scripts for sidux
  Script collection for live and install uses on sidux.

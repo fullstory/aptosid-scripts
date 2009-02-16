@@ -1,3 +1,4 @@
+burniso				usr/bin/
 fix-dpi-kdm			usr/sbin/
 fix-ssh				usr/sbin/
 fix-time			usr/sbin/
