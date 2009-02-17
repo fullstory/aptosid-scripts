@@ -1,9 +1,5 @@
-sidux-scripts (0.2.22) UNRELEASED; urgency=low
+sidux-scripts (0.2.22) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Michael Deelwater ]
   * Add burniso script and manpage.
   * Update debian/copyright for burniso.
   * debian/manpages:
