@@ -1,3 +1,9 @@
+sidux-scripts (0.2.23) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 17 Feb 2009 19:35:25 +0100
+
 sidux-scripts (0.2.22) unstable; urgency=low
 
   * Add burniso script and manpage.
