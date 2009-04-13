@@ -2,19 +2,22 @@
 
 if [ "$(id -u)" -ne 0 ]; then
 	[ -x "$(which su-to-root)" ] && exec su-to-root -X -c "$0" "$@"
-	printf "ERROR: $0 needs root capabilities, please start it as root.\n\n" >&2
+	printf "ERROR: $(basename ${0}) needs root capabilities, please start it as root.\n\n" >&2
 	exit 1
 fi
 
 DPI=100
+[ "${1}" ] && DPI="${1}"
 
-[ "$1" ] && DPI="$1"
+if [ ${DPI} -eq ${DPI} ]; then
+	[ -e /etc/kde3/kdm/kdmrc ] && sed -i "s|\(^ServerArgsLocal=\).*|\1 -br -nolisten tcp -dpi ${DPI}|" /etc/kde3/kdm/kdmrc
+	[ -e /etc/kde4/kdm/kdmrc ] && sed -i "s|\(^ServerArgsLocal=\).*|\1 -br -nolisten tcp -dpi ${DPI}|" /etc/kde4/kdm/kdmrc
+	[ -e /var/run/kdm/kdmrc ]  && sed -i "s|\(^ServerArgsLocal=\).*|\1 -br -nolisten tcp -dpi ${DPI}|" /var/run/kdm/kdmrc
 
-[ -e /etc/kde4/kdm/Xservers ] && perl -pi -e "s|(/usr/X11R6/bin/X -nolisten tcp).*|\1 -dpi $DPI -br|" /etc/kde4/kdm/Xservers
-[ -e /etc/kde4/kdm/kdmrc ] &&    perl -pi -e "s|(ServerArgsLocal=-nolisten tcp).*|\1 -dpi $DPI -br|"  /etc/kde4/kdm/kdmrc
-[ -e /var/run/kdm/kdmrc ] &&    perl -pi -e "s|(ServerArgsLocal=-nolisten tcp).*|\1 -dpi $DPI -br|"   /var/run/kdm/kdmrc
-
-echo "KDM setting was changed to $DPI. You can use another value like:"
-echo "$0 75"
-echo "Now restart X (Ctrl-Alt-Backspace)"
-
+	printf "KDM setting was changed to $DPI. You can use another value like:\n"
+	printf "$(basename ${0}) 75\n"
+	printf "Now restart X (Ctrl-Alt-Backspace)\n\n"
+else
+	echo "ERROR: parameter ${DPI} not a number." >&2
+	echo "Usage: $(basename ${0}) [dpi]" >&2
+fi
