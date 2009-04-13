@@ -5,8 +5,9 @@ sidux-scripts (0.2.23) UNRELEASED; urgency=low
 
   [ Joaquim Boura ]
   * kdm has now his config in /etc/kde4
+  * fixed again
 
- -- Joaquim Boura <x-un-i@sidux.com>  Mon, 13 Apr 2009 13:30:24 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Mon, 13 Apr 2009 13:45:06 +0200
 
 sidux-scripts (0.2.22) unstable; urgency=low
 
