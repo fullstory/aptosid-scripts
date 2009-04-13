@@ -1,8 +1,12 @@
 sidux-scripts (0.2.23) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 17 Feb 2009 19:35:25 +0100
+  [ Joaquim Boura ]
+  * kdm has now his config in /etc/kde4
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Mon, 13 Apr 2009 13:30:24 +0200
 
 sidux-scripts (0.2.22) unstable; urgency=low
 
