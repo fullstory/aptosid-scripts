@@ -8,6 +8,7 @@
 export INFO_COMMAND="infobash "
 export INFO_ARGS="-v 2 0"
 export DEFAULT_NICK="sidux user"
+export DEFAULT_SERVICE="ca"
 
 /usr/bin/wgetpaste "$@"
 
