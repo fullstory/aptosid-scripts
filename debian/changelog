@@ -1,9 +1,5 @@
-sidux-scripts (0.2.24) UNRELEASED; urgency=low
+sidux-scripts (0.2.24) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * new upstream version from wgetpaste.
     Set default past service to pastbin.ca as rafb.net is dead.
 
