@@ -1,8 +1,8 @@
-sidux-scripts (0.2.25) UNRELEASED; urgency=low
+sidux-scripts (0.2.25) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * bump standards version to 3.8.1, no changes necessary.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 28 May 2009 01:09:04 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 28 May 2009 01:09:32 +0200
 
 sidux-scripts (0.2.24) unstable; urgency=low
 
