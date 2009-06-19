@@ -4,7 +4,7 @@
 # see "man burniso"
 
 # wodim parameters
-DRIVEROPTS="noforcespeed"
+DRIVEROPTS=""
 SPEED="8"
 FS="14M"
 OPTIONS="-dao -eject -v"
