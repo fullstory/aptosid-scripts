@@ -1,8 +1,8 @@
-sidux-scripts (0.2.27) UNRELEASED; urgency=low
+sidux-scripts (0.2.27) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * drop KDE3 compatibility, make dpi changes more robust.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 29 Jun 2009 14:23:35 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 08 Jul 2009 21:21:58 +0200
 
 sidux-scripts (0.2.26) unstable; urgency=low
 

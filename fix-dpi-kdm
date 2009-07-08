@@ -9,14 +9,17 @@ fi
 DPI=100
 [ "${1}" ] && DPI="${1}"
 
-if [ ${DPI} -eq ${DPI} ]; then
-	[ -e /etc/kde3/kdm/kdmrc ] && sed -i "s|\(^ServerArgsLocal=\).*|\1 -br -nolisten tcp -dpi ${DPI}|" /etc/kde3/kdm/kdmrc
-	[ -e /etc/kde4/kdm/kdmrc ] && sed -i "s|\(^ServerArgsLocal=\).*|\1 -br -nolisten tcp -dpi ${DPI}|" /etc/kde4/kdm/kdmrc
-	[ -e /var/run/kdm/kdmrc ]  && sed -i "s|\(^ServerArgsLocal=\).*|\1 -br -nolisten tcp -dpi ${DPI}|" /var/run/kdm/kdmrc
+if [ ${DPI} -eq ${DPI} ] && [ -w /etc/kde4/kdm/kdmrc ]; then
+
+	sed -i	-e "s/\(^ServerArgsLocal\=.*\)\ \-dpi[ \t]*[0-9]*\(.*$\)/\1\2/" \
+			-e "s/\(^ServerArgsLocal\=.*\)\-dpi[ \t]*[0-9]*\(.*$\)/\1\2/" \
+			-e "s/\(^ServerArgsLocal\=.*\) *$/\1/" \
+			-e "s/^ServerArgsLocal\=.*$/& \-dpi ${CUSTOM_DPI}/" \
+				/etc/kde4/kdm/kdmrc
 
 	printf "KDM setting was changed to $DPI. You can use another value like:\n"
 	printf "$(basename ${0}) 75\n"
-	printf "Now restart X (Ctrl-Alt-Backspace)\n\n"
+	printf "Now restart kdm (/etc/init.d/kdm restart)\n\n"
 else
 	echo "ERROR: parameter ${DPI} not a number." >&2
 	echo "Usage: $(basename ${0}) [dpi]" >&2
