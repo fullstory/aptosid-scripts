@@ -1,0 +1,362 @@
+#!/bin/bash
+#
+# Copyright 2009 Niall Walsh <niallwalsh@users.berlios.de>
+# Derived from prior sidux-scripts/fw-detect which is
+# Copyright 2007 Kel Modderman <kel@otaku42.de>
+# License: GPLv2
+#
+# Provides functions for firmware data related actions
+#
+
+
+. /usr/share/sidux-scripts/fw-data.sh
+
+function driver_firmware() {
+	local dnum=0
+	local test_driver
+	local driver="${1}"
+	for test_driver in ${FW_CARDS_DEV_STR[@]} ; do
+		case "${driver}" in
+			${test_driver})
+				echo ${FW_CARDS_DEV_NUM[${dnum}]}
+				return
+				;;
+		esac
+		dnum=$((${dnum}+1))
+	done
+}
+
+function firmware_needed() {
+	local required=$(driver_firmware ${1})
+	[ -n "${required}" ] && \
+		echo "${FW_CARDS_FW[${required}]}"
+}
+
+function show_all_cards() {
+	echo ${FW_CARDS[@]}
+}
+
+function show_all_detail() {
+	i=0
+	for card in ${FW_CARDS[@]} ; do
+		echo "${FW_CARDS[$i]}"
+		[ -n "${FW_CARDS_FW[$i]}" ] && echo " ${FW_CARDS_FW[$i]}"
+		[ -n "${FW_CARDS_FW_URL[$i]}" ] && echo " url ${FW_CARDS_FW_URL[$i]}"
+		[ -n "${FW_CARDS_FW_FILE[$i]}" ] && echo " file ${FW_CARDS_FW_FILE[$i]}"
+		[ -n "${FW_CARDS_FW_OK[$i]}" ] && echo " test ${FW_CARDS_FW_OK[$i]}"
+		local patterns=0
+		local pnum=0
+		local num
+		for num in ${FW_CARDS_FW_DEV_NUM[@]} ; do
+			if [ "${num}" = "$i" ] ; then
+				if [ $patterns -eq 0 ]; then
+					patterns=1
+					echo -n " drivers "
+				else
+					echo -n " "
+				fi
+				echo -n "${FW_CARDS_FW_DEV_STR[$pnum]}"
+			fi
+			pnum=$((pnum+1))
+		done
+		if [ $patterns -gt 0 ] ; then
+			echo ""
+		fi
+		i=$((i+1))
+	done
+}
+
+function show_ini() {
+	i=0
+	for card in ${FW_CARDS[@]} ; do
+		echo "[${FW_CARDS[$i]}]"
+		[ -n "${FW_CARDS_FW[$i]}" ] && echo "fw=\"${FW_CARDS_FW[$i]}\""
+		[ -n "${FW_CARDS_FW_URL[$i]}" ] && echo "url=\"${FW_CARDS_FW_URL[$i]}\""
+		[ -n "${FW_CARDS_FW_FILE[$i]}" ] && echo "file=\"${FW_CARDS_FW_FILE[$i]}\""
+		[ -n "${FW_CARDS_FW_OK[$i]}" ] && echo "ok=\"${FW_CARDS_FW_OK[$i]}\""
+		local patterns=0
+		local pnum=0
+		local num
+		for num in ${FW_CARDS_FW_DEV_NUM[@]} ; do
+			if [ "${num}" = "$i" ] ; then
+				if [ $patterns -eq 0 ]; then
+					patterns=1
+					echo -n 'drivers="'
+				else
+					echo -n ' '
+				fi
+				echo -n "${FW_CARDS_FW_DEV_STR[$pnum]}"
+			fi
+			pnum=$((pnum+1))
+		done
+		if [ $patterns -gt 0 ] ; then
+			echo '"'
+		fi
+		echo ""
+		i=$((i+1))
+	done
+}
+
+function display_message() {
+	# we need gettext (is loaded in ssft.sh or cloned...)
+	if [ -f /usr/bin/gettext.sh ]; then
+		. /usr/bin/gettext.sh || exit 1
+	else
+		exit 1
+	fi
+
+	export TEXTDOMAIN="fw-detect"
+	export TEXTDOMAINDIR=/usr/share/locale
+
+	# determine system status
+	SSFTSH="$(which ssft.sh)"       || SSFTSH="/usr/bin/ssft.sh"
+	
+	# initialize ssft
+	. "$SSFTSH"
+
+	# --- If you want another frontend, do "export SSFT_FRONTEND=$(ssft_choose_frontend)"
+	#     before starting fw-detect
+	case "$1" in
+
+# ------------------------------------------------------------------
+		apt-get)
+			local firmware="$(driver_firmware ${driver})"
+			ssft_display_message \
+"$(gettext "Detected driver that requires firmware to operate")" \
+"$(gettext "\
+# 
+# Follow these instructions to obtain the correct firmware
+# and activate the ${driver} driver:
+
+apt-get update
+${FW_CARDS_FW[${firmware}]}
+modprobe -r ${driver}
+modprobe ${driver}
+
+You must first configure apt to install this non-free software,
+refer to the offline manual that came with this distribution.
+")"
+			;;
+
+# ------------------------------------------------------------------
+		http)
+			local firmware="$(driver_firmware ${driver})"
+			if [[ ${fw_url} ]]; then
+				FW_URL=$(gettext "\
+# 
+# You can obtain the firmware for ${driver} directly from:
+#     ${FW_CARDS_FW_URL[${firmware}]}
+# 
+# Download the archive and uncompress it.
+# Copy the contents to:
+#     /lib/firmware/")
+			fi
+
+			ssft_display_message \
+"$(gettext "Detected driver that requires firmware to operate")" \
+"$(gettext "\
+# 
+# There is no readily available firmware package for ${driver}
+# Visit the following page for information on how to obtain and
+# install the required firmware:
+#     ${FW_CARDS_FW[${firmware}]}
+${FW_URL}
+# 
+# Once the firmware files have been installed, the ${driver}
+# must be reloaded to activate the hardware.
+# Use the following commands:
+# 
+modprobe -r ${driver}
+modprobe ${driver}")"
+			;;
+
+# ------------------------------------------------------------------
+		dvb)
+			local firmware="$(driver_firmware ${driver})"
+			if ! ((DVB)); then
+			    dvb_message="$(gettext "\
+# The get_dvb_firmware script is required to install DVB related firmware.
+# <http://www.kernel.org/doc/Documentation/dvb/get_dvb_firmware>
+# Download it, copy it to /usr/local/bin and make it executable.
+#")"
+			fi
+			ssft_display_message \
+"$(gettext "Detected driver that requires firmware to operate")" \
+"$(gettext "\
+$dvb_message
+# Follow these instructions to obtain the correct firmware
+# and activate the ${driver} driver:
+#") 
+cd /tmp
+${FW_CARDS_FW[${firmware}]}
+mv ${FW_CARDS_FW_FILE[${firmware}]} /lib/firmware"
+			;;
+
+	esac
+}
+
+function install_driver() {
+
+	# root check
+	if ((UID)); then
+		echo "Error: You must be root to run this script!"
+		exit 1
+	fi
+
+	# driver
+	driver=$@
+
+	echo $driver
+	fw=""
+	fw_url=""
+	fw_file=""
+	for name in ${FW_CARDS_DEV_STR[@]}; do
+		case "${driver}" in
+			${name})
+				num=${FW_CARDS_DEV_NUM[$num]}
+				fw=${FW_CARDS_FW[$num]}
+				fw_url=${FW_CARDS_FW_URL[$num]}
+				fw_file=${FW_CARDS_FW_FILE[$num]}
+				;;
+		esac
+		[ -n "${fw}${fw_url}${fw_file}" ] && break
+	done
+
+	case "${fw}" in
+		apt-get*)
+			apt-get update
+			${fw}
+			modprobe -r ${driver}
+			modprobe ${driver}
+			;;
+		http*)
+			display_message http
+			;;
+		get_dvb_firmware*)
+			if ((DVB)); then
+			    TDIR="$(mktemp -d)"
+			    pushd "$TDIR"
+			    ${fw}
+			    mv "${fw_file}" /lib/firmware
+			    popd
+			    rm -fr "$TDIR"
+			else
+			    display_message dvb
+			fi
+			;;
+	esac
+
+	exit
+}
+
+function say() {
+	[[ ${verbosity} ]] && echo ${@}
+}
+
+function kmodule_ok() {
+	local kmod="$(/sbin/modinfo -n ${1} 2>/dev/null)"
+
+	if [[ -f ${kmod} ]]; then
+		say "Kernel module: ${kmod}"
+		return 0
+	fi
+
+	return 1
+}
+
+function firmware_ok() {
+	check=0
+	ok=0
+	while [ -n "${1}" ] ; do
+		local fw="${1}" fw_dir="/lib/firmware"
+		check=$((${check}+1))
+		ok=0
+		shift
+		if [ -n "${2}" ] && [ ! "${2}" -eq ";" ] ; then
+			fw_dir="${2}"
+			shift
+		fi
+
+		for f in ${fw_dir}/${fw}*; do
+			if [[ -e ${f} ]]; then
+				say "Firmware:"
+				say ${fw_dir}/${fw}*
+				ok=1
+			fi
+		done
+		check=$((${check}-${ok}))
+	done
+
+	if [ ${check} -gt 0 ] ; then
+		say "Requires firmware"
+		return 1
+	else
+		return 0
+	fi
+}
+
+function sys_detect() {
+	#
+	# check modules have required firmware
+	#
+	say "Looking for common drivers that need firmware..." 
+	
+	for driver in /sys/module/*; do
+		[ -d "${driver}" ] || continue
+		driver=${driver#/sys/module/}
+	
+		unset fw fw_url
+	
+		pnum=0
+		firmware=""
+		for pat in ${FW_CARDS_DEV_STR[@]} ; do
+			case "${driver}" in
+				$pat)
+					say "Driver: ${driver}"
+					firmware="$(driver_firmware ${driver})"
+				;;
+			esac
+			[ -n "${firmware}" ] && break
+		done
+		if [ -n "$firmware" ]; then
+			firmware_ok "${FW_CARDS_OK[$firmware]}" && continue
+			if [ "$short" = "TRUE" ]; then
+				if [ -n "${FW_CARDS_FW[$firmware]}" ]; then
+					if [ "$install_possible"  = "TRUE" ]; then
+						case "${FW_CARDS_FW[$firmware]}" in
+							apt-get*)
+								echo $driver
+								;;
+							get_dvb_firmware*)
+								((DVB)) && echo $driver
+								;;
+						esac
+					else
+						echo $driver
+					fi
+				fi
+			else
+				case "${FW_CARDS_FW[$driver]}" in
+					apt-get*)
+						display_message apt-get
+						;;
+					http*)
+						display_message http
+						;;
+					get_dvb_firmware*)
+						display_message dvb
+						;;
+				esac
+			fi
+			pnum=$((pnum+1))
+		fi
+	done	
+}
+
+function driver_check() {
+	for f in ${@} ; do
+		r=$(firmware_needed ${f})
+		[ -n "${r}" ] && echo "${f} requires firmware: ${r}"
+	done
+}
+

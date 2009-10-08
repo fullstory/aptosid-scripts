@@ -2,6 +2,8 @@ burniso				usr/bin/
 fix-dpi-kdm			usr/sbin/
 fix-ssh				usr/sbin/
 fix-time			usr/sbin/
+fw				usr/share/sidux-scripts/
+fw-data.sh			usr/share/sidux-scripts/
 fw-detect			usr/bin/
 get-resume-partition		usr/sbin/
 inetconn			usr/bin/

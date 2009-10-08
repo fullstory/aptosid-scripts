@@ -1,0 +1,63 @@
+#!/usr/bin/perl
+#
+# Copyright 2009 Niall Walsh <niallwalsh@users.berlios.de>
+# License: GPLv2
+#
+# Script to convert fw-data.ini file to shella
+#
+
+use strict;
+my $file=$1;
+if (length($file)==0)
+{
+	$file='fw-data.ini';
+}
+unless (-f $file)
+{
+	die "you must supply a valid filename to load from if fw-data.ini is not in the working directory";
+}
+# Using Config::Any instead would allow to switch to anything it supports
+#use Config::Any;
+#my $cfg = Config::Any->load_files({files => [ $file ] });
+#my $cards = $$cfg[0]{$file};
+use Config::Tiny;
+my $cards = Config::Tiny->read($file);
+my $name;
+my $num=0;
+my (@names, @fw, @url, @file, @dev, @map, @ok);
+foreach $name (sort(keys(%$cards)))
+{
+	push(@names,$name);
+	my $props = $$cards{$name};
+	my $field;
+	# can't use string as ref with strict so map name to array
+	my %fmap = ('fw'=>\@fw, 'url'=>\@url, 'file'=>\@file, 'ok'=> \@ok);
+	foreach $field ('fw','url','file', 'ok')
+	{
+		my $a = $fmap{$field};
+		if (length($$props{$field}))
+		{
+			push(@$a,$$props{$field});
+		}
+		else
+		{
+			push(@$a,'""');
+		}
+	}
+	push(@fw,$$props{'fw'});
+	push(@url,$$props{'url'});
+	push(@file,$$props{'file'});
+	my $prop;
+	foreach $prop (split(/\s+/,$$props{'drivers'}))
+	{
+		push(@dev,$prop);
+		push(@map,@names-1);
+	}
+}
+print 'FW_CARDS=( "'.join('" "',@names).'")'."\n";
+print 'FW_CARDS_FW=( '.join(' ',@fw).')'."\n";
+print 'FW_CARDS_FW_URL=( '.join(' ',@url).')'."\n";
+print 'FW_CARDS_FW_FILE=( '.join(' ',@file).')'."\n";
+print 'FW_CARDS_FW_OK=( '.join(' ',@ok).')'."\n";
+print 'FW_CARDS_FW_DEV_STR=( '.join(' ',@dev).')'."\n";
+print 'FW_CARDS_FW_DEV_NUM=( '.join(' ',@map).')'."\n";
