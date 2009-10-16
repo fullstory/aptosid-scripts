@@ -2,15 +2,21 @@ Source: sidux-scripts
 Section: misc
 Priority: extra
 Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
-Uploaders: Kel Modderman <kel@otaku42.de>, Joaquim Boura <x-un-i@sidux.com>
-Build-Depends: debhelper (>= 7), libconfig-tiny-perl
-Standards-Version: 3.8.2
+Uploaders: Kel Modderman <kel@otaku42.de>,
+ Joaquim Boura <x-un-i@sidux.com>
+Build-Depends: debhelper (>= 7),
+ libconfig-tiny-perl
+Standards-Version: 3.8.3
 Vcs-Svn: svn://svn.berlios.de/fullstory/sidux-scripts/trunk
 Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/sidux-scripts/trunk/
 
 Package: sidux-scripts
 Architecture: all
-Depends: ${misc:Depends}, perl, distro-defaults, wodim
-Recommends: menu, ntpdate
+Depends: ${misc:Depends},
+ perl,
+ distro-defaults,
+ wodim
+Recommends: menu,
+ ntpdate
 Description: miscellaneous scripts for sidux
  Script collection for live and install uses on sidux.
