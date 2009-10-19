@@ -1,8 +1,12 @@
 sidux-scripts (0.3.1) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 16 Oct 2009 23:17:46 +0200
+  [ Niall Walsh ]
+  * Finish populating an initial set of the fw-data.ini class fields
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Mon, 19 Oct 2009 22:17:57 +0100
 
 sidux-scripts (0.3.0) unstable; urgency=low
 
