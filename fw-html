@@ -1,0 +1,125 @@
+#!/usr/bin/perl
+#
+# Copyright 2009 Niall Walsh <niallwalsh@users.berlios.de>
+# License: GPLv2
+#
+# Script to convert fw-data.ini file to html
+#
+# Takes filename of ini file as input or defaults to fw-data.ini
+# Writes (bare) html to stdout
+#
+
+use strict;
+my $file=$1;
+if (length($file)==0)
+{
+	$file='fw-data.ini';
+}
+unless (-f $file)
+{
+	die "you must supply a valid filename to load from if fw-data.ini is not in the working directory";
+}
+
+
+# Using Config::Any instead would allow to switch to anything it supports
+#use Config::Any;
+#my $cfg = Config::Any->load_files({files => [ $file ] });
+#my $cards = $$cfg[0]{$file};
+use Config::Tiny;
+my $cards = Config::Tiny->read($file);
+
+# name and num are used to loop over the cards and build up:
+#   @names is the list of sorted ini section names
+#   %names is a hash of the ini section names to their sorted number
+#   %class holds an array of sections in a class by number
+my $name;
+my $num=0;
+my (@names, %names, %class);
+
+# these are the fields we loop over in this order for content of output
+my (@fieldnames)=(
+	'drivers',
+	'ok',
+	'fw',
+	'url',
+	'note'
+);
+
+# go through the ini sections and build up [@%]names and $class
+foreach $name (sort(keys(%$cards)))
+{
+	my $field;
+	foreach $field (@fieldnames,'class','title')
+	{
+		$$cards{$name}{$field}=~s/^\s*\"\s*(.+?)\s*\"\s*$/$1/;
+	}
+	push(@names,$name);
+	$names{$name}=$num;
+	$$cards{$name}{'class'}='other' unless (length($$cards{$name}{'class'}));
+	my @class = split(/\s+/,$$cards{$name}{'class'});
+	my $class;
+	foreach $class (@class)
+	{
+		push(@{$$cards{$name}{'_class'}},$class);
+		if (!(defined($class{$class})))
+		{
+			$class{$class}=[$num];
+		}
+		else
+		{
+			push(@{$class{$class}},$num);
+		}
+		
+	}
+	$num++;
+}
+
+sub closetags () {
+	my $count=shift();
+	unless ($count)
+	{
+		unshift(@{$_[0]},$count);
+		$count=@{$_[0]};
+	}
+	$count = @{$_[0]} - $count;
+	while (@{$_[0]} > $count)
+	{
+		my $loop;
+		for ($loop=1;$loop<@{$_[0]};$loop++) {
+			print "\t";
+		}
+		print pop(@{$_[0]})."\n";
+	}
+}
+
+# go through the classes to put them in their own section
+my $class;
+foreach $class (sort(keys(%class)))
+{
+	my @close;
+	print '<dl>' . "\n\t" . 
+		'<dt class="' . $class . '">' . $class . '</dt>' . "\n\t" .
+		'<dd class="devices">' . "\n\t\t" . '<dl>' . "\n";
+	# does layer them out on close, and could elsewhere if required
+	push(@close,'</dl>','</dd>','</dl>');
+	my $prefix="\t\t\t";
+
+	# will have the name and number of the ini section
+	my $dname;
+	my $dnum;
+	# the ini sections in the class
+	foreach $dnum (@{$class{$class}})
+	{
+		my $dname = $names[$dnum];
+		print $prefix . '<dt class="device ' . $$cards{$dname}{'class'} . '" id="' . $dname .'">' . $$cards{$dname}{'title'} . '</dt>' . "\n$prefix" . '<dd>' . "\n$prefix\t" . '<dl class="dvals">' . "\n";
+		push(@close,'</dd>','</dl>');
+		my $field;
+		# the main fields in the ini section
+		foreach $field (@fieldnames)
+		{
+			print $prefix . "\t\t"  . '<dt class="' . $field . '">' . $field . '</dt>' . "\n$prefix\t\t" . '<dd>' . $$cards{$dname}{$field} . '</dd>' . "\n" if (defined($$cards{$dname}{$field}));
+		}
+		&closetags(2,\@close); #print $prefix . pop(@close). "\n";
+	}
+	&closetags((@close*1),\@close);
+}
