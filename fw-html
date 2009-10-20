@@ -9,6 +9,10 @@
 # Writes (bare) html to stdout
 #
 
+# TODO add some options
+my $indent="\t\t\t\t";
+my $level="\t";
+
 use strict;
 my $file=$1;
 if (length($file)==0)
@@ -58,9 +62,12 @@ foreach $name (sort(keys(%$cards)))
 	$$cards{$name}{'class'}='other' unless (length($$cards{$name}{'class'}));
 	my @class = split(/\s+/,$$cards{$name}{'class'});
 	my $class;
+	my $classCSS;
 	foreach $class (@class)
 	{
-		push(@{$$cards{$name}{'_class'}},$class);
+		$classCSS=$class;
+		$classCSS=~s/\./\-/g;
+		push(@{$$cards{$name}{'_class'}},$classCSS);
 		if (!(defined($class{$class})))
 		{
 			$class{$class}=[$num];
@@ -84,25 +91,56 @@ sub closetags () {
 	$count = @{$_[0]} - $count;
 	while (@{$_[0]} > $count)
 	{
+		print $indent;
 		my $loop;
 		for ($loop=1;$loop<@{$_[0]};$loop++) {
-			print "\t";
+			print $level;
 		}
 		print pop(@{$_[0]})."\n";
 	}
 }
 
+sub writefile () {
+	my $file=shift();
+	if ( -r $file )
+	{
+		open(IN,$file)||die "failed to open $file : $!";
+		my $line;
+		while ($line=<IN>)
+		{
+			print "$line";
+		}
+		close(IN);
+	}
+}
+
+&writefile('fw-html.header');
+
 # go through the classes to put them in their own section
 my $class;
+my $classCSS;
+print $indent . '<ul class="firmware">'."\n";
 foreach $class (sort(keys(%class)))
 {
-	my @close;
-	print '<dl>' . "\n\t" . 
-		'<dt class="' . $class . '">' . $class . '</dt>' . "\n\t" .
-		'<dd class="devices">' . "\n\t\t" . '<dl>' . "\n";
+	$classCSS=$class;
+	$classCSS=~s/\./-/g;
+	print $indent . $level . '<li><a href="#' . $classCSS . '">' . $class . '</a></li>' . "\n";
+}
+print $indent . '</ul>' . "\n";
+
+my @close;
+print $indent . '<dl class="firmware">' . "\n";
+push(@close,'</dl>');
+foreach $class (sort(keys(%class)))
+{
+	$classCSS=$class;
+	$classCSS=~s/\./-/g;
+	print $indent . $level . '<dt class="' . $classCSS . '"><a name="' . $class . '">' . $class . '</a></dt>' . "\n" .
+		$indent . $level . '<dd class="devices">' . "\n" .
+		$indent . $level . $level . '<dl class="class">' . "\n";
 	# does layer them out on close, and could elsewhere if required
-	push(@close,'</dl>','</dd>','</dl>');
-	my $prefix="\t\t\t";
+	push(@close,'</dd>','</dl>');
+	my $prefix=$level.$level.$level;
 
 	# will have the name and number of the ini section
 	my $dname;
@@ -111,15 +149,34 @@ foreach $class (sort(keys(%class)))
 	foreach $dnum (@{$class{$class}})
 	{
 		my $dname = $names[$dnum];
-		print $prefix . '<dt class="device ' . $$cards{$dname}{'class'} . '" id="' . $dname .'">' . $$cards{$dname}{'title'} . '</dt>' . "\n$prefix" . '<dd>' . "\n$prefix\t" . '<dl class="dvals">' . "\n";
+		print $indent . $prefix . '<dt class="device ' . $$cards{$dname}{'class'} . '" id="' . $dname .'">' . $$cards{$dname}{'title'} . '</dt>' . "\n" . $indent . $prefix . '<dd>' . "\n$indent" . $prefix . $level . '<dl class="dvals">' . "\n";
 		push(@close,'</dd>','</dl>');
 		my $field;
 		# the main fields in the ini section
 		foreach $field (@fieldnames)
 		{
-			print $prefix . "\t\t"  . '<dt class="' . $field . '">' . $field . '</dt>' . "\n$prefix\t\t" . '<dd>' . $$cards{$dname}{$field} . '</dd>' . "\n" if (defined($$cards{$dname}{$field}));
+			if (defined($$cards{$dname}{$field})) {
+				my @content=();
+				my $content;
+				foreach $content (split(/\s+/,$$cards{$dname}{$field}))
+				{
+					if (($content=~/\ /)||($content!~/^[fh]t+ps?\:\/\//))
+					{
+						push(@content,$content);
+					}
+					else
+					{
+						push(@content,'<a href="' . $content . '">' . $content . '</a>');
+					}
+				}
+				print $indent . $prefix . $level . $level  . '<dt class="' . $field . '"></dt>' . "\n" .
+					$indent . $prefix . $level . $level . '<dd>' . join(' ',@content) . '</dd>' . "\n";
+			}
 		}
-		&closetags(2,\@close); #print $prefix . pop(@close). "\n";
+		&closetags(2, \@close);
 	}
-	&closetags((@close*1),\@close);
+	&closetags((@close-1), \@close);
 }
+&closetags((@close*1),\@close);
+
+&writefile('fw-html.footer');
