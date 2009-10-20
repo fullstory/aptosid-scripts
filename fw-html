@@ -43,9 +43,9 @@ my (@names, %names, %class);
 # these are the fields we loop over in this order for content of output
 my (@fieldnames)=(
 	'drivers',
-	'ok',
-	'fw',
 	'url',
+	'fw',
+	'ok',
 	'note'
 );
 
@@ -66,7 +66,7 @@ foreach $name (sort(keys(%$cards)))
 	foreach $class (@class)
 	{
 		$classCSS=$class;
-		$classCSS=~s/\./\-/g;
+		$classCSS=~s/\./\_/g;
 		push(@{$$cards{$name}{'_class'}},$classCSS);
 		if (!(defined($class{$class})))
 		{
@@ -123,7 +123,7 @@ print $indent . '<ul class="firmware">'."\n";
 foreach $class (sort(keys(%class)))
 {
 	$classCSS=$class;
-	$classCSS=~s/\./-/g;
+	$classCSS=~s/\./\_/g;
 	print $indent . $level . '<li><a href="#' . $classCSS . '">' . $class . '</a></li>' . "\n";
 }
 print $indent . '</ul>' . "\n";
@@ -134,7 +134,7 @@ push(@close,'</dl>');
 foreach $class (sort(keys(%class)))
 {
 	$classCSS=$class;
-	$classCSS=~s/\./-/g;
+	$classCSS=~s/\./\_/g;
 	print $indent . $level . '<dt class="' . $classCSS . '"><a name="' . $class . '">' . $class . '</a></dt>' . "\n" .
 		$indent . $level . '<dd class="devices">' . "\n" .
 		$indent . $level . $level . '<dl class="class">' . "\n";
@@ -149,7 +149,9 @@ foreach $class (sort(keys(%class)))
 	foreach $dnum (@{$class{$class}})
 	{
 		my $dname = $names[$dnum];
-		print $indent . $prefix . '<dt class="device ' . $$cards{$dname}{'class'} . '" id="' . $dname .'">' . $$cards{$dname}{'title'} . '</dt>' . "\n" . $indent . $prefix . '<dd>' . "\n$indent" . $prefix . $level . '<dl class="dvals">' . "\n";
+		my $classes=$$cards{$dname}{'class'};
+		$classes=~s/\./\_/;
+		print $indent . $prefix . '<dt class="device ' . $classes . '" id="' . $dname .'">' . $$cards{$dname}{'title'} . '</dt>' . "\n" . $indent . $prefix . '<dd>' . "\n$indent" . $prefix . $level . '<dl class="dvals">' . "\n";
 		push(@close,'</dd>','</dl>');
 		my $field;
 		# the main fields in the ini section
@@ -168,6 +170,44 @@ foreach $class (sort(keys(%class)))
 					{
 						push(@content,'<a href="' . $content . '">' . $content . '</a>');
 					}
+				}
+				if ($field=~/^fw$/)
+				{
+					if ((@content==2)&&($content[0]=~/^\<a\ href\=\"/)&&($content[1]!~/^\<a\ href\=\"/))
+					{
+						$content[1]='<div class="target">' . $content[1] . '</div>';
+						$content[0]='<div class="link">' . $content[0] . $content[1] . '</div>';
+						$content[1]='';
+					}
+					elsif ($content[0]=~/^\<a\ href\=\"/)
+					{
+						$content[0]='<div class="link">' .  $content[0] . '</div>';
+					}
+				}
+				elsif (($field=~/^ok$/)&&(@content))
+				{
+					my $cc;
+					my (@newc)=();
+					for ($cc=0; $cc<@content; $cc=$cc+2)
+					{
+						my $res='<div class="file">';
+						if ($content[$cc+1]=~/^\//)
+						{
+							$res.= $content[$cc+1];
+							$res.='/' unless ($content[$cc+1]=~/\/$/);
+						}
+						elsif (length($content[$cc+1]))
+						{
+							$cc--;
+						}
+						else
+						{
+							$res.= '/lib/firmware/';
+						}
+						$res.=$content[$cc] . '</div>';
+						push(@newc,$res);
+					}
+					@content=(@newc);
 				}
 				print $indent . $prefix . $level . $level  . '<dt class="' . $field . '"></dt>' . "\n" .
 					$indent . $prefix . $level . $level . '<dd>' . join(' ',@content) . '</dd>' . "\n";
