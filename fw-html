@@ -158,7 +158,12 @@ foreach $class (sort(keys(%class)))
 		my $dname = $names[$dnum];
 		my $classes=$$cards{$dname}{'class'};
 		$classes=~s/\./\_/;
-		print $indent . $prefix . '<dt class="device ' . $classes . '" id="' . $dname .'">' . $$cards{$dname}{'title'} . '</dt>' . "\n" . $indent . $prefix . '<dd>' . "\n$indent" . $prefix . $level . '<dl class="dvals">' . "\n";
+		my $title=$$cards{$dname}{'title'};
+		if ((length($lang))&&(defined($$cards{$dname}{join('_','title',$lang)})))
+		{
+			$title=$$cards{$dname}{join('_','title',$lang)};
+		}
+		print $indent . $prefix . '<dt class="device ' . $classes . '" id="' . $dname .'">' . $title . '</dt>' . "\n" . $indent . $prefix . '<dd>' . "\n$indent" . $prefix . $level . '<dl class="dvals">' . "\n";
 		push(@close,'</dd>','</dl>');
 		my $field;
 		# the main fields in the ini section
