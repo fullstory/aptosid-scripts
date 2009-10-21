@@ -6,8 +6,9 @@ sidux-scripts (0.3.1) UNRELEASED; urgency=low
   [ Niall Walsh ]
   * Finish populating an initial set of the fw-data.ini class fields
   * Remove "network adapters" from netXtremeII
+  * Add sample of note translation
 
- -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 21 Oct 2009 00:40:30 +0100
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 21 Oct 2009 00:49:18 +0100
 
 sidux-scripts (0.3.0) unstable; urgency=low
 

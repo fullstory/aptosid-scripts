@@ -9,11 +9,18 @@
 # Writes (bare) html to stdout
 #
 
+use strict;
+
 # TODO add some options
+my $lang="";
 my $indent="\t\t\t\t";
 my $level="\t";
+if (($ARGV[0]=~/^[a-z]{2}$/i)||($ARGV[0]=~/^[a-z]{2}\_[a-z]{2}$/i))
+{
+	$lang="$ARGV[0]";
+	print STDERR "NOTE: $lang selected as language\n";
+}
 
-use strict;
 my $file=$1;
 if (length($file)==0)
 {
@@ -159,8 +166,16 @@ foreach $class (sort(keys(%class)))
 		{
 			if (defined($$cards{$dname}{$field})) {
 				my @content=();
-				my $content;
-				foreach $content (split(/\s+/,$$cards{$dname}{$field}))
+				my $content=$$cards{$dname}{$field};
+				if ((length($lang))&&($field=~/^note$/))
+				{
+					if (defined($$cards{$dname}{join('_',$field,$lang)}))
+					{
+						$content=$$cards{$dname}{join('_',$field,$lang)};
+						$content=~s/^\s*\"\s*(.+?)\s*\"\s*$/$1/;
+					}
+				}
+				foreach $content (split(/\s+/,$content))
 				{
 					if (($content=~/\ /)||($content!~/^[fh]t+ps?\:\/\//))
 					{
