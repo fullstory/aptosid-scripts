@@ -11,8 +11,9 @@ sidux-scripts (0.3.1) unstable; urgency=low
   * translate notes to german.
   * add cs46xx.
   * add cxgb3.
+  * add af9005.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:47:13 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:51:10 +0200
 
 sidux-scripts (0.3.0) unstable; urgency=low
 
