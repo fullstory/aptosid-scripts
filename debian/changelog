@@ -9,8 +9,9 @@ sidux-scripts (0.3.1) UNRELEASED; urgency=low
 
   [ Stefan Lippers-Hollmann ]
   * translate notes to german.
+  * add cs46xx.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:34:03 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:42:49 +0200
 
 sidux-scripts (0.3.0) unstable; urgency=low
 
