@@ -1,6 +1,5 @@
 sidux-scripts (0.3.1) UNRELEASED; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
   [ Niall Walsh ]
@@ -8,7 +7,10 @@ sidux-scripts (0.3.1) UNRELEASED; urgency=low
   * Remove "network adapters" from netXtremeII
   * Add sample of note translation
 
- -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 21 Oct 2009 00:49:18 +0100
+  [ Stefan Lippers-Hollmann ]
+  * translate notes to german.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:34:03 +0200
 
 sidux-scripts (0.3.0) unstable; urgency=low
 
