@@ -65,6 +65,8 @@ my $level="\t";
 my $pattern='\<\!--\s+fw-data\s+\-\-\>';
 my $langpatt='\<\!--\s+fw-lang\s+\-\-\>';
 my @blacklist=('usb');
+my $liwrap='h2';
+my $dtwrap='h3';
 
 # For now you can give the language as only current argument
 my $lang="en";
@@ -198,7 +200,14 @@ while ($buffer=<STDIN>)
 # go through the classes to put them in their own section
 my $class;
 my $classCSS;
-print $indent . '<ul class="firmware">'."\n";
+print $indent . '<ul id="fwul">'."\n";
+my $liin='';
+my $liout='';
+if (length($liwrap))
+{
+	$liin='<' . $liwrap . '>';
+	$liout='</' . $liwrap . '>';
+}
 CLASSLI: foreach $class (sort(keys(%class)))
 {
 	my $test;
@@ -208,13 +217,21 @@ CLASSLI: foreach $class (sort(keys(%class)))
 	}
 	$classCSS=$class;
 	$classCSS=~s/\./\_/g;
-	print $indent . $level . '<li><a href="#' . $classCSS . '">' . $class . '</a></li>' . "\n";
+	print $indent . $level . '<li class="fwindex">' . $liin . '<a href="#' . $classCSS . '">' . $class . '</a>' . $liout . '</li>' . "\n";
 }
 print $indent . '</ul>' . "\n";
 
 my @close;
 print $indent . '<dl class="firmware">' . "\n";
 push(@close,'</dl>');
+my $dtin='';
+my $dtout='';
+if (length($dtwrap))
+{
+	$dtin='<' . $dtwrap . '>';
+	$dtout='</' . $dtwrap . '>';
+}
+
 CLASSDD: foreach $class (sort(keys(%class)))
 {
 	my $test;
@@ -224,7 +241,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 	}
 	$classCSS=$class;
 	$classCSS=~s/\./\_/g;
-	print $indent . $level . '<dt class="' . $classCSS . '"><a name="' . $class . '">' . $class . '</a></dt>' . "\n" .
+	print $indent . $level . '<dt class="' . $classCSS . '">' . $dtin . '<a name="' . $class . '">' . $class . '</a>' . $dtout . '</dt>' . "\n" .
 		$indent . $level . '<dd class="devices">' . "\n" .
 		$indent . $level . $level . '<dl class="class">' . "\n";
 	# does layer them out on close, and could elsewhere if required
