@@ -63,10 +63,11 @@ use strict;
 my $indent="\t\t\t\t";
 my $level="\t";
 my $pattern='\<\!--\s+fw-data\s+\-\-\>';
+my $langpatt='\<\!--\s+fw-lang\s+\-\-\>';
 my @blacklist=('usb');
 
 # For now you can give the language as only current argument
-my $lang="";
+my $lang="en";
 
 if (($ARGV[0]=~/^[a-z]{2}$/i)||($ARGV[0]=~/^[a-z]{2}\_[a-z]{2}$/i))
 {
@@ -180,6 +181,7 @@ my $buffer='';
 while ($buffer=<STDIN>)
 {
 	$indent='';
+	$buffer=~s/$langpatt/$lang/;
 	if ($buffer=~/$pattern/)
 	{
 		$indent=$buffer;
