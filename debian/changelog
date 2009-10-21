@@ -1,4 +1,4 @@
-sidux-scripts (0.3.1) UNRELEASED; urgency=low
+sidux-scripts (0.3.1) unstable; urgency=low
 
   * NOT RELEASED YET
 
@@ -10,8 +10,9 @@ sidux-scripts (0.3.1) UNRELEASED; urgency=low
   [ Stefan Lippers-Hollmann ]
   * translate notes to german.
   * add cs46xx.
+  * add cxgb3.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:42:49 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:47:13 +0200
 
 sidux-scripts (0.3.0) unstable; urgency=low
 
