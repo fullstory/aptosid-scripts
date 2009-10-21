@@ -11,17 +11,71 @@
 
 use strict;
 
-# TODO add some options
-my $lang="";
+# TODO add some options properly
+# -t|--template
+#	insert generated content into given file
+#	default value stdin
+# -p|--pattern
+#	use given value as string to replace with content in template
+#	implies -t
+#	disables -w
+#	default off value <!-- fw-data -->
+# -w|--wrap
+#	use given value as root path to header/footer
+#	disables -t/-p
+#	default on value fw-html.
+# -i|--indent
+#	indent all content by this string
+#	automatically taken from template's pattern indent if -t
+#	default value ""
+# -s|--space
+#	use this string to add a level of indenting
+#	default value "\t"
+# -l|--lang
+#	only output the given language
+#	default on value en
+# -m|--multi
+#	output all languages
+#	can be inline or block
+#		block repeats the entire structure for each lang
+#		inline makes each translated element a set of siblings
+#	default value ? inline ?
+#	default off
+# -o|--order
+#	list of fields to output in order
+#	default value drivers url fw ok note
+# -h|--header
+#	what tag to use for the links wrapper elements in the index/toc
+#	possible values none li dd div span
+#	default value li
+# -c|--class
+#	what tag to use to wrap the classes
+#	possible values are none li dt div span
+#	default value dt
+# -d|--device
+#	what tag to use to wrap the classes
+#	possible values are none li dt div span
+#	default value dt
+# -b|--blacklist
+#	list of classes to exclude from output
+
+# You might want to set these!
 my $indent="\t\t\t\t";
 my $level="\t";
+my $pattern='\<\!--\s+fw-data\s+\-\-\>';
+my @blacklist=('usb');
+
+# For now you can give the language as only current argument
+my $lang="";
+
 if (($ARGV[0]=~/^[a-z]{2}$/i)||($ARGV[0]=~/^[a-z]{2}\_[a-z]{2}$/i))
 {
 	$lang="$ARGV[0]";
+	shift(@ARGV);
 	print STDERR "NOTE: $lang selected as language\n";
 }
 
-my $file=$1;
+my $file=$ARGV[0];
 if (length($file)==0)
 {
 	$file='fw-data.ini';
@@ -122,13 +176,34 @@ sub writefile () {
 }
 
 &writefile('fw-html.header');
-
+my $buffer='';
+while ($buffer=<STDIN>)
+{
+	$indent='';
+	if ($buffer=~/$pattern/)
+	{
+		$indent=$buffer;
+		$indent=~s/$pattern.*$//;
+		chomp($indent);
+		$buffer=~s/$indent$pattern//;
+		last;
+	}
+	else
+	{
+		print $indent.$buffer;
+	}
+}
 # go through the classes to put them in their own section
 my $class;
 my $classCSS;
 print $indent . '<ul class="firmware">'."\n";
-foreach $class (sort(keys(%class)))
+CLASSLI: foreach $class (sort(keys(%class)))
 {
+	my $test;
+	foreach $test (@blacklist)
+	{
+		next CLASSLI if ($class=~/^$test$/i);
+	}
 	$classCSS=$class;
 	$classCSS=~s/\./\_/g;
 	print $indent . $level . '<li><a href="#' . $classCSS . '">' . $class . '</a></li>' . "\n";
@@ -138,8 +213,13 @@ print $indent . '</ul>' . "\n";
 my @close;
 print $indent . '<dl class="firmware">' . "\n";
 push(@close,'</dl>');
-foreach $class (sort(keys(%class)))
+CLASSDD: foreach $class (sort(keys(%class)))
 {
+	my $test;
+	foreach $test (@blacklist)
+	{
+		next CLASSDD if ($class=~/^$test$/i);
+	}
 	$classCSS=$class;
 	$classCSS=~s/\./\_/g;
 	print $indent . $level . '<dt class="' . $classCSS . '"><a name="' . $class . '">' . $class . '</a></dt>' . "\n" .
@@ -240,3 +320,8 @@ foreach $class (sort(keys(%class)))
 &closetags((@close*1),\@close);
 
 &writefile('fw-html.footer');
+print $buffer;
+while ($buffer=<STDIN>)
+{
+	print $buffer;
+}

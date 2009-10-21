@@ -3,9 +3,13 @@ sidux-scripts (0.3.1) unstable; urgency=low
   * NOT RELEASED YET
 
   [ Niall Walsh ]
-  * Finish populating an initial set of the fw-data.ini class fields
-  * Remove "network adapters" from netXtremeII
-  * Add sample of note translation
+  * fw-data.ini
+    - Finish populating an initial set of the fw-data.ini class fields
+    - Remove "network adapters" from netXtremeII
+    - Add sample of note translation
+    - fix usb class, add some missing, ensure all are in another class
+    - change v4l to webcam
+    - get the word "support" out of titles
 
   [ Stefan Lippers-Hollmann ]
   * translate notes to german.
@@ -13,7 +17,7 @@ sidux-scripts (0.3.1) unstable; urgency=low
   * add cxgb3.
   * add af9005.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 21 Oct 2009 21:51:10 +0200
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Wed, 21 Oct 2009 20:56:20 +0100
 
 sidux-scripts (0.3.0) unstable; urgency=low
 
