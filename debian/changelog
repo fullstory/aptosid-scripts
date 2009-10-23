@@ -1,9 +1,5 @@
-sidux-scripts (0.3.2) UNRELEASED; urgency=low
+sidux-scripts (0.3.2) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Niall Walsh ]
   * Add a basic manpage and -h option to fw-detect
   * Fix typo of missing second _FW in FW_CARDS_FW_DEV_*
 
