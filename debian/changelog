@@ -1,3 +1,9 @@
+sidux-scripts (0.3.3) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 23 Oct 2009 21:19:25 +0200
+
 sidux-scripts (0.3.2) unstable; urgency=low
 
   * Add a basic manpage and -h option to fw-detect
