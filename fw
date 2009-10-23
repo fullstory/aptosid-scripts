@@ -15,10 +15,10 @@ function driver_firmware() {
 	local dnum=0
 	local test_driver
 	local driver="${1}"
-	for test_driver in ${FW_CARDS_DEV_STR[@]} ; do
+	for test_driver in ${FW_CARDS_FW_DEV_STR[@]} ; do
 		case "${driver}" in
 			${test_driver})
-				echo ${FW_CARDS_DEV_NUM[${dnum}]}
+				echo ${FW_CARDS_FW_DEV_NUM[${dnum}]}
 				return
 				;;
 		esac
@@ -210,10 +210,10 @@ function install_driver() {
 	fw=""
 	fw_url=""
 	fw_file=""
-	for name in ${FW_CARDS_DEV_STR[@]}; do
+	for name in ${FW_CARDS_FW_DEV_STR[@]}; do
 		case "${driver}" in
 			${name})
-				num=${FW_CARDS_DEV_NUM[$num]}
+				num=${FW_CARDS_FW_DEV_NUM[$num]}
 				fw=${FW_CARDS_FW[$num]}
 				fw_url=${FW_CARDS_FW_URL[$num]}
 				fw_file=${FW_CARDS_FW_FILE[$num]}
@@ -309,7 +309,7 @@ function sys_detect() {
 	
 		pnum=0
 		firmware=""
-		for pat in ${FW_CARDS_DEV_STR[@]} ; do
+		for pat in ${FW_CARDS_FW_DEV_STR[@]} ; do
 			case "${driver}" in
 				$pat)
 					say "Driver: ${driver}"
