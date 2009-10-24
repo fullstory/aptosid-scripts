@@ -119,7 +119,7 @@ foreach $name (sort(keys(%$cards)))
 	my $field;
 	foreach $field (@fieldnames,'class','title')
 	{
-		$$cards{$name}{$field}=~s/^\s*\"\s*(.+?)\s*\"\s*$/$1/;
+		$$cards{$name}{$field}=~s/^\s*\"\s*(.*?)\s*\"\s*$/$1/;
 	}
 	push(@names,$name);
 	$names{$name}=$num;
@@ -283,7 +283,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 				{
 					if (($content=~/\ /)||($content!~/^[fh]t+ps?\:\/\//))
 					{
-						push(@content,$content);
+						push(@content,$content) if (length($content));
 					}
 					else
 					{
@@ -319,7 +319,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 					@content=(@newc);
 				}
 				print $indent . $prefix . $level . $level  . '<dt class="' . $field . '"></dt>' . "\n" .
-					$indent . $prefix . $level . $level . '<dd>' . join(' ',@content) . '</dd>' . "\n";
+					$indent . $prefix . $level . $level . '<dd>' . join(' ',@content) . '</dd>' . "\n" if (@content);
 			}
 		}
 		&closetags(2, \@close);
