@@ -294,13 +294,13 @@ CLASSDD: foreach $class (sort(keys(%class)))
 				{
 					if ((@content==2)&&($content[0]=~/^\<a\ href\=\"/)&&($content[1]!~/^\<a\ href\=\"/))
 					{
-						$content[1]='<div class="target">' . $content[1] . '</div>';
-						$content[0]='<div class="link">' . $content[0] . $content[1] . '</div>';
+						$content[1]='<span class="target">' . $content[1] . '</span>';
+						$content[0]='<span class="link">' . $content[0] . $content[1] . '</span>';
 						$content[1]='';
 					}
 					elsif ($content[0]=~/^\<a\ href\=\"/)
 					{
-						$content[0]='<div class="link">' .  $content[0] . '</div>';
+						$content[0]='<span class="link">' .  $content[0] . '</span>';
 					}
 				}
 				elsif (($field=~/^ok$/)&&(@content))
