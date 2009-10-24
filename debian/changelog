@@ -13,7 +13,10 @@ sidux-scripts (0.3.3) UNRELEASED; urgency=low
     - stop duplicating fw and url
   * fw: use the right index to FW_CARDS_FW when not SHORT in sys_detect
 
- -- Niall Walsh <niallwalsh@users.berlios.de>  Sat, 24 Oct 2009 19:26:33 +0100
+  [ Joaquim Boura ]
+  * do not run sys_detect on -h or unknown option
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Sat, 24 Oct 2009 20:49:35 +0200
 
 sidux-scripts (0.3.2) unstable; urgency=low
 
