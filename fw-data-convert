@@ -48,9 +48,11 @@ foreach $name (sort(keys(%$cards)))
 	push(@url,$$props{'url'});
 	push(@file,$$props{'file'});
 	my $prop;
-	foreach $prop (split(/\s+/,$$props{'drivers'}))
+	my $drivers=$$props{'drivers'};
+	$drivers=~s/^\s*\"(.*)\"\s*$/$1/;
+	foreach $prop (split(/\s+/,$drivers))
 	{
-		push(@dev,$prop);
+		push(@dev,'"'.$prop.'"');
 		push(@map,@names-1);
 	}
 }

@@ -265,34 +265,48 @@ function kmodule_ok() {
 }
 
 function firmware_ok() {
-	check=0
-	ok=0
-	while [ -n "${1}" ] ; do
-		local fw="${1}" fw_dir="/lib/firmware"
-		check=$((${check}+1))
-		ok=0
-		shift
-		if [ -n "${2}" ] && [ ! "${2}" -eq ";" ] ; then
-			fw_dir="${2}"
-			shift
+	while [ -n "$1" ]; do
+		local fwok="$1"
+		local fw_dir="${fwok%% *}"
+
+		# if the first part doesn't include a /, we operate in the default dir
+		if [ -z "${fw_dir}" ] || ! echo "${fw_dir}" | grep '/' &> /dev/null; then
+			fw_dir="/lib/firmware"
+		else
+			if [ "${fwok%% *}" = "${fwok##* }" ]; then
+				fwok=""
+			else
+				fwok="${fwok#* }"
+			fi
+ 		fi
+		if [ -d "${fw_dir}" ]; then
+			say "Firmware dir found: ${fw_dir}"
+			# check now if each named file exists in this dir
+			while [ -n "${fwok}" ]; do
+				local fw="${fwok%% *}"
+				if [ -e "${fw_dir}/${fw}" ]; then
+					say "Firmware found: ${fw_dir}/${fw}"
+				else
+					say "Firmware NOT found: ${fw_dir}/${fw}"
+					return 1
+				fi
+
+				# was this the last filename to check?
+				if [ "${fwok%% *}" = "${fwok##* }" ]; then
+					fwok=""
+				else
+					fwok="${fwok#* }"
+				fi
+			done
+		else
+			say "Firmware dir NOT found: ${fw_dir}"
+			return 1
 		fi
 
-		for f in ${fw_dir}/${fw}*; do
-			if [[ -e ${f} ]]; then
-				say "Firmware:"
-				say ${fw_dir}/${fw}*
-				ok=1
-			fi
-		done
-		check=$((${check}-${ok}))
-	done
-
-	if [ ${check} -gt 0 ] ; then
-		say "Requires firmware"
-		return 1
-	else
-		return 0
-	fi
+		shift
+ 	done
+	say "Firmware is okay"
+	return 0
 }
 
 function sys_detect() {
@@ -319,7 +333,7 @@ function sys_detect() {
 			[ -n "${firmware}" ] && break
 		done
 		if [ -n "$firmware" ]; then
-			firmware_ok "${FW_CARDS_OK[$firmware]}" && continue
+			firmware_ok "${FW_CARDS_FW_OK[$firmware]}" && continue
 			if [ "$short" = "TRUE" ]; then
 				if [ -n "${FW_CARDS_FW[$firmware]}" ]; then
 					if [ "$install_possible"  = "TRUE" ]; then

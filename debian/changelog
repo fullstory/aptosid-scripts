@@ -1,8 +1,15 @@
 sidux-scripts (0.3.3) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 23 Oct 2009 21:19:25 +0200
+  [ Niall Walsh ]
+  * fw-detect:
+    - rewrite firmware_ok (thanks DonKult)
+    - more ini updates (thanks DonKult)
+  * fw-data-convert: fix quoting on FW_CARDS_FW_DEV_STR
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sat, 24 Oct 2009 18:04:38 +0100
 
 sidux-scripts (0.3.2) unstable; urgency=low
 

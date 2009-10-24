@@ -307,23 +307,14 @@ CLASSDD: foreach $class (sort(keys(%class)))
 				{
 					my $cc;
 					my (@newc)=();
+					my $fwdir='/lib/firmware';
+					if ($content[0]=~/^\//)
+					{
+						$fwdir=shift(@content);
+					}
 					for ($cc=0; $cc<@content; $cc=$cc+2)
 					{
-						my $res='<div class="file">';
-						if ($content[$cc+1]=~/^\//)
-						{
-							$res.= $content[$cc+1];
-							$res.='/' unless ($content[$cc+1]=~/\/$/);
-						}
-						elsif (length($content[$cc+1]))
-						{
-							$cc--;
-						}
-						else
-						{
-							$res.= '/lib/firmware/';
-						}
-						$res.=$content[$cc] . '</div>';
+						my $res='<div class="file">' . $fwdir . '/' . $res.=$content[$cc] . '</div>';
 						push(@newc,$res);
 					}
 					@content=(@newc);
