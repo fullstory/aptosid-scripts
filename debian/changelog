@@ -1,7 +1,4 @@
-sidux-scripts (0.3.3) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+sidux-scripts (0.3.3) unstable; urgency=low
 
   [ Niall Walsh ]
   * fw-detect:
@@ -16,7 +13,10 @@ sidux-scripts (0.3.3) UNRELEASED; urgency=low
   [ Joaquim Boura ]
   * do not run sys_detect on -h or unknown option
 
- -- Joaquim Boura <x-un-i@sidux.com>  Sat, 24 Oct 2009 20:49:35 +0200
+  [ Stefan Lippers-Hollmann ]
+  * s/h3/strong/.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 24 Oct 2009 22:34:18 +0200
 
 sidux-scripts (0.3.2) unstable; urgency=low
 

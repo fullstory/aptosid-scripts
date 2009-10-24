@@ -66,7 +66,7 @@ my $pattern='\<\!--\s+fw-data\s+\-\-\>';
 my $langpatt='\<\!--\s+fw-lang\s+\-\-\>';
 my @blacklist=('usb');
 my $liwrap='h2';
-my $dtwrap='h3';
+my $dtwrap='strong';
 
 # For now you can give the language as only current argument
 my $lang="en";
