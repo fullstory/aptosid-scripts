@@ -31,22 +31,19 @@ foreach $name (sort(keys(%$cards)))
 	my $props = $$cards{$name};
 	my $field;
 	# can't use string as ref with strict so map name to array
-	my %fmap = ('fw'=>\@fw, 'url'=>\@url, 'file'=>\@file, 'ok'=> \@ok);
-	foreach $field ('fw','url','file', 'ok')
+	my %fmap = ('fw'=>\@fw, 'url'=>\@url, 'ok'=> \@ok);
+	foreach $field ('fw','url','ok')
 	{
 		my $a = $fmap{$field};
 		if (length($$props{$field}))
 		{
-			push(@$a,$$props{$field});
+			push(@$a,"$$props{$field}");
 		}
 		else
 		{
 			push(@$a,'""');
 		}
 	}
-	push(@fw,$$props{'fw'});
-	push(@url,$$props{'url'});
-	push(@file,$$props{'file'});
 	my $prop;
 	my $drivers=$$props{'drivers'};
 	$drivers=~s/^\s*\"(.*)\"\s*$/$1/;
@@ -59,7 +56,6 @@ foreach $name (sort(keys(%$cards)))
 print 'FW_CARDS=( "'.join('" "',@names).'")'."\n";
 print 'FW_CARDS_FW=( '.join(' ',@fw).')'."\n";
 print 'FW_CARDS_FW_URL=( '.join(' ',@url).')'."\n";
-print 'FW_CARDS_FW_FILE=( '.join(' ',@file).')'."\n";
 print 'FW_CARDS_FW_OK=( '.join(' ',@ok).')'."\n";
 print 'FW_CARDS_FW_DEV_STR=( '.join(' ',@dev).')'."\n";
 print 'FW_CARDS_FW_DEV_NUM=( '.join(' ',@map).')'."\n";

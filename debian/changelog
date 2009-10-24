@@ -7,9 +7,13 @@ sidux-scripts (0.3.3) UNRELEASED; urgency=low
   * fw-detect:
     - rewrite firmware_ok (thanks DonKult)
     - more ini updates (thanks DonKult)
-  * fw-data-convert: fix quoting on FW_CARDS_FW_DEV_STR
+  * fw-data-convert:
+    - fix quoting on FW_CARDS_FW_DEV_STR
+    - drop file field from output
+    - stop duplicating fw and url
+  * fw: use the right index to FW_CARDS_FW when not SHORT in sys_detect
 
- -- Niall Walsh <niallwalsh@users.berlios.de>  Sat, 24 Oct 2009 18:04:38 +0100
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Sat, 24 Oct 2009 19:26:33 +0100
 
 sidux-scripts (0.3.2) unstable; urgency=low
 

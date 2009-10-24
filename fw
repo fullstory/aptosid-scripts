@@ -350,7 +350,7 @@ function sys_detect() {
 					fi
 				fi
 			else
-				case "${FW_CARDS_FW[$driver]}" in
+				case "${FW_CARDS_FW[$firmware]}" in
 					apt-get*)
 						display_message apt-get
 						;;
