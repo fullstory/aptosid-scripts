@@ -312,9 +312,14 @@ CLASSDD: foreach $class (sort(keys(%class)))
 					{
 						$fwdir=shift(@content);
 					}
-					for ($cc=0; $cc<@content; $cc=$cc+2)
+					for ($cc=0; $cc<@content; $cc++)		
 					{
-						push(@newc,'<div class="file">' . $fwdir . '/' . $content[$cc] . '</div>');
+						push(@newc,'<li>' . $fwdir . '/' . $content[$cc] . '</li> ');
+					}
+					if (@newc)
+					{
+						$newc[0]='<ul>'.$newc[0];
+						$newc[@newc-1].='</ul>';
 					}
 					@content=(@newc);
 				}
