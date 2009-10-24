@@ -314,8 +314,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 					}
 					for ($cc=0; $cc<@content; $cc=$cc+2)
 					{
-						my $res='<div class="file">' . $fwdir . '/' . $res.=$content[$cc] . '</div>';
-						push(@newc,$res);
+						push(@newc,'<div class="file">' . $fwdir . '/' . $content[$cc] . '</div>');
 					}
 					@content=(@newc);
 				}
