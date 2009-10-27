@@ -9,7 +9,10 @@ sidux-scripts (0.3.4) UNRELEASED; urgency=low
   [ Stefan Lippers-Hollmann ]
   * fix Broadcom Blutonium description.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 25 Oct 2009 23:55:55 +0100
+  [ Joaquim Boura ]
+  * el translation for the notes (thks edhunter)
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Tue, 27 Oct 2009 17:43:57 +0100
 
 sidux-scripts (0.3.3) unstable; urgency=low
 
