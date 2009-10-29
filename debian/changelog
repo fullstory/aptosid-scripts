@@ -1,16 +1,11 @@
-sidux-scripts (0.3.4) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+sidux-scripts (0.3.4) unstable; urgency=low
 
   [ Joaquim Boura ]
   * it translation for the notes (thks alessiog75)
+  * el translation for the notes (thks edhunter)
 
   [ Stefan Lippers-Hollmann ]
   * fix Broadcom Blutonium description.
-
-  [ Joaquim Boura ]
-  * el translation for the notes (thks edhunter)
 
  -- Joaquim Boura <x-un-i@sidux.com>  Tue, 27 Oct 2009 17:43:57 +0100
 
