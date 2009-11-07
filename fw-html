@@ -78,6 +78,23 @@ if (($ARGV[0]=~/^[a-z]{2}$/i)||($ARGV[0]=~/^[a-z]{2}\_[a-z]{2}$/i))
 	print STDERR "NOTE: $lang selected as language\n";
 }
 
+my %trans;
+if (-e $lang.'.i18n')
+{
+    open(LANG,$lang.'.i18n')||die "failed to open $lang.i18n for reading : $!\n";
+    my $tstring;
+    while($tstring=<LANG>)
+    {
+        chomp($tstring);
+        my($tname)=$tstring;
+        my($tval)=$tstring;
+        $tname=~s/\=.*$//;
+        $tval=~s/$tname\=//;
+        $trans{$tname}=$tval;
+    }
+    close(LANG);
+}
+
 my $file=$ARGV[0];
 if (length($file)==0)
 {
@@ -87,7 +104,6 @@ unless (-f $file)
 {
 	die "you must supply a valid filename to load from if fw-data.ini is not in the working directory";
 }
-
 
 # Using Config::Any instead would allow to switch to anything it supports
 #use Config::Any;
@@ -197,29 +213,30 @@ while ($buffer=<STDIN>)
 		print $indent.$buffer;
 	}
 }
+
 # go through the classes to put them in their own section
 my $class;
 my $classCSS;
-print $indent . '<ul id="fwul">'."\n";
-my $liin='';
-my $liout='';
-if (length($liwrap))
-{
-	$liin='<' . $liwrap . '>';
-	$liout='</' . $liwrap . '>';
-}
-CLASSLI: foreach $class (sort(keys(%class)))
-{
-	my $test;
-	foreach $test (@blacklist)
-	{
-		next CLASSLI if ($class=~/^$test$/i);
-	}
-	$classCSS=$class;
-	$classCSS=~s/\./\_/g;
-	print $indent . $level . '<li class="fwindex">' . $liin . '<a href="#' . $classCSS . '">' . $class . '</a>' . $liout . '</li>' . "\n";
-}
-print $indent . '</ul>' . "\n";
+# print $indent . '<ul id="fwul">'."\n";
+# my $liin='';
+# my $liout='';
+# if (length($liwrap))
+# {
+# 	$liin='<' . $liwrap . '>';
+# 	$liout='</' . $liwrap . '>';
+# }
+# CLASSLI: foreach $class (sort(keys(%class)))
+# {
+# 	my $test;
+# 	foreach $test (@blacklist)
+# 	{
+# 		next CLASSLI if ($class=~/^$test$/i);
+# 	}
+# 	$classCSS=$class;
+# 	$classCSS=~s/\./\_/g;
+# 	print $indent . $level . '<li class="fwindex">' . $liin . '<a href="#' . $classCSS . '">' . $class . '</a>' . $liout . '</li>' . "\n";
+# }
+# print $indent . '</ul>' . "\n";
 
 my @close;
 print $indent . '<dl class="firmware">' . "\n";
@@ -262,6 +279,11 @@ CLASSDD: foreach $class (sort(keys(%class)))
 		{
 			$title=$$cards{$dname}{join('_','title',$lang)};
 		}
+                $title.=' '.$trans{'class'};
+                if ($classes=~/\s*usb\s*/)
+                {
+                    $title.=' '.$trans{'class_usb'};
+                }
 		print $indent . $prefix . '<dt class="device ' . $classes . '" id="' . $dname .'">' . $title . '</dt>' . "\n" . $indent . $prefix . '<dd>' . "\n$indent" . $prefix . $level . '<dl class="dvals">' . "\n";
 		push(@close,'</dd>','</dl>');
 		my $field;
@@ -294,14 +316,15 @@ CLASSDD: foreach $class (sort(keys(%class)))
 				{
 					if ((@content==2)&&($content[0]=~/^\<a\ href\=\"/)&&($content[1]!~/^\<a\ href\=\"/))
 					{
-						$content[1]='<span class="target">' . $content[1] . '</span>';
-						$content[0]='<span class="link">' . $content[0] . $content[1] . '</span>';
+						$content[1]=$trans{'fw_link_target_pre'} . '<span class="target">' . $content[1] . '</span>' . $trans{'fw_link_target_post'};
+						$content[0]=$trans{'fw_link'}.' <span class="link">' . $content[0] . $content[1] . '</span>';
 						$content[1]='';
 					}
 					elsif ($content[0]=~/^\<a\ href\=\"/)
 					{
-						$content[0]='<span class="link">' .  $content[0] . '</span>';
+						$content[0]=$trans{'fw_link'}.' <span class="link">' .  $content[0] . '</span>';
 					}
+                                        unshift(@content,$trans{'fw'});
 				}
 				elsif (($field=~/^ok$/)&&(@content))
 				{
@@ -321,8 +344,20 @@ CLASSDD: foreach $class (sort(keys(%class)))
 						$newc[0]='<ul>'.$newc[0];
 						$newc[@newc-1].='</ul>';
 					}
-					@content=(@newc);
+					@content=($trans{'ok'},@newc);
 				}
+                                elsif ($field=~/^drivers$/)
+                                {
+                                    unshift(@content,$trans{'drivers'});
+                                }
+                                elsif ($field=~/^url$/)
+                                {
+                                    unshift(@content,$trans{'url'});
+                                }
+                                elsif ($field=~/^note$/)
+                                {
+                                    unshift(@content,$trans{'note'});
+                                }
 				print $indent . $prefix . $level . $level  . '<dt class="' . $field . '"></dt>' . "\n" .
 					$indent . $prefix . $level . $level . '<dd>' . join(' ',@content) . '</dd>' . "\n" if (@content);
 			}
