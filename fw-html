@@ -316,7 +316,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 				{
 					if ((@content==2)&&($content[0]=~/^\<a\ href\=\"/)&&($content[1]!~/^\<a\ href\=\"/))
 					{
-						$content[1]=$trans{'fw_link_target_pre'} . '<span class="target">' . $content[1] . '</span>' . $trans{'fw_link_target_post'};
+						$content[1]=$trans{'fw_link_target_pre'} . ' <span class="target">' . $content[1] . '</span> ' . $trans{'fw_link_target_post'};
 						$content[0]=$trans{'fw_link'}.' <span class="link">' . $content[0] . $content[1] . '</span>';
 						$content[1]='';
 					}
