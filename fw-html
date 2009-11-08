@@ -292,6 +292,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 		{
 			if (defined($$cards{$dname}{$field})) {
 				my @content=();
+                                my @terms=();
 				my $content=$$cards{$dname}{$field};
 				if ((length($lang))&&($field=~/^note$/))
 				{
@@ -324,7 +325,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 					{
 						$content[0]=$trans{'fw_link'}.' <span class="link">' .  $content[0] . '</span>';
 					}
-                                        unshift(@content,$trans{'fw'});
+                                        unshift(@terms,$trans{'fw'});
 				}
 				elsif (($field=~/^ok$/)&&(@content))
 				{
@@ -344,21 +345,22 @@ CLASSDD: foreach $class (sort(keys(%class)))
 						$newc[0]='<ul>'.$newc[0];
 						$newc[@newc-1].='</ul>';
 					}
-					@content=($trans{'ok'},@newc);
+					@content=(@newc);
+                                        unshift(@terms,$trans{'ok'});
 				}
                                 elsif ($field=~/^drivers$/)
                                 {
-                                    unshift(@content,$trans{'drivers'});
+                                    unshift(@terms,$trans{'drivers'});
                                 }
                                 elsif ($field=~/^url$/)
                                 {
-                                    unshift(@content,$trans{'url'});
+                                    unshift(@terms,$trans{'url'});
                                 }
                                 elsif ($field=~/^note$/)
                                 {
-                                    unshift(@content,$trans{'note'});
+                                    unshift(@terms,$trans{'note'});
                                 }
-				print $indent . $prefix . $level . $level  . '<dt class="' . $field . '"></dt>' . "\n" .
+				print $indent . $prefix . $level . $level  . '<dt class="' . $field . '">'. join(' ',@terms) .'</dt>' . "\n" .
 					$indent . $prefix . $level . $level . '<dd>' . join(' ',@content) . '</dd>' . "\n" if (@content);
 			}
 		}
