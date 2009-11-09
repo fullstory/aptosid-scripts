@@ -1,9 +1,11 @@
 sidux-scripts (0.3.6) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
-  * drop ACX100 from fw-data.ini, it's broken for ages.
+  * fw-data.ini:
+    - drop ACX100, it's broken for ages.
+    - add Afatech AF9015 DVB-T.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Nov 2009 02:10:03 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 09 Nov 2009 23:56:39 +0100
 
 sidux-scripts (0.3.5) unstable; urgency=low
 
