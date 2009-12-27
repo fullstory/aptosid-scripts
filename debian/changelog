@@ -1,8 +1,13 @@
 sidux-scripts (0.3.7) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 11 Nov 2009 00:22:27 +0100
+  [ Joaquim Boura ]
+  * new upstream version from wgetpaste.
+    Some more paste services were added.
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Sun, 27 Dec 2009 12:22:28 +0100
 
 sidux-scripts (0.3.6) unstable; urgency=low
 
