@@ -1,9 +1,5 @@
-sidux-scripts (0.3.7) UNRELEASED; urgency=low
+sidux-scripts (0.3.7) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * new upstream version from wgetpaste.
     Some more paste services were added.
 
