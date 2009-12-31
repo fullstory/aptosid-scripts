@@ -1,8 +1,9 @@
 sidux-scripts (0.3.8) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
+  * fix firmware locations.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 28 Dec 2009 02:34:32 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 31 Dec 2009 03:25:29 +0100
 
 sidux-scripts (0.3.7) unstable; urgency=low
 
