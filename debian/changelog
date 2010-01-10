@@ -1,7 +1,6 @@
-sidux-scripts (0.3.8) UNRELEASED; urgency=low
+sidux-scripts (0.3.8) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
   * fix firmware locations.
 
   [ Joaquim Boura ]
