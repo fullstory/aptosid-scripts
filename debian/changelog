@@ -1,8 +1,12 @@
 sidux-scripts (0.3.9) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 10 Jan 2010 02:49:21 +0100
+  [ Joaquim Boura ]
+  * changed default service zu dpaste
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Sat, 20 Mar 2010 17:03:53 +0100
 
 sidux-scripts (0.3.8) unstable; urgency=low
 
