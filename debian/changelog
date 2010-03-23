@@ -1,9 +1,5 @@
-sidux-scripts (0.3.9) UNRELEASED; urgency=low
+sidux-scripts (0.3.9) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * changed default service zu dpaste
 
  -- Joaquim Boura <x-un-i@sidux.com>  Sat, 20 Mar 2010 17:03:53 +0100
