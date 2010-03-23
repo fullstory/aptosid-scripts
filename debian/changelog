@@ -1,8 +1,13 @@
 sidux-scripts (0.3.9) unstable; urgency=low
 
+  [ Joaquim Boura ]
   * changed default service zu dpaste
 
- -- Joaquim Boura <x-un-i@sidux.com>  Sat, 20 Mar 2010 17:03:53 +0100
+  [ Stefan Lippers-Hollmann ]
+  * Switch to dpkg-source 3.0 (native) format.
+  * bump standards version to 3.8.4, no changes necessary.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 24 Mar 2010 00:30:11 +0100
 
 sidux-scripts (0.3.8) unstable; urgency=low
 
