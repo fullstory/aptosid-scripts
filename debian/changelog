@@ -1,8 +1,8 @@
-aptosid-scripts (0.4.1) UNRELEASED; urgency=low
+aptosid-scripts (0.4.1) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * add proper takeover support
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 29 Aug 2010 04:26:02 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 29 Aug 2010 04:29:29 +0200
 
 aptosid-scripts (0.4.0) unstable; urgency=low
 
