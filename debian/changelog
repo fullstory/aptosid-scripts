@@ -1,8 +1,8 @@
-sidux-scripts (0.3.12) UNRELEASED; urgency=low
+sidux-scripts (0.3.12) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * switch to compat level 8.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Aug 2010 04:36:26 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Aug 2010 05:22:40 +0200
 
 sidux-scripts (0.3.11) unstable; urgency=low
 
