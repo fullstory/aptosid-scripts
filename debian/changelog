@@ -3,8 +3,9 @@ sidux-scripts (0.3.11) unstable; urgency=low
   * bump standards version to 3.9.1, no changes necessary.
   * elaborate long description a bit further, to make lintian happy.
   * make lintian happy about hyphen-used-as-minus-sign.
+  * fix syntax errors in fw-detect.1
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Aug 2010 04:18:20 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Aug 2010 04:35:01 +0200
 
 sidux-scripts (0.3.10) unstable; urgency=low
 
