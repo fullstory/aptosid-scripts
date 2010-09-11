@@ -258,7 +258,7 @@ CLASSDD: foreach $class (sort(keys(%class)))
 	}
 	$classCSS=$class;
 	$classCSS=~s/\./\_/g;
-	print $indent . $level . '<dt class="' . $classCSS . '">' . $dtin . '<a name="' . $class . '">' . $class . '</a>' . $dtout . '</dt>' . "\n" .
+	print $indent . $level . '<dt class="' . $classCSS . '" id="' . $classCSS . '">' . $dtin . '<a name="' . $class . '">' . $class . '</a>' . $dtout . '</dt>' . "\n" .
 		$indent . $level . '<dd class="devices">' . "\n" .
 		$indent . $level . $level . '<dl class="class">' . "\n";
 	# does layer them out on close, and could elsewhere if required
