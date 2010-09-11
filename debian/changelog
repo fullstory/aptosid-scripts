@@ -1,3 +1,9 @@
+sidux-scripts (0.3.12) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Aug 2010 04:36:26 +0200
+
 sidux-scripts (0.3.11) unstable; urgency=low
 
   * bump standards version to 3.9.1, no changes necessary.
