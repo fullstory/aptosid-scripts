@@ -1,16 +1,16 @@
-Source: sidux-scripts
+Source: aptosid-scripts
 Section: misc
 Priority: extra
 Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Uploaders: Kel Modderman <kel@otaku42.de>,
- Joaquim Boura <x-un-i@sidux.com>
+ Joaquim Boura <x-un-i@aptosid.com>
 Build-Depends: debhelper (>= 7.9.3),
  libconfig-tiny-perl
 Standards-Version: 3.9.1
-Vcs-Svn: svn://svn.berlios.de/fullstory/sidux-scripts/trunk
-Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/sidux-scripts/trunk/
+Vcs-Svn: svn://svn.berlios.de/fullstory/aptosid-scripts/trunk
+Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/aptosid-scripts/trunk/
 
-Package: sidux-scripts
+Package: aptosid-scripts
 Architecture: all
 Depends: ${misc:Depends},
  perl,
@@ -18,8 +18,8 @@ Depends: ${misc:Depends},
  wodim
 Recommends: menu,
  ntpdate
-Description: miscellaneous scripts for sidux
- Script collection for live and install uses on sidux:
+Description: miscellaneous scripts for aptosid
+ Script collection for live and install uses on aptosid:
   * burniso (write an ISO image from cli)
   * fix-dpi-kdm (tweak dpi settings for kdm/ KDE)
   * fix-ssh (generate ssh host keys, which are missing on the live system)
@@ -29,4 +29,4 @@ Description: miscellaneous scripts for sidux
   * inetconn (check if an internet connection is active)
   * remove-gateway (remove configured gateways from /etc/network/interfaces)
   * remove-orphans (purge files which were merely removed)
-  * sidux-paste/ wgetpaste (paste cli output to a pastebin)
+  * aptosid-paste/ wgetpaste (paste cli output to a pastebin)

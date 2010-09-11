@@ -21,7 +21,7 @@ function selfhelp () {
 "
 }
 
-. /usr/share/sidux-scripts/fw
+. /usr/share/aptosid-scripts/fw
 
 #
 # check for get_dvb_firmware script

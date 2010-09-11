@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright 2009 Niall Walsh <niallwalsh@users.berlios.de>
-# Derived from prior sidux-scripts/fw-detect which is
+# Derived from prior aptosid-scripts/fw-detect which is
 # Copyright 2007 Kel Modderman <kel@otaku42.de>
 # License: GPLv2
 #
@@ -9,7 +9,7 @@
 #
 
 
-. /usr/share/sidux-scripts/fw-data.sh
+. /usr/share/aptosid-scripts/fw-data.sh
 
 function driver_firmware() {
 	local dnum=0

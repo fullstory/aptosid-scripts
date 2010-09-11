@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# just makes a sidux-wrapper
+# just makes a aptosid-wrapper
 #
 # uses wgetpaste from http://wgetpaste.zlin.dk/
 # free to use found in gentoo
 #
 export INFO_COMMAND="infobash "
 export INFO_ARGS="-v 2 0"
-export DEFAULT_NICK="sidux user"
+export DEFAULT_NICK="aptosid user"
 export DEFAULT_SERVICE="dpaste"
 
 /usr/bin/wgetpaste "$@"

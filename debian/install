@@ -2,12 +2,12 @@ burniso				usr/bin/
 fix-dpi-kdm			usr/sbin/
 fix-ssh				usr/sbin/
 fix-time			usr/sbin/
-fw				usr/share/sidux-scripts/
-fw-data.sh			usr/share/sidux-scripts/
+fw				usr/share/aptosid-scripts/
+fw-data.sh			usr/share/aptosid-scripts/
 fw-detect			usr/bin/
 get-resume-partition		usr/sbin/
 inetconn			usr/bin/
 remove-gateway			usr/sbin/
 remove-orphans			usr/sbin/
-sidux-paste			usr/bin/
+aptosid-paste			usr/bin/
 wgetpaste			usr/bin/
