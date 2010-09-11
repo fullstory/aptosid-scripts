@@ -6,7 +6,7 @@ Uploaders: Kel Modderman <kel@otaku42.de>,
  Joaquim Boura <x-un-i@sidux.com>
 Build-Depends: debhelper (>= 7),
  libconfig-tiny-perl
-Standards-Version: 3.8.4
+Standards-Version: 3.9.1
 Vcs-Svn: svn://svn.berlios.de/fullstory/sidux-scripts/trunk
 Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/sidux-scripts/trunk/
 
@@ -19,4 +19,14 @@ Depends: ${misc:Depends},
 Recommends: menu,
  ntpdate
 Description: miscellaneous scripts for sidux
- Script collection for live and install uses on sidux.
+ Script collection for live and install uses on sidux:
+  * burniso (write an ISO image from cli)
+  * fix-dpi-kdm (tweak dpi settings for kdm/ kde)
+  * fix-ssh (generate ssh host keys, which are missing on the live system)
+  * fix-time (configure timezone and sync time via ntp)
+  * fw-detect (identify missing firmware for installed hardware)
+  * get-resume-partition (configure a resume (swap) partition based on UUIDs)
+  * inetconn (check if an internet connection is active)
+  * remove-gateway (remove configured gateways from /etc/network/interfaces)
+  * remove-orphans (purge files which were merely removed)
+  * sidux-paste/ wgetpaste (paste cli output to a pastebin)

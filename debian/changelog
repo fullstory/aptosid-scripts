@@ -1,8 +1,9 @@
-sidux-scripts (0.3.11) UNRELEASED; urgency=low
+sidux-scripts (0.3.11) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * bump standards version to 3.9.1, no changes necessary.
+  * elaborate long description a bit further, to make lintian happy.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 26 May 2010 18:57:24 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 04 Aug 2010 04:14:25 +0200
 
 sidux-scripts (0.3.10) unstable; urgency=low
 
