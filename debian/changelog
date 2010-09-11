@@ -206,7 +206,7 @@ sidux-scripts (0.2.19) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
   * s/ipw2?00-firmware/firmware-ipw2x00/g for fwdetect.
-  * drop special handling for Atheros hardware, ath5k and ath9k handle all 
+  * drop special handling for Atheros hardware, ath5k and ath9k handle all
     devices previously covered by madwifi.
   * add hints for:
     - Korg 1212 IO audio device
@@ -319,7 +319,7 @@ sidux-scripts (0.2.6) unstable; urgency=low
 
   * SSFT_FRONTEND check in fw-detect disabled
   * option y=installable drivers added
-  * debian/install fixed 
+  * debian/install fixed
 
  -- Horst Tritremmel <hjt@sidux.com>  Mon, 04 Feb 2008 22:07:31 +0100
 
@@ -605,14 +605,14 @@ sidux-scripts (0.1.16) unstable; urgency=low
 
   * install-sidux-binary-gfx renamed to get-sidux-binary-gfx
   * su-me fixed and autstart of the Script disabled
-  * Comments added and repo changed to sidux.com 
+  * Comments added and repo changed to sidux.com
 
  -- Andreas Weber <andreas@it-weber.com>  Wed, 24 Jan 2007 18:51:58 +0100
 
 sidux-scripts (0.1.15) unstable; urgency=low
 
   * install-sidux-binary-gfx added. This will install the Sidux Package to
-    install the Nvidia / ATI Kernel Module.   
+    install the Nvidia / ATI Kernel Module.
 
  -- Andreas Weber <andreas@it-weber.com>  Tue, 16 Jan 2007 10:54:47 +0100
 
