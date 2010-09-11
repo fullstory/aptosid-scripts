@@ -21,7 +21,7 @@ Recommends: menu,
 Description: miscellaneous scripts for sidux
  Script collection for live and install uses on sidux:
   * burniso (write an ISO image from cli)
-  * fix-dpi-kdm (tweak dpi settings for kdm/ kde)
+  * fix-dpi-kdm (tweak dpi settings for kdm/ KDE)
   * fix-ssh (generate ssh host keys, which are missing on the live system)
   * fix-time (configure timezone and sync time via ntp)
   * fw-detect (identify missing firmware for installed hardware)
