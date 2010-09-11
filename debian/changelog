@@ -1,3 +1,9 @@
+aptosid-scripts (0.4.3) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Sep 2010 22:00:11 +0200
+
 aptosid-scripts (0.4.2) unstable; urgency=low
 
   * add id tags for firmware captions.
