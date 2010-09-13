@@ -1,8 +1,8 @@
-aptosid-scripts (0.4.3) UNRELEASED; urgency=low
+aptosid-scripts (0.4.3) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * s/802.11/IEEE802.11/
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 10 Sep 2010 22:00:11 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 13 Sep 2010 22:48:35 +0200
 
 aptosid-scripts (0.4.2) unstable; urgency=low
 
