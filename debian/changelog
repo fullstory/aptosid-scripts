@@ -1,3 +1,9 @@
+aptosid-scripts (0.4.6) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 18 Sep 2010 02:17:58 +0200
+
 aptosid-scripts (0.4.5) unstable; urgency=low
 
   * New upstream version for wgetpaste. going back to pastebin.
