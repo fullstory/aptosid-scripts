@@ -1,6 +1,6 @@
-aptosid-scripts (0.4.5) UNRELEASED; urgency=low
+aptosid-scripts (0.4.5) unstable; urgency=low
 
-  * New upstream version for wgetpaste. going back to pastebin
+  * New upstream version for wgetpaste. going back to pastebin.
 
  -- Joaquim Boura <x-un-i@sidux.com>  Sat, 18 Sep 2010 00:03:58 +0200
 
