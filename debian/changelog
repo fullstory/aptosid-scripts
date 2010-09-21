@@ -1,9 +1,5 @@
-aptosid-scripts (0.4.6) UNRELEASED; urgency=low
+aptosid-scripts (0.4.6) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Kel Modderman ]
   * Fix typo (s/CUSTOM_DPI/DPI/) in fix-dpi-kdm script. Thanks to
     "seagull" on the forum for reporting it broken.
   * Remove grub menu.lst reference from get-resume-partition.
