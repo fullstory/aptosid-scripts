@@ -72,16 +72,6 @@ if [ -x /usr/sbin/update-initramfs ]; then
 	update-initramfs -u -k "$(uname -r)"
 fi
 
-if [ -w /boot/grub/menu.lst ] && egrep -q '# (defopt|kopt).*resume=[^[:space:]]+' /boot/grub/menu.lst; then
-	# update grub menu.lst
-	echo "Updating grub configuration /boot/grub/menu.lst..."
-
-	# remove all resume= lines from grub menu.lst
-	sed -i '/^# \(defopt\|kopt\)/s/[[:space:]]*resume=[^[:space:]]\+//' /boot/grub/menu.lst
-
-	update-grub
-fi
-
 echo
 echo "A new resume configuration has been written to:"
 echo "  /etc/initramfs-tools/conf.d/resume"
