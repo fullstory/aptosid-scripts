@@ -4,7 +4,6 @@
 # see "man burniso"
 
 # wodim parameters
-DRIVEROPTS=""
 SPEED="8"
 FS="14M"
 OPTIONS="-dao -eject -v"
@@ -73,4 +72,4 @@ if [ -f "${iso}.md5" ]; then
 		error "Invalid MD5 checksum!"
 	fi
 fi
-exec wodim ${OPTIONS} "dev=${device}" "driveropts=${DRIVEROPTS}" "fs=${FS}" "speed=${SPEED}" "${iso}"
+exec wodim ${OPTIONS} "dev=${device}" "fs=${FS}" "speed=${SPEED}" "${iso}"
