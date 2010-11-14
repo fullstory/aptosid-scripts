@@ -1,6 +1,5 @@
-aptosid-scripts (0.4.9) UNRELEASED; urgency=low
+aptosid-scripts (0.4.9) unstable; urgency=low
 
-  * NOT RELEASED YET
   * fixed empty value for wodim option making the script unusable
 
  -- Joaquim Boura <x-un-i@sidux.com>  Mon, 08 Nov 2010 18:01:52 +0100
