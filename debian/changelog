@@ -1,3 +1,9 @@
+aptosid-scripts (0.4.10) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 14 Nov 2010 23:16:55 +0100
+
 aptosid-scripts (0.4.9) unstable; urgency=low
 
   * fixed empty value for wodim option making the script unusable
