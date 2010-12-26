@@ -4,8 +4,9 @@ aptosid-scripts (0.4.10) UNRELEASED; urgency=low
   * update firmware db:
     - Atheros AR7010
     - Realtek RTL8111D(L)
+    - Realtek RTL8188S 150/ RTL8191S 300 MBit/s USB WiFi cards (r8712u)
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 26 Dec 2010 15:55:32 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 26 Dec 2010 15:58:45 +0100
 
 aptosid-scripts (0.4.9) unstable; urgency=low
 
