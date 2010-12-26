@@ -1,8 +1,15 @@
-aptosid-scripts (0.4.10) UNRELEASED; urgency=low
+aptosid-scripts (0.4.10) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * update firmware db:
+    - Atheros AR7010
+    - Realtek RTL8111D(L)
+    - Realtek RTL8188S 150/ RTL8191S 300 MBit/s USB WiFi cards (r8712u)
+    - disambiguate Broadcom b43 and b43legacy, firmware-b43-lpphy-installer is
+      now preferred for all non-legacy chipsets with ucode > 10.
+    - Broadcom 802.11n wireless LAN driver brcm80211.
+    - Atheros AR30xx Bluetooth chipset
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 14 Nov 2010 23:16:55 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 26 Dec 2010 18:08:57 +0100
 
 aptosid-scripts (0.4.9) unstable; urgency=low
 
