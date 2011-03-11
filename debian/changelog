@@ -1,10 +1,6 @@
-aptosid-scripts (0.4.12) UNRELEASED; urgency=low
+aptosid-scripts (0.4.12) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
-  * set default paste service to pocoo  currently the only one supporting 
+  * set default paste service to pocoo, currently the only one supporting
     pastes >64Kb 
 
  -- Joaquim Boura <x-un-i@berlios.de>  Fri, 11 Mar 2011 21:23:37 +0100
