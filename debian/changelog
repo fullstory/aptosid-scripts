@@ -1,8 +1,9 @@
-aptosid-scripts (0.4.13) UNRELEASED; urgency=low
+aptosid-scripts (0.4.13) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * bump standards version to 3.9.2, no changes necessary.
+  * update eMail addresses.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 11 Mar 2011 21:27:55 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 29 Apr 2011 03:57:09 +0200
 
 aptosid-scripts (0.4.12) unstable; urgency=low
 
@@ -34,7 +35,7 @@ aptosid-scripts (0.4.9) unstable; urgency=low
 
   * fixed empty value for wodim option making the script unusable
 
- -- Joaquim Boura <x-un-i@sidux.com>  Mon, 08 Nov 2010 18:01:52 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Mon, 08 Nov 2010 18:01:52 +0100
 
 aptosid-scripts (0.4.8) unstable; urgency=low
 
@@ -389,7 +390,7 @@ sidux-scripts (0.2.10) unstable; urgency=low
 
   * fw-detect: atheros install updated
 
- -- Fabian Wuertz <xadras@sidux.com>  Sun, 23 Mar 2008 22:37:56 +0100
+ -- Fabian Wuertz <xadras@users.berlios.de>  Sun, 23 Mar 2008 22:37:56 +0100
 
 sidux-scripts (0.2.9) unstable; urgency=low
 
@@ -439,7 +440,7 @@ sidux-scripts (0.2.2) unstable; urgency=low
 
   * fw-detect modified for siduxcc
 
- -- Fabian Wuertz <xadras@sidux.com>  Tue, 22 Jan 2008 21:27:49 +0100
+ -- Fabian Wuertz <xadras@users.berlios.de>  Tue, 22 Jan 2008 21:27:49 +0100
 
 sidux-scripts (0.2.1) unstable; urgency=low
 
