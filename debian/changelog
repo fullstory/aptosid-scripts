@@ -3,8 +3,9 @@ aptosid-scripts (0.4.14) UNRELEASED; urgency=low
   * NOT RELEASED YET
   * update firmware db:
     - Realtek 8192C/8188C 802.11n PCI wireless
+    - Realtek 8192S/8191S 802.11n PCI wireless
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 26 Jul 2011 19:36:40 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 26 Jul 2011 19:38:25 +0200
 
 aptosid-scripts (0.4.13) unstable; urgency=low
 
