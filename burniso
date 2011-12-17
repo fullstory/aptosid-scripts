@@ -3,7 +3,7 @@
 # Burn ISO images from the command line.
 # see "man burniso"
 
-# wodim parameters
+# xorriso parameters
 SPEED="8"
 FS="14M"
 OPTIONS="-dao -eject -v"
@@ -72,4 +72,6 @@ if [ -f "${iso}.md5" ]; then
 		error "Invalid MD5 checksum!"
 	fi
 fi
-exec wodim ${OPTIONS} "dev=${device}" "fs=${FS}" "speed=${SPEED}" "${iso}"
+
+# burn baby, burn
+exec xorriso -as cdrecord ${OPTIONS} "dev=${device}" "fs=${FS}" "speed=${SPEED}" "${iso}"

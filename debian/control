@@ -15,7 +15,7 @@ Architecture: all
 Depends: ${misc:Depends},
  perl,
  distro-defaults,
- wodim
+ xorriso
 Recommends: menu,
  ntpdate
 Description: miscellaneous scripts for aptosid
