@@ -1,8 +1,10 @@
 aptosid-scripts (0.4.15) UNRELEASED; urgency=low
 
   * NOT RELEASED YET
+  * import new translations for fw-data.ini, many thanks to bluewater and the
+    manual translators!
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 17 Dec 2011 20:21:19 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 10 Jan 2012 01:47:29 +0100
 
 aptosid-scripts (0.4.14) unstable; urgency=low
 
