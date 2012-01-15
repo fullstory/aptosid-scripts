@@ -1,10 +1,10 @@
-aptosid-scripts (0.4.15) UNRELEASED; urgency=low
+aptosid-scripts (0.4.15) unstable; urgency=low
 
-  * NOT RELEASED YET
   * import new translations for fw-data.ini, many thanks to bluewater and the
     manual translators!
+  * switch to compat level 9.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 10 Jan 2012 01:47:29 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Jan 2012 00:22:50 +0100
 
 aptosid-scripts (0.4.14) unstable; urgency=low
 
