@@ -1,8 +1,8 @@
-aptosid-scripts (0.4.16) UNRELEASED; urgency=low
+aptosid-scripts (0.4.16) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * bump standards version to 3.9.3, no changes necessary.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Jan 2012 00:23:21 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 23 Feb 2012 15:40:42 +0100
 
 aptosid-scripts (0.4.15) unstable; urgency=low
 
