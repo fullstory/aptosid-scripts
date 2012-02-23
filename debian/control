@@ -6,7 +6,7 @@ Uploaders: Kel Modderman <kel@otaku42.de>,
  Joaquim Boura <x-un-i@berlios.de>
 Build-Depends: debhelper (>= 9.20120115),
  libconfig-tiny-perl
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Vcs-Svn: svn://svn.berlios.de/fullstory/aptosid-scripts/trunk
 Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/aptosid-scripts/trunk/
 
