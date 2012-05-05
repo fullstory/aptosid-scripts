@@ -5,8 +5,10 @@ aptosid-scripts (0.4.17) UNRELEASED; urgency=low
 
   [ Joaquim Boura ]
   * pocoo no longer exists as paste service
+  * new backend version 2.19.
+    pastebin.ca does not supports postdata
 
- -- Joaquim Boura <x-un-i@sapo.pt>  Sat, 05 May 2012 14:40:48 +0200
+ -- Joaquim Boura <x-un-i@sapo.pt>  Sat, 05 May 2012 14:51:18 +0200
 
 aptosid-scripts (0.4.16) unstable; urgency=low
 
