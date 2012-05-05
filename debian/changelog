@@ -1,8 +1,12 @@
 aptosid-scripts (0.4.17) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 23 Feb 2012 15:40:56 +0100
+  [ Joaquim Boura ]
+  * pocoo no longer exists as paste service
+
+ -- Joaquim Boura <x-un-i@sapo.pt>  Sat, 05 May 2012 14:40:48 +0200
 
 aptosid-scripts (0.4.16) unstable; urgency=low
 

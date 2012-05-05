@@ -8,7 +8,7 @@
 export INFO_COMMAND="infobash "
 export INFO_ARGS="-v 2 0"
 export DEFAULT_NICK="aptosid user"
-export DEFAULT_SERVICE="pocoo"
+export DEFAULT_SERVICE="pastebin.ca"
 
 /usr/bin/wgetpaste "$@"
 
