@@ -1,9 +1,5 @@
-aptosid-scripts (0.4.17) UNRELEASED; urgency=low
+aptosid-scripts (0.4.17) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * pocoo no longer exists as paste service
   * new backend version 2.19.
     pastebin.ca does not supports postdata
