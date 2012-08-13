@@ -1,13 +1,9 @@
-aptosid-scripts (0.4.18) UNRELEASED; urgency=low
+aptosid-scripts (0.4.18) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
-  * new backend version 2.20 with actualized paste services pastebin.ca, 
+  * new backend version 2.20 with actualized paste services pastebin.ca,
     codepaste, dpaste, gists, poundpython. supports more languages.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 05 May 2012 15:03:24 +0200
+ -- Joaquim Boura <x-un-i@sapo.pt>  Mon, 13 Aug 2012 19:14:15 +0200
 
 aptosid-scripts (0.4.17) unstable; urgency=low
 
