@@ -1,6 +1,11 @@
 aptosid-scripts (0.4.18) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Joaquim Boura ]
+  * new backend version 2.20 with actualized paste services pastebin.ca, 
+    codepaste, dpaste, gists, poundpython. supports more languages.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 05 May 2012 15:03:24 +0200
 
