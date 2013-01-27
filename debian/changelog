@@ -1,6 +1,10 @@
 aptosid-scripts (0.4.20) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
+
+  [ Niall Walsh ]
+  * add plain iwlwifi to drivers for iwl (clean out old ones at some point)
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Jan 2013 00:41:27 +0100
 
