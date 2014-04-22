@@ -1,12 +1,9 @@
-aptosid-scripts (0.4.21) UNRELEASED; urgency=medium
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+aptosid-scripts (0.4.21) unstable; urgency=medium
 
   [ Joaquim Boura ]
   * new upstream version for wgetpaste
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 13 Apr 2014 19:58:20 +0200
+ -- Joaquim Boura <x-un-i@sapo.pt>  Tue, 22 Apr 2014 20:53:51 +0200
 
 aptosid-scripts (0.4.20) unstable; urgency=low
 
