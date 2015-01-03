@@ -1,6 +1,5 @@
 burniso				usr/bin/
 fix-dpi-kdm			usr/sbin/
-fix-time			usr/sbin/
 fw				usr/share/aptosid-scripts/
 fw-data.sh			usr/share/aptosid-scripts/
 fw-detect			usr/bin/
