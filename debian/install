@@ -3,6 +3,6 @@ fix-dpi-kdm			usr/sbin/
 fw				usr/share/aptosid-scripts/
 fw-data.sh			usr/share/aptosid-scripts/
 fw-detect			usr/bin/
-get-resume-partition		usr/sbin/
 aptosid-paste			usr/bin/
+update-resume-partition		usr/sbin/
 wgetpaste			usr/bin/
