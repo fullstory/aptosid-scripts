@@ -10,6 +10,8 @@ aptosid-scripts (0.4.22) UNRELEASED; urgency=medium
   * drop remove-gateway, Ceni does effectively the same job - while allowing
     fine grained control over the consequences.
   * drop remove-orphans, it's not really useful, but fragile.
+  * drop inetconn, this has now been moved directly into its only user
+    "fll-installer-common".
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 Apr 2014 21:02:03 +0200
 

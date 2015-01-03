@@ -4,6 +4,5 @@ fw				usr/share/aptosid-scripts/
 fw-data.sh			usr/share/aptosid-scripts/
 fw-detect			usr/bin/
 get-resume-partition		usr/sbin/
-inetconn			usr/bin/
 aptosid-paste			usr/bin/
 wgetpaste			usr/bin/
