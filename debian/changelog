@@ -9,6 +9,7 @@ aptosid-scripts (0.4.22) UNRELEASED; urgency=medium
   * drop kvercmp, it hasn't been installed of any binary packages for ages.
   * drop remove-gateway, Ceni does effectively the same job - while allowing
     fine grained control over the consequences.
+  * drop remove-orphans, it's not really useful, but fragile.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 Apr 2014 21:02:03 +0200
 
