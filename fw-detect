@@ -1,12 +1,23 @@
 #!/bin/bash
 #
-# Copyright 2007 Kel Modderman <kel@otaku42.de>
-# License: GPLv2
-#
 # Script to check if firmware or other non-free drivers are required.
 #
-# Copyright 2009 Niall Walsh <niallwalsh@users.berlios.de>
-# Major modifications to disconnect data from scripts
+# Copyright (C) 2007-2008 Kel Modderman <kel@otaku42.de>
+# Copyright (C) 2008-2015, Stefan Lippers-Hollmann <s.l-h@gmx.de>
+# Copyright (C) 2008, Horst Tritremmel <peter_weber69@gmx.at>
+# Copyright (C) 2008-2009, Joaquim Boura <x-un-i@sapo.pt>
+# Copyright (C) 2009 Niall Walsh <niallwalsh@users.berlios.de>
+#                    major modifications to disconnect data from scripts
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; version 2 of the
+# License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
 function selfhelp () {
 	echo "Usage:

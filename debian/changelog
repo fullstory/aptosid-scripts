@@ -16,6 +16,9 @@ aptosid-scripts (0.4.22) UNRELEASED; urgency=medium
   * bump standards version to 3.9.6, no changes necessary.
   * drop aptosid-paste and wgetpaste, (temporarily) depend on pastebinit
     instead and provide compatibility symlinks for the time being.
+  * add copyright header to the scripts where necessary.
+  * convert to machine readable copyright, update list of copyright holders
+    to reflect its state to the history of the remaining tools.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 Apr 2014 21:02:03 +0200
 
