@@ -1,0 +1,15 @@
+.TH update-resume-partition "3" "January 2015" "update-resume-partition" "User Commands (1)"
+.SH NAME
+update-resume-partition - refreshes the UUIDs of the resume partition
+.SH SYNOPSIS
+.B update-resume-partition
+.SH DESCRIPTION
+`update-resume-partition', refreshes or creates the UUID stored in 
+/etc/initramfs-tools/conf.d/resume, which is used to store the RAM contents
+when suspending to disk. Linux re-uses the system's swap space to store its
+hibernation images.
+.SH "SEE ALSO"
+.BR initramfs-tools
+.SH AUTHOR
+This manual has been written by Stefan Lippers-Hollmann <s.l-h@gmx.de> for 
+the Debian project (but may be used by others).

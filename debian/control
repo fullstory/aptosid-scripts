@@ -23,11 +23,6 @@ Description: miscellaneous scripts for aptosid
  Script collection for live and install uses on aptosid:
   * burniso (write an ISO image from cli)
   * fix-dpi-kdm (tweak dpi settings for kdm/ KDE)
-  * fix-ssh (generate ssh host keys, which are missing on the live system)
-  * fix-time (configure timezone and sync time via ntp)
   * fw-detect (identify missing firmware for installed hardware)
-  * get-resume-partition (configure a resume (swap) partition based on UUIDs)
-  * inetconn (check if an internet connection is active)
+  * update-resume-partition (configure a resume (swap) partition based on UUIDs)
   * remove-gateway (remove configured gateways from /etc/network/interfaces)
-  * remove-orphans (purge files which were merely removed)
-  * aptosid-paste/ wgetpaste (paste cli output to a pastebin)

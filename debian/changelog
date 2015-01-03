@@ -1,6 +1,5 @@
-aptosid-scripts (0.4.22) UNRELEASED; urgency=medium
+aptosid-scripts (0.4.22) unstable; urgency=medium
 
-  * NOT RELEASED YET
   * drop fix-ssh, this is basically a broken/ old equivalent of
     "dpkg-reconfigure openssh-server".
   * drop fix-time, this has been broken since ntpdate has been removed long
@@ -19,8 +18,10 @@ aptosid-scripts (0.4.22) UNRELEASED; urgency=medium
   * add copyright header to the scripts where necessary.
   * convert to machine readable copyright, update list of copyright holders
     to reflect its state to the history of the remaining tools.
+  * add simple manpages for fix-dpi-kdm and update-resume-partition.
+  * update long description.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 Apr 2014 21:02:03 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 03 Jan 2015 05:56:17 +0100
 
 aptosid-scripts (0.4.21) unstable; urgency=medium
 
