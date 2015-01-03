@@ -15,6 +15,7 @@ Architecture: all
 Depends: ${misc:Depends},
  perl,
  distro-defaults,
+ pastebinit,
  xorriso
 Recommends: menu,
  ntpdate
