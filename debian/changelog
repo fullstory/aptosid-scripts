@@ -6,6 +6,7 @@ aptosid-scripts (0.4.22) UNRELEASED; urgency=medium
   * drop fix-time, this has been broken since ntpdate has been removed long
     time ago. Using "dpkg-reconfigure tzdata" does the timezone selection part,
     while systemd-timesyncd takes over the NTP business.
+  * drop kvercmp, it hasn't been installed of any binary packages for ages.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 22 Apr 2014 21:02:03 +0200
 
