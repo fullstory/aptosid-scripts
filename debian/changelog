@@ -1,10 +1,4 @@
-aptosid-scripts (0.4.23) UNRELEASED; urgency=medium
-
-  * NOT RELEASED YET
-
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 03 Jan 2015 05:58:41 +0100
-
-aptosid-scripts (0.4.22) unstable; urgency=medium
+aptosid-scripts (0.5.0) unstable; urgency=medium
 
   * drop fix-ssh, this is basically a broken/ old equivalent of
     "dpkg-reconfigure openssh-server".
