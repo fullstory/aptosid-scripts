@@ -13,7 +13,6 @@ Vcs-Git: git://github.com/fullstory/aptosid-scripts.git
 Package: aptosid-scripts
 Architecture: all
 Depends: ${misc:Depends},
- ${perl:Depends},
  distro-defaults,
  pastebinit,
  xorriso
