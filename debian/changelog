@@ -1,8 +1,9 @@
-aptosid-scripts (0.5.1) UNRELEASED; urgency=medium
+aptosid-scripts (0.5.1) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * no longer recommend ntpdate.
+  * rework debian/control.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 03 Jan 2015 05:59:35 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 04 Jan 2015 01:23:28 +0100
 
 aptosid-scripts (0.5.0) unstable; urgency=medium
 
