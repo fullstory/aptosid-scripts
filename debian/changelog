@@ -1,8 +1,8 @@
-aptosid-scripts (0.5.3) UNRELEASED; urgency=medium
+aptosid-scripts (0.5.3) unstable; urgency=medium
 
-  * NOT RELEASED YET
+  * drop fix-dpi-kdm and its manpage, kdm is obsolete.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 04 Jan 2015 01:54:53 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 07 Sep 2015 21:27:22 +0200
 
 aptosid-scripts (0.5.2) unstable; urgency=medium
 
