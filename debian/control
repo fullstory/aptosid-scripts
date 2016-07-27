@@ -20,7 +20,5 @@ Recommends: menu
 Description: miscellaneous scripts for aptosid
  Script collection for live and install uses on aptosid:
   * burniso (write an ISO image from cli)
-  * fix-dpi-kdm (tweak dpi settings for kdm/ KDE)
   * fw-detect (identify missing firmware for installed hardware)
   * update-resume-partition (configure a resume (swap) partition based on UUIDs)
-  * remove-gateway (remove configured gateways from /etc/network/interfaces)
