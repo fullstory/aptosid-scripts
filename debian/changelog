@@ -1,3 +1,9 @@
+aptosid-scripts (0.5.5) UNRELEASED; urgency=medium
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 28 Jul 2016 01:56:29 +0200
+
 aptosid-scripts (0.5.4) unstable; urgency=medium
 
   * debian/control: drop description of obsolete functions.
