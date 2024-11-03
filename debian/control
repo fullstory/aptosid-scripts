@@ -1,14 +1,14 @@
 Source: aptosid-scripts
 Maintainer: Stefan Lippers-Hollmann <s.l-h@gmx.de>
-Uploaders: Kel Modderman <kel@otaku42.de>,
- Joaquim Boura <x-un-i@sapo.pt>
+Uploaders: Kel Modderman <kel@otaku42.de>
+Rules-Requires-Root: no
 Section: misc
-Priority: extra
-Build-Depends: debhelper (>= 9.20120115),
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
  libconfig-tiny-perl
-Standards-Version: 3.9.6
+Standards-Version: 4.7.0
 Vcs-Browser: https://github.com/fullstory/aptosid-scripts
-Vcs-Git: git://github.com/fullstory/aptosid-scripts.git
+Vcs-Git: https://github.com/fullstory/aptosid-scripts.git
 
 Package: aptosid-scripts
 Architecture: all
