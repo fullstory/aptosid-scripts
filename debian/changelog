@@ -8,8 +8,10 @@ aptosid-scripts (0.5.5) unstable; urgency=medium
     - vcs-field-uses-insecure-uri Git
     - cute-field Vcs-git vs Vcs-Git
     - source: silent-on-rules-requiring-root
+    - source: trailing-whitespace [debian/changelog:135]
+    - source: trailing-whitespace [debian/changelog:950]
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Nov 2024 23:42:54 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 03 Nov 2024 23:45:34 +0100
 
 aptosid-scripts (0.5.4) unstable; urgency=medium
 
@@ -132,7 +134,7 @@ aptosid-scripts (0.4.13) unstable; urgency=low
 aptosid-scripts (0.4.12) unstable; urgency=low
 
   * set default paste service to pocoo, currently the only one supporting
-    pastes >64Kb 
+    pastes >64Kb.
 
  -- Joaquim Boura <x-un-i@berlios.de>  Fri, 11 Mar 2011 21:23:37 +0100
 
@@ -947,4 +949,3 @@ kanotix-scripts (0.1) unstable; urgency=low
   * Initial release.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 23 Aug 2005 11:03:21 +0200
-
